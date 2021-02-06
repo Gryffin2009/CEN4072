@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -305,7 +306,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
 	public void autoID() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/airline", "root", "");
+			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
 			Statement s = con.createStatement();
 			ResultSet rs = s.executeQuery("select MAX(id) from customer");
 			rs.next();
@@ -377,7 +378,8 @@ public class addCustomer extends javax.swing.JInternalFrame {
 		String address = txtaddress.getText();
 
 		DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
-		String date = da.format(txtdob.getDate());
+//		String date = da.format(txtdob.getDate());
+		String date = da.format(new Date());
 		String Gender;
 
 		if (r1.isSelected()) {
@@ -390,7 +392,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/airline", "root", "");
+			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
 			pst = con.prepareStatement(
 					"insert into customer(id,firstname,lastname,nic,passport,address,dob,gender,contact,photo)values(?,?,?,?,?,?,?,?,?,?)");
 

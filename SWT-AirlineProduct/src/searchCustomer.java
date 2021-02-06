@@ -363,7 +363,8 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 		String address = txtaddress.getText();
 
 		DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
-		String date = da.format(txtdob.getDate());
+//		String date = da.format(txtdob.getDate());
+		String date = da.format(new Date());
 		String Gender;
 
 		if (r1.isSelected()) {
@@ -376,7 +377,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/airline", "root", "");
+			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
 			pst = con.prepareStatement(
 					"update customer set firstname = ?,lastname = ?,nic = ?,passport = ?,address= ?,dob = ?,gender = ?,contact = ?,photo = ? where id = ?");
 
@@ -415,7 +416,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/airline", "root", "");
+			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
 			pst = con.prepareStatement("select * from customer where id = ?");
 			pst.setString(1, id);
 			ResultSet rs = pst.executeQuery();
@@ -456,7 +457,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 				txtpassport.setText(passport.trim());
 				txtaddress.setText(address.trim());
 				txtcontact.setText(contact.trim());
-				txtdob.setDate(date1);
+//				txtdob.setDate(date1);
 				txtphoto.setIcon(newImage);
 
 			}

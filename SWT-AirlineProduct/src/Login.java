@@ -127,7 +127,7 @@ public class Login extends javax.swing.JFrame {
 		} else {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				con = DriverManager.getConnection("jdbc:mysql://localhost/airline", "root", "");
+				con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
 				pst = con.prepareStatement("select * from user where username = ? and password = ?");
 				pst.setString(1, username);
 				pst.setString(2, password);

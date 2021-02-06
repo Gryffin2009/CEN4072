@@ -402,7 +402,7 @@ public class ticket extends javax.swing.JInternalFrame {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/airline", "root", "");
+			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
 			pst = con.prepareStatement("SELECT * from flight WHERE source = ? and depart = ?");
 
 			pst.setString(1, source);
@@ -445,7 +445,7 @@ public class ticket extends javax.swing.JInternalFrame {
 	public void autoID() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/airline", "root", "");
+			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
 			Statement s = con.createStatement();
 			ResultSet rs = s.executeQuery("select MAX(id) from ticket");
 			rs.next();
@@ -473,7 +473,7 @@ public class ticket extends javax.swing.JInternalFrame {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/airline", "root", "");
+			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
 			pst = con.prepareStatement("select * from customer where id = ?");
 			pst.setString(1, id);
 			ResultSet rs = pst.executeQuery();
@@ -537,11 +537,12 @@ public class ticket extends javax.swing.JInternalFrame {
 		String price = txtprice.getText();
 		String seats = txtseats.getValue().toString();
 		DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
-		String date = da.format(txtdate.getDate());
+//		String date = da.format(txtdate.getDate());
+		String date = da.format(new Date());
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/airline", "root", "");
+			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
 			pst = con.prepareStatement(
 					"insert into ticket(id,flightid,custid,class,price,seats,date)values(?,?,?,?,?,?,?)");
 

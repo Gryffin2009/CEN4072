@@ -15,7 +15,6 @@ import javax.swing.table.DefaultTableModel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 public class ticketreport extends javax.swing.JInternalFrame {
 
 	/**
@@ -84,7 +83,7 @@ public class ticketreport extends javax.swing.JInternalFrame {
 	public void LoadData() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/airline", "root", "");
+			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
 			pst = con.prepareStatement("SELECT * from ticket");
 			ResultSet rs = pst.executeQuery();
 

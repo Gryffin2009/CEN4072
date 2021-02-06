@@ -1,5 +1,7 @@
 # Compiled class file
 *.class
+# our environment file
+Environment.java
 
 # Log file
 *.log
