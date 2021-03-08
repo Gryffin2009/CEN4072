@@ -274,31 +274,10 @@ public class addflight extends javax.swing.JInternalFrame {
 
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
-	
-	
 
 	public void autoID() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
-			Statement s = con.createStatement();
-			ResultSet rs = s.executeQuery("select MAX(id) from flight");
-			rs.next();
-			rs.getString("MAX(id)");
-			if (rs.getString("MAX(id)") == null) {
-				txtflightid.setText("FO001");
-			} else {
-				long id = Long.parseLong(rs.getString("MAX(id)").substring(2, rs.getString("MAX(id)").length()));
-				id++;
-				txtflightid.setText("FO" + String.format("%03d", id));
-			}
-
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (SQLException ex) {
-			Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
-		}
-
+		String id = AutoIDService.generateAutoID("flight", "FO");
+		txtflightid.setText(id);
 	}
 
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed

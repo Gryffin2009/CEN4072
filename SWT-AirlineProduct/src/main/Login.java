@@ -117,14 +117,11 @@ public class Login extends javax.swing.JFrame {
 		setLocationRelativeTo(null);
 	}// </editor-fold>//GEN-END:initComponents
 
-	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-		// TODO add your handling code here:
-
-		String username = txtuser.getText();
-		String password = txtpass.getText();
+	public boolean login(String username, String password) {
 
 		if (username.isEmpty() || password.isEmpty()) {
 			JOptionPane.showMessageDialog(this, "UserName or Password Blank");
+			return false;
 		} else {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
@@ -140,22 +137,32 @@ public class Login extends javax.swing.JFrame {
 					Main m = new Main();
 					this.hide();
 					m.setVisible(true);
-
+					return true;
 				} else {
 					JOptionPane.showMessageDialog(this, "UserName or Password do not Match");
 					txtuser.setText("");
 					txtpass.setText("");
 					txtuser.requestFocus();
-
+					return false;
 				}
 
 			} catch (ClassNotFoundException ex) {
 				Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+				return false;
 			} catch (SQLException ex) {
 				Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+				return false;
 			}
 
 		}
+	}
+	
+	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+		// TODO add your handling code here:
+
+		String username = txtuser.getText();
+		String password = txtpass.getText();
+		login(username, password);
 
 	}// GEN-LAST:event_jButton1ActionPerformed
 

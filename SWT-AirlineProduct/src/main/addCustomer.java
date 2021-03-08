@@ -305,28 +305,8 @@ public class addCustomer extends javax.swing.JInternalFrame {
 	}// </editor-fold>//GEN-END:initComponents
 
 	public void autoID() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
-			Statement s = con.createStatement();
-			ResultSet rs = s.executeQuery("select MAX(id) from customer");
-			rs.next();
-			rs.getString("MAX(id)");
-			if (rs.getString("MAX(id)") == null) {
-				txtid.setText("CS001");
-			} else {
-				long id = Long.parseLong(rs.getString("MAX(id)").substring(2, rs.getString("MAX(id)").length()));
-				id++;
-				txtid.setText("CS" + String.format("%03d", id));
-
-			}
-
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (SQLException ex) {
-			Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
-		}
-
+		String id = AutoIDService.generateAutoID("customer", "CS");
+		txtid.setText(id);
 	}
 
 	private void txtlastnameActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtlastnameActionPerformed

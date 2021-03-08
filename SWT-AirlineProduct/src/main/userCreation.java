@@ -3,11 +3,7 @@ package main;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -206,28 +202,8 @@ public class userCreation extends javax.swing.JInternalFrame {
 	}// GEN-LAST:event_jButton2ActionPerformed
 
 	public void autoID() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
-			Statement s = con.createStatement();
-			ResultSet rs = s.executeQuery("select MAX(id) from user");
-			rs.next();
-			rs.getString("MAX(id)");
-			if (rs.getString("MAX(id)") == null) {
-				txtuserid.setText("UO001");
-			} else {
-				long id = Long.parseLong(rs.getString("MAX(id)").substring(2, rs.getString("MAX(id)").length()));
-				id++;
-				txtuserid.setText("UO" + String.format("%03d", id));
-
-			}
-
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (SQLException ex) {
-			Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
-		}
-
+		String id = AutoIDService.generateAutoID("user", "UO");
+		txtuserid.setText(id);
 	}
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables

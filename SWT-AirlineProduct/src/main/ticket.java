@@ -444,28 +444,8 @@ public class ticket extends javax.swing.JInternalFrame {
 	}// GEN-LAST:event_jButton3ActionPerformed
 
 	public void autoID() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
-			Statement s = con.createStatement();
-			ResultSet rs = s.executeQuery("select MAX(id) from ticket");
-			rs.next();
-			rs.getString("MAX(id)");
-			if (rs.getString("MAX(id)") == null) {
-				txtticketno.setText("TO001");
-			} else {
-				long id = Long.parseLong(rs.getString("MAX(id)").substring(2, rs.getString("MAX(id)").length()));
-				id++;
-				txtticketno.setText("TO" + String.format("%03d", id));
-
-			}
-
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (SQLException ex) {
-			Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
-		}
-
+		String id = AutoIDService.generateAutoID("ticket", "TO");
+		txtticketno.setText(id);
 	}
 
 	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
