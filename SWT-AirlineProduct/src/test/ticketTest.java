@@ -1,5 +1,7 @@
 package test;
 
+import java.util.Vector;
+
 import org.junit.jupiter.api.*;
 import main.ticket;
 
@@ -33,6 +35,11 @@ public class ticketTest {
 		Assertions.assertEquals(150000, total, "The price of the seats should be 150,000");
 	}
 	
-	
-	
+	@Test
+	@DisplayName("Retrieve list of flights from India to Uk")
+	void testRetrieveFlights() {
+		Vector<Vector<String>> flights = ticket.createFlightList("India", "Uk");
+		
+		Assertions.assertNotEquals(null, flights);
+	}
 }

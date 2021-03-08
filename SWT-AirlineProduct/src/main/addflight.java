@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
+import main.Flight.InvalidFlightInputException;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -33,7 +35,7 @@ public class addflight extends javax.swing.JInternalFrame {
 	
 	public String[] locations;
 
-	public boolean createFlight(String id, String flightname, String source, String depart, String date, String departtime, String arrtime, String flightcharge) {
+	public boolean flightToDB(Flight flight) {
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -41,18 +43,18 @@ public class addflight extends javax.swing.JInternalFrame {
 			pst = con.prepareStatement(
 					"insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)values(?,?,?,?,?,?,?,?)");
 
-			pst.setString(1, id);
-			pst.setString(2, flightname);
-			pst.setString(3, source);
-			pst.setString(4, depart);
-			pst.setString(5, date);
-			pst.setString(6, departtime);
-			pst.setString(7, arrtime);
-			pst.setString(8, flightcharge);
+			pst.setString(1, flight.getId());
+			pst.setString(2, flight.getName());
+			pst.setString(3, flight.getSource());
+			pst.setString(4, flight.getDepart());
+			pst.setString(5, flight.getDate());
+			pst.setString(6, flight.getDepTime());
+			pst.setString(7, flight.getArrTime());
+			pst.setString(8, flight.getCharge());
 
 			pst.executeUpdate();
 
-			JOptionPane.showMessageDialog(null, "Flight Createdd.........");
+			JOptionPane.showMessageDialog(null, "Flight Created.");
 			return true;
 		} catch (ClassNotFoundException ex) {
 			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
@@ -61,7 +63,6 @@ public class addflight extends javax.swing.JInternalFrame {
 			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
 			return false;
 		}
-
 	}
 	
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
@@ -71,15 +72,20 @@ public class addflight extends javax.swing.JInternalFrame {
 
 		String source = txtsource.getSelectedItem().toString().trim();
 		String depart = txtdepart.getSelectedItem().toString().trim();
-
+		
 		DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
 		String date = da.format(txtdate.getDate());
 
 		String departtime = txtdtime.getText();
 		String arrtime = txtarrtime.getText();
 		String flightcharge = txtflightcharge.getText();
-
-		createFlight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
+		
+		try {
+			Flight flight = new Flight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
+			flightToDB(flight);
+		} catch (InvalidFlightInputException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 	}// GEN-LAST:event_jButton1ActionPerformed
 
 

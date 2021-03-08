@@ -14,15 +14,15 @@ class LoginTest {
 	
 	@Test
 	void test() {
-		String username = "brandon";
+		String username = "john";
 		
 		// Ensure valid password succeeds
-		String validPassword = "p4ssw0rd";
+		String validPassword = "123";
 		boolean successWithValidPassword = login.login(username, validPassword);
 		Assertions.assertTrue(successWithValidPassword);
 		
 		// Ensure invalid password fails
-		String invalidPassword = "p4ssw0rd";
+		String invalidPassword = "321";
 		boolean successWithInvalidPassword = login.login(username, invalidPassword);
 		Assertions.assertFalse(successWithInvalidPassword);
 	}

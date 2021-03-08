@@ -96,7 +96,7 @@ public class ticketreport extends javax.swing.JInternalFrame {
 			Df.setRowCount(0);
 
 			while (rs.next()) {
-				Vector v2 = new Vector();
+				Vector<String> v2 = new Vector<>();
 
 				for (int i = 1; i <= c; i++) {
 					v2.add(rs.getString("id"));

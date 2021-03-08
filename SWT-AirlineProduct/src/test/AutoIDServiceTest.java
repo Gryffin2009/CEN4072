@@ -7,7 +7,7 @@ import main.userCreation;
 public class AutoIDServiceTest {
 	
 	// TODO make test table
-	private String TEST_TABLE = "test"; 
+	private String TEST_TABLE = "flight"; 
 	
 	@BeforeAll
 	static void beforeAll() {
@@ -33,7 +33,6 @@ public class AutoIDServiceTest {
 	void testAutoID() {
 		
 		String first = AutoIDService.generateAutoID(TEST_TABLE, "UO");
-		System.out.println(first);
 		Assertions.assertEquals(first, "UO001");
 		
 		String second = AutoIDService.generateAutoID(TEST_TABLE, "UO");

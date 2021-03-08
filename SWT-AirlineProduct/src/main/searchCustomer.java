@@ -25,6 +25,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import main.Customer.InvalidCustomerInputException;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -46,6 +48,71 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 
 	String path = null;
 	byte[] userimage = null;
+	
+	public boolean validateID(String id) {
+		return id.matches("^CS[0-9]{3}$");
+	}
+	
+	public void searchByID(String id) throws SQLException {
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
+			pst = con.prepareStatement("select * from customer where id = ?");
+			pst.setString(1, id);
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+			
+			
+			String fname = rs.getString("firstname");
+			String lname = rs.getString("lastname");
+			String nic = rs.getString("nic");
+			String passport = rs.getString("passport");
+
+			String address = rs.getString("address");
+			String dob = rs.getString("dob");
+			Date parsedDob = new SimpleDateFormat("yyyy-MM-dd").parse(dob);
+			String gender = rs.getString("gender");
+
+			Blob blob = rs.getBlob("photo");
+			byte[] _imagebytes = blob.getBytes(1, (int) blob.length());
+			ImageIcon image = new ImageIcon(_imagebytes);
+			Image im = image.getImage();
+			Image myImg = im.getScaledInstance(250, 250, Image.SCALE_SMOOTH);
+			ImageIcon newImage = new ImageIcon(myImg);
+
+			if (gender.equals("Female")) {
+				r1.setSelected(false);
+				r2.setSelected(true);
+
+			} else {
+				r1.setSelected(true);
+				r2.setSelected(false);
+			}
+			String contact = rs.getString("contact");
+
+			try {
+				Customer customer = new Customer(id, fname, lname, nic, passport, address, dob, gender, contact, _imagebytes);
+			} catch (InvalidCustomerInputException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+					
+			txtfirstname.setText(fname.trim());
+			txtlastname.setText(lname.trim());
+			txtnic.setText(nic.trim());
+			txtpassport.setText(passport.trim());
+			txtaddress.setText(address.trim());
+			txtcontact.setText(contact.trim());
+//				txtdob.setDate(date1);
+			txtphoto.setIcon(newImage);
+		} catch (ClassNotFoundException ex) {
+			Logger.getLogger(searchCustomer.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (ParseException ex) {
+			Logger.getLogger(searchCustomer.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		
+	}
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -414,60 +481,9 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 		// TODO add your handling code here:
 
 		String id = txtcustid.getText();
-
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
-			pst = con.prepareStatement("select * from customer where id = ?");
-			pst.setString(1, id);
-			ResultSet rs = pst.executeQuery();
-
-			if (rs.next() == false) {
-				JOptionPane.showMessageDialog(this, "Record not Found");
-			} else {
-				String fname = rs.getString("firstname");
-				String lname = rs.getString("lastname");
-				String nic = rs.getString("nic");
-				String passport = rs.getString("passport");
-
-				String address = rs.getString("address");
-				String dob = rs.getString("dob");
-				Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(dob);
-				String gender = rs.getString("gender");
-
-				Blob blob = rs.getBlob("photo");
-				byte[] _imagebytes = blob.getBytes(1, (int) blob.length());
-				ImageIcon image = new ImageIcon(_imagebytes);
-				Image im = image.getImage();
-				Image myImg = im.getScaledInstance(txtphoto.getWidth(), txtphoto.getHeight(), Image.SCALE_SMOOTH);
-				ImageIcon newImage = new ImageIcon(myImg);
-
-				if (gender.equals("Female")) {
-					r1.setSelected(false);
-					r2.setSelected(true);
-
-				} else {
-					r1.setSelected(true);
-					r2.setSelected(false);
-				}
-				String contact = rs.getString("contact");
-
-				txtfirstname.setText(fname.trim());
-				txtlastname.setText(lname.trim());
-				txtnic.setText(nic.trim());
-				txtpassport.setText(passport.trim());
-				txtaddress.setText(address.trim());
-				txtcontact.setText(contact.trim());
-//				txtdob.setDate(date1);
-				txtphoto.setIcon(newImage);
-
-			}
-
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(searchCustomer.class.getName()).log(Level.SEVERE, null, ex);
+				try {
+			searchByID(id);
 		} catch (SQLException ex) {
-			Logger.getLogger(searchCustomer.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (ParseException ex) {
 			Logger.getLogger(searchCustomer.class.getName()).log(Level.SEVERE, null, ex);
 		}
 

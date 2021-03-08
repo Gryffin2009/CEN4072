@@ -35,6 +35,17 @@ public class ticket extends javax.swing.JInternalFrame {
 		autoID();
 	}
 
+	public void autoID() {
+		String id = AutoIDService.generateAutoID("ticket", "TO");
+		txtticketno.setText(id);
+	}
+
+	public int calcPriceTotal(int price, int numSeats) {
+		return price * numSeats;
+	}
+	
+	
+
 	Connection con;
 	PreparedStatement pst;
 
@@ -401,6 +412,20 @@ public class ticket extends javax.swing.JInternalFrame {
 		String source = txtsource.getSelectedItem().toString().trim();
 		String depart = txtdepart.getSelectedItem().toString().trim();
 
+		Vector<Vector<String>> flights = createFlightList(source, depart);
+
+		DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+		Df.setRowCount(0);;
+
+		for (Vector<String> flight : flights) {
+			Df.addRow(flight);
+		}
+
+	}// GEN-LAST:event_jButton3ActionPerformed
+
+	public Vector<Vector<String>> createFlightList(String source, String depart) {
+
+
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
@@ -413,41 +438,35 @@ public class ticket extends javax.swing.JInternalFrame {
 			ResultSetMetaData rsm = rs.getMetaData();
 			int c;
 			c = rsm.getColumnCount();
-
-			DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
-			Df.setRowCount(0);
-
+			Vector<Vector<String>> flights = new Vector<>();
+			
 			while (rs.next()) {
-				Vector v2 = new Vector();
-
+				Vector<String> flight = new Vector<>();
 				for (int i = 1; i <= c; i++) {
-					v2.add(rs.getString("id"));
-					v2.add(rs.getString("flightname"));
-					v2.add(rs.getString("source"));
-					v2.add(rs.getString("depart"));
-					v2.add(rs.getString("date"));
-					v2.add(rs.getString("deptime"));
-					v2.add(rs.getString("arrtime"));
-					v2.add(rs.getString("flightcharge"));
+					flight.add(rs.getString("id"));
+					flight.add(rs.getString("flightname"));
+					flight.add(rs.getString("source"));
+					flight.add(rs.getString("depart"));
+					flight.add(rs.getString("date"));
+					flight.add(rs.getString("deptime"));
+					flight.add(rs.getString("arrtime"));
+					flight.add(rs.getString("flightcharge"));
 				}
-
-				Df.addRow(v2);
-
+				
+				flights.add(flight);
 			}
+			
+			return flights;
 
 		} catch (ClassNotFoundException ex) {
 			Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
+			return null;
 		} catch (SQLException ex) {
 			Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
+			return null;
 		}
-
-	}// GEN-LAST:event_jButton3ActionPerformed
-
-	public void autoID() {
-		String id = AutoIDService.generateAutoID("ticket", "TO");
-		txtticketno.setText(id);
 	}
-
+	
 	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
 		// TODO add your handling code here:
 		String id = txtcustid.getText();
@@ -507,10 +526,6 @@ public class ticket extends javax.swing.JInternalFrame {
 		txttotal.setText(String.valueOf(tot));
 
 	}// GEN-LAST:event_txtseatsStateChanged
-	
-	public int calcPriceTotal(int price, int numSeats) {
-		return price * numSeats;
-	}
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
 		// TODO add your handling code here:

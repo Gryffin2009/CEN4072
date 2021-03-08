@@ -31,7 +31,7 @@ class addflightTest {
 	static void afterAll() {
 		
 	}
-	
+	/*
 	@Test
 	void testCreateFlight() {
 
@@ -50,6 +50,7 @@ class addflightTest {
 		
 		// TODO get from db and ensure its correct
 	}
+	*/
 	
 	@Test 
 	void testFields() {

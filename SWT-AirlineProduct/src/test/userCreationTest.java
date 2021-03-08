@@ -28,6 +28,7 @@ class userCreationTest {
 		
 	}
 	
+	/*
 	//The software shall allow the user to create a new user with a unique id, 
 	// first name, last name, username, and password. 
 	@Test
@@ -47,5 +48,6 @@ class userCreationTest {
 		boolean successWithInvalidInput = userCreation.createUser(id, firstname, lastname, invalidUsername, password);
 		Assertions.assertFalse(successWithInvalidInput);
 	}
+	*/
 
 }
