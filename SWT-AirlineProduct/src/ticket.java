@@ -521,11 +521,15 @@ public class ticket extends javax.swing.JInternalFrame {
 		int price = Integer.parseInt(txtprice.getText());
 		int qty = Integer.parseInt(txtseats.getValue().toString());
 
-		int tot = price * qty;
+		int tot = calcPriceTotal(price, qty);
 
 		txttotal.setText(String.valueOf(tot));
 
 	}// GEN-LAST:event_txtseatsStateChanged
+	
+	int calcPriceTotal(int price, int numSeats) {
+		return price * numSeats;
+	}
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
 		// TODO add your handling code here:

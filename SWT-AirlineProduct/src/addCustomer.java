@@ -418,6 +418,10 @@ public class addCustomer extends javax.swing.JInternalFrame {
 
 	}// GEN-LAST:event_jButton2ActionPerformed
 
+	boolean validateCustomerName(String name) {
+		return name.matches("[a-zA-Z]+");
+	}
+	
 	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
 		// TODO add your handling code here:
 
