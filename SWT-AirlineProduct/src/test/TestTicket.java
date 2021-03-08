@@ -33,4 +33,7 @@ public class TestTicket {
 		int total = thisTicket.calcPriceTotal(50000, 3);
 		Assertions.assertEquals(150000, total);
 	}
+	
+	
+	
 }

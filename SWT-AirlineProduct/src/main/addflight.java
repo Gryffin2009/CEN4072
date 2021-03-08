@@ -28,8 +28,58 @@ public class addflight extends javax.swing.JInternalFrame {
 		autoID();
 	}
 
-	Connection con;
+	public Connection con;
 	PreparedStatement pst;
+
+	public boolean createFlight(String id, String flightname, String source, String depart, String date, String departtime, String arrtime, String flightcharge) {
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
+			pst = con.prepareStatement(
+					"insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)values(?,?,?,?,?,?,?,?)");
+
+			pst.setString(1, id);
+			pst.setString(2, flightname);
+			pst.setString(3, source);
+			pst.setString(4, depart);
+			pst.setString(5, date);
+			pst.setString(6, departtime);
+			pst.setString(7, arrtime);
+			pst.setString(8, flightcharge);
+
+			pst.executeUpdate();
+
+			JOptionPane.showMessageDialog(null, "Flight Createdd.........");
+			return true;
+		} catch (ClassNotFoundException ex) {
+			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+			return false;
+		} catch (SQLException ex) {
+			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+			return false;
+		}
+
+	}
+	
+	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+		// TODO add your handling code here:
+		String id = txtflightid.getText();
+		String flightname = txtflightname.getText();
+
+		String source = txtsource.getSelectedItem().toString().trim();
+		String depart = txtdepart.getSelectedItem().toString().trim();
+
+		DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
+		String date = da.format(txtdate.getDate());
+
+		String departtime = txtdtime.getText();
+		String arrtime = txtarrtime.getText();
+		String flightcharge = txtflightcharge.getText();
+
+		createFlight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
+	}// GEN-LAST:event_jButton1ActionPerformed
+
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -222,6 +272,8 @@ public class addflight extends javax.swing.JInternalFrame {
 
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
+	
+	
 
 	public void autoID() {
 		try {
@@ -237,7 +289,6 @@ public class addflight extends javax.swing.JInternalFrame {
 				long id = Long.parseLong(rs.getString("MAX(id)").substring(2, rs.getString("MAX(id)").length()));
 				id++;
 				txtflightid.setText("FO" + String.format("%03d", id));
-
 			}
 
 		} catch (ClassNotFoundException ex) {
@@ -247,48 +298,6 @@ public class addflight extends javax.swing.JInternalFrame {
 		}
 
 	}
-
-	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-		// TODO add your handling code here:
-
-		String id = txtflightid.getText();
-		String flightname = txtflightname.getText();
-
-		String source = txtsource.getSelectedItem().toString().trim();
-		String depart = txtdepart.getSelectedItem().toString().trim();
-
-		DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
-		String date = da.format(txtdate.getDate());
-
-		String departtime = txtdtime.getText();
-		String arrtime = txtarrtime.getText();
-		String flightcharge = txtflightcharge.getText();
-
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
-			pst = con.prepareStatement(
-					"insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)values(?,?,?,?,?,?,?,?)");
-
-			pst.setString(1, id);
-			pst.setString(2, flightname);
-			pst.setString(3, source);
-			pst.setString(4, depart);
-			pst.setString(5, date);
-			pst.setString(6, departtime);
-			pst.setString(7, arrtime);
-			pst.setString(8, flightcharge);
-
-			pst.executeUpdate();
-
-			JOptionPane.showMessageDialog(null, "Flight Createdd.........");
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (SQLException ex) {
-			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
-		}
-
-	}// GEN-LAST:event_jButton1ActionPerformed
 
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
 		// TODO add your handling code here:
