@@ -31,6 +31,33 @@ public class userCreation extends javax.swing.JInternalFrame {
 	Connection con;
 	PreparedStatement pst;
 
+	public boolean createUser(String id, String firstname, String lastname, String username, String password) {
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
+			pst = con.prepareStatement("insert into user(id,firstname,lastname,username,password)values(?,?,?,?,?)");
+
+			pst.setString(1, id);
+			pst.setString(2, firstname);
+			pst.setString(3, lastname);
+			pst.setString(4, username);
+			pst.setString(5, password);
+
+			pst.executeUpdate();
+
+			JOptionPane.showMessageDialog(null, "User Createdd.........");
+			return true;
+		} catch (ClassNotFoundException ex) {
+			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+			return false;
+		} catch (SQLException ex) {
+			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+			return false;
+		}
+	}
+
+
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
@@ -160,7 +187,7 @@ public class userCreation extends javax.swing.JInternalFrame {
 
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
-
+	
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
 		// TODO add your handling code here:
 
@@ -170,26 +197,7 @@ public class userCreation extends javax.swing.JInternalFrame {
 		String username = txtusername.getText();
 		String password = txtpassword.getText();
 
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
-			pst = con.prepareStatement("insert into user(id,firstname,lastname,username,password)values(?,?,?,?,?)");
-
-			pst.setString(1, id);
-			pst.setString(2, firstname);
-			pst.setString(3, lastname);
-			pst.setString(4, username);
-			pst.setString(5, password);
-
-			pst.executeUpdate();
-
-			JOptionPane.showMessageDialog(null, "User Createdd.........");
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (SQLException ex) {
-			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
-		}
-
+		createUser(id, firstname, lastname, username, password);
 	}// GEN-LAST:event_jButton1ActionPerformed
 
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed

@@ -28,8 +28,10 @@ public class addflight extends javax.swing.JInternalFrame {
 		autoID();
 	}
 
-	public Connection con;
+	Connection con;
 	PreparedStatement pst;
+	
+	public String[] locations;
 
 	public boolean createFlight(String id, String flightname, String source, String depart, String date, String departtime, String arrtime, String flightcharge) {
 		
@@ -91,6 +93,8 @@ public class addflight extends javax.swing.JInternalFrame {
 	// Code">//GEN-BEGIN:initComponents
 	private void initComponents() {
 
+		locations = new String[] { "India", "Srilanka", "Uk", "Usa", "Canada", "China" };
+		
 		jPanel1 = new javax.swing.JPanel();
 		jLabel1 = new javax.swing.JLabel();
 		txtflightid = new javax.swing.JLabel();
@@ -159,11 +163,9 @@ public class addflight extends javax.swing.JInternalFrame {
 			}
 		});
 
-		txtsource.setModel(new javax.swing.DefaultComboBoxModel<>(
-				new String[] { "India\t", "Srilanka", "Uk", "Usa", "Canada", "Chinna" }));
+		txtsource.setModel(new javax.swing.DefaultComboBoxModel<>(locations));
 
-		txtdepart.setModel(new javax.swing.DefaultComboBoxModel<>(
-				new String[] { "India\t", "Srilanka", "Uk", "Usa", "Canada", "Chinna" }));
+		txtdepart.setModel(new javax.swing.DefaultComboBoxModel<>(locations));
 
 		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
 		jPanel1.setLayout(jPanel1Layout);
