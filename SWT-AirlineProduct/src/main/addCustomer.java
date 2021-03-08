@@ -419,8 +419,12 @@ public class addCustomer extends javax.swing.JInternalFrame {
 
 	}// GEN-LAST:event_jButton2ActionPerformed
 
-	boolean validateCustomerName(String name) {
-		return name.matches("[a-zA-Z]+");
+	public boolean validateCustomerName(String name) {
+		if (name.matches("[a-zA-Z]+")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed

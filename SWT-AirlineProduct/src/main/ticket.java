@@ -528,7 +528,7 @@ public class ticket extends javax.swing.JInternalFrame {
 
 	}// GEN-LAST:event_txtseatsStateChanged
 	
-	int calcPriceTotal(int price, int numSeats) {
+	public int calcPriceTotal(int price, int numSeats) {
 		return price * numSeats;
 	}
 
