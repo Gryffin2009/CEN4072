@@ -1,4 +1,7 @@
+package test;
+
 import org.junit.jupiter.api.*;
+import main.addCustomer;
 
 public class TestAddCustomer {
 
