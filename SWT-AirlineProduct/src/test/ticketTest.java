@@ -3,18 +3,17 @@ package test;
 import org.junit.jupiter.api.*;
 import main.ticket;
 
-public class TestTicket {
+public class ticketTest {
 	
-	static ticket thisTicket;
+	static ticket ticket;
 	
 	@BeforeAll
-	static void beforeAll() {
-		thisTicket = new ticket();		
+	static void beforeAll() {	
 	}
 	
 	@BeforeEach
 	void beforeEach() {
-		
+		ticket = new ticket();	
 	}
 	
 	@AfterEach
@@ -29,9 +28,9 @@ public class TestTicket {
 
 	@Test
 	@DisplayName("Change price based on number of seats")
-	public void testCalcPriceTotal() {
-		int total = thisTicket.calcPriceTotal(50000, 3);
-		Assertions.assertEquals(150000, total);
+	void testCalcPriceTotal() {
+		int total = ticket.calcPriceTotal(50000, 3);
+		Assertions.assertEquals(150000, total, "The price of the seats should be 150,000");
 	}
 	
 	
