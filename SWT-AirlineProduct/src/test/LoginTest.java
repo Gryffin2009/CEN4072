@@ -12,6 +12,7 @@ class LoginTest {
 		login = new Login();		
 	}
 	
+	// Logs in using valid credentials, then invalid credentials.
 	@Test
 	void test() {
 		String username = "john";

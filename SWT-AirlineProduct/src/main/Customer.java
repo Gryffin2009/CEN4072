@@ -8,6 +8,7 @@ import java.io.IOException;
 
 public class Customer {
 
+	// A custom exception to handle any invalid input to all of the properties of the Customer class.
 	public class InvalidCustomerInputException extends Exception {
 		public InvalidCustomerInputException(String message) {
 			super(message);
@@ -25,6 +26,7 @@ public class Customer {
 	private String contact;
 	private byte[] photo;
 	
+	// Constructor with the image as a byte[] array, which is how the image is stored in the database.
 	public Customer(String id, String firstname, String lastname, String nic, String passport,
 			String address, String dob, String gender, String contact, byte[] photo) throws InvalidCustomerInputException {
 		setId(id);
@@ -39,6 +41,7 @@ public class Customer {
 		setPhoto(photo);
 	}
 	
+	// Constructor with image path, which then converts the image to a byte[] array so it can be stored in the database.
 	public Customer(String id, String firstname, String lastname, String nic, String passport,
 			String address, String dob, String gender, String contact, String photo) throws InvalidCustomerInputException, IOException {
 		setId(id);
@@ -53,18 +56,22 @@ public class Customer {
 		setPhoto(photo);
 	}
 	
+	// Ensures an Id is of the format CS###.
 	private boolean validateId(String id) {
 		return id.matches("^CS[0-9]{3}$");
 	}
 	
+	// Ensures a name contains only letters, dashes, and/or apostrophes, as well as at least 1 character.
 	private boolean validateName(String name) {
 		return name.matches("^[a-zA-Z'-]+$");
 	}
 	
+	// Ensures a NIC contains only letters and numbers and at least 1 character.
 	private boolean validateNic(String nic) {
 		return nic.matches("^[a-zA-Z0-9]+$");
 	}
 	
+	// Ensures a passport number contains only letters and numbers and at least 1 character.
 	private boolean validatePassport(String passport) {
 		return passport.matches("^[a-zA-Z0-9]+$");
 	}
@@ -87,10 +94,12 @@ public class Customer {
 	}
 	*/
 	
+	// Ensures a date of birth is in the format YYY-MM-DD.
 	private boolean validateDob(String dob) {
 		return dob.matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");		
 	}
 
+	// Ensures a gender is either Male or Female.
 	private boolean validateGender(String gender) {
 		if (gender.contains("Male") || gender.contains("Female")) {
 			return true;
@@ -99,14 +108,17 @@ public class Customer {
 		}
 	}
 	
+	// Ensures a phone number consists only of numbers and has 7 digits.
 	private boolean validateContact(String contact) {
 		return contact.matches("^[0-9]{7}$");
 	}
 	
+	// Returns the customer ID.
 	public String getId() {
 		return id;
 	}
 
+	// Sets an ID if valid, otherwise throws a custom exception marking an invalid property value.
 	public void setId(String id) throws InvalidCustomerInputException {
 		if (validateId(id)) {
 			this.id = id;
@@ -115,10 +127,12 @@ public class Customer {
 		}
 	}
 
+	// Returns the first name of the customer.
 	public String getFirstname() {
 		return firstname;
 	}
 
+	// Sets a first name if valid, otherwise throws a custom exception marking an invalid property value.
 	public void setFirstname(String firstname) throws InvalidCustomerInputException {
 		if (validateName(firstname)) {
 			this.firstname = firstname;
@@ -127,10 +141,12 @@ public class Customer {
 		}
 	}
 
+	// Returns the last name of the customer.
 	public String getLastname() {
 		return lastname;
 	}
 
+	// Sets a last name if valid, otherwise throws a custom exception marking an invalid property value.
 	public void setLastname(String lastname) throws InvalidCustomerInputException {
 		if (validateName(lastname)) {
 			this.lastname = lastname;
@@ -139,10 +155,12 @@ public class Customer {
 		}
 	}
 
+	// Returns the NIC of the customer.
 	public String getNic() {
 		return nic;
 	}
 
+	// Sets the NIC if valid, otherwise throws a custom exception marking an invalid property value.
 	public void setNic(String nic) throws InvalidCustomerInputException {
 		if (validateNic(nic)) {
 			this.nic = nic;
@@ -151,10 +169,12 @@ public class Customer {
 		}
 	}
 
+	// Returns the passport number of the customer.
 	public String getPassport() {
 		return passport;
 	}
 
+	// Sets a passport number if valid, otherwise throws a custom exception marking an invalid property value.
 	public void setPassport(String passport) throws InvalidCustomerInputException {
 		if (validatePassport(passport)) {
 			this.passport = passport;
@@ -163,10 +183,12 @@ public class Customer {
 		}
 	}
 
+	// Returns the address of the customer.
 	public String getAddress() {
 		return address;
 	}
 
+	// Sets the address of the customer.
 	public void setAddress(String address) throws InvalidCustomerInputException {
 		
 		//TODO Make an Address class!
@@ -177,10 +199,12 @@ public class Customer {
 		}
 	}
 
+	// Returns the date of birth of the customer.
 	public String getDob() {
 		return dob;
 	}
 
+	// Sets a date of birth if valid, otherwise throws a custom exception marking an invalid property value.
 	public void setDob(String dob) throws InvalidCustomerInputException {
 		if (validateDob(dob)) {
 			this.dob = dob;
@@ -189,10 +213,12 @@ public class Customer {
 		}
 	}
 
+	// Returns the gender of the customer.
 	public String getGender() {
 		return gender;
 	}
 
+	// Sets a gender if valid, otherwise throws a custom exception marking an invalid property value.
 	public void setGender(String gender) throws InvalidCustomerInputException {
 		if (validateGender(gender)) {
 			this.gender = gender;
@@ -201,10 +227,12 @@ public class Customer {
 		}
 	}
 
+	// Returns the phone number of the customer.
 	public String getContact() {
 		return contact;
 	}
 
+	// Sets a phone number if valid, otherwise throws a custom exception marking an invalid property value.
 	public void setContact(String contact) throws InvalidCustomerInputException {
 		if (validateContact(contact)) {
 			this.contact = contact;
@@ -213,14 +241,17 @@ public class Customer {
 		}
 	}
 
+	// Returns the photo of the customer.
 	public byte[] getPhoto() {
 		return photo;
 	}
-	
+
+	// Sets a photo directly if the photo is given as a byte[].
 	public void setPhoto(byte[] photo) {
 		this.photo = photo;
 	}
 
+	// If a photo is given as a file path, converts the image to a byte[], then sets it.
 	public void setPhoto(String path) throws FileNotFoundException, IOException {
 		File image = new File(path);
 		FileInputStream fis = new FileInputStream(image);

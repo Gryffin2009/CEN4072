@@ -23,6 +23,10 @@ public class FlightTest {
 	
 	@BeforeAll
 	static void beforeAll() {
+		
+		// Before any tests run, create values for the initial Flight object to be created with.
+		// This is necessary to test whether changing any individual properties will throw exceptions.
+		// This also facilitates input validation, as each setter in Customer contains validation methods.
 		id = AutoIDService.generateAutoID("flight", "FO");
 		name = "Delta";
 		source = "Uk";
@@ -35,6 +39,9 @@ public class FlightTest {
 	
 	@BeforeEach
 	void beforeEach() throws InvalidFlightInputException {
+		
+		// Create a fresh Flight to work with for every test. This ensures all tests are working from the same
+		// initial values, which ensures no test results will affect other tests.
 		flight = new Flight(id, name, source, depart, date, depTime, arrTime, charge);
 	}
 	
@@ -48,12 +55,14 @@ public class FlightTest {
 		
 	}
 
+	// Tries to pass a valid Flight Id to the Flight class.
 	@Test
 	@DisplayName("Id, valid")
 	void testIdValid() {
 		Assertions.assertDoesNotThrow(() -> flight.setId("FO003"));
 	}
 
+	// Tries to pass an invalid Id to the flight class by using an Id with an incorrect prefix.
 	@Test
 	@DisplayName("Id, invalid (Improper prefix)")
 	void testIdInvalidPrefix() throws InvalidFlightInputException {
@@ -62,6 +71,7 @@ public class FlightTest {
 	Assertions.assertEquals("Flight ID must be in the format \"FO###\".", e.getMessage());		
 	}
 
+	// Tries to pass an invalid Id to the flight class by using an Id with too many trailing digits.
 	@Test
 	@DisplayName("Id, invalid (Too many digits)")
 	void testIdInvalidTooManyDigits() throws InvalidFlightInputException {
@@ -70,6 +80,7 @@ public class FlightTest {
 	Assertions.assertEquals("Flight ID must be in the format \"FO###\".", e.getMessage());		
 	}
 
+	// Tries to pass an invalid Id to the flight class by using an Id with too few trailing digits.
 	@Test
 	@DisplayName("Id, invalid (Not enough digits)")
 	void testIdInvalidNotEnoughDigits() throws InvalidFlightInputException {

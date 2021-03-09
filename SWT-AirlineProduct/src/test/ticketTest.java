@@ -69,6 +69,7 @@ public class ticketTest {
 	
 	@Test
 	@DisplayName("Retrieve list of flights from India to Uk")
+	// Ensures the program properly fetches the list of flights from the database.
 	void testRetrieveFlights() {
 		Vector<Vector<String>> flights = ticket.createFlightList("India", "Uk");
 		
