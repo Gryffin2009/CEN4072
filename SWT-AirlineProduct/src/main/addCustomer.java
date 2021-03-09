@@ -45,6 +45,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
 
 	byte[] userimage = null;
 
+	// Accepts a Customer object and adds its properties to the database as a new customer entry.
 	public boolean customerToDB(Customer customer) {
 		
 		try {
@@ -79,12 +80,14 @@ public class addCustomer extends javax.swing.JInternalFrame {
 
 	}
 
+	// Validates a customer name to only contain letters, dashes, and apostrophes, as well as be at least 1 character.
 	public boolean validateCustomerName(String name) {
-		return name.matches("^[a-zA-Z]*$");
+		return name.matches("^[a-zA-Z'-]+$");
 	}
 	
+	// Validates a customer phone number to only allow numerical values. Must be 7 digits.
 	public boolean validateContact(String contact) {
-		return contact.matches("^[0-9]{11}$");
+		return contact.matches("^[0-9]{7}$");
 	}
 	
 	/*
@@ -109,6 +112,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
 	}
 	*/
 	
+	// Converts an image at a specified path to a byte[] for storing in the database.
 	public byte[] imageToByteArray(String path) throws FileNotFoundException, IOException {
 		File image = new File(path);
 		FileInputStream fis = new FileInputStream(image);
@@ -122,7 +126,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
 		return byteArray;
 	}
 
-
+	// Generates an ID for a new customer.
 	public void autoID() {
 		String id = AutoIDService.generateAutoID("customer", "CS");
 		txtid.setText(id);

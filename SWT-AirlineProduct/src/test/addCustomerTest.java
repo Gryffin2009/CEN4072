@@ -51,10 +51,10 @@ public class addCustomerTest {
 	}
 	
 	@Test
-	@DisplayName("Customer contact, correct format (11 characters, all numbers)")
-	// Testing contact information for valid input (11 digits & all numerical input)
+	@DisplayName("Customer contact, correct format (7 characters, all numbers)")
+	// Testing contact information for valid input (7 digits & all numerical input)
 	void testCustomerContactValid() {
-		boolean isFormatted = addCustomer.validateContact("12395657465");
+		boolean isFormatted = addCustomer.validateContact("1234567");
 		Assertions.assertTrue(isFormatted);
 	}
 	
@@ -62,7 +62,7 @@ public class addCustomerTest {
 	@DisplayName("Customer contact, incorrect format (10 characters, all numbers")
 	// Testing contact information for invalid input (not enough digits)
 	void testCustomerContactNotEnoughDigits() {
-		boolean isFormatted = addCustomer.validateContact("1239565746");
+		boolean isFormatted = addCustomer.validateContact("123456");
 		Assertions.assertFalse(isFormatted);
 	}
 	
@@ -70,7 +70,7 @@ public class addCustomerTest {
 	@DisplayName("Customer contact, incorrect format (12 characters, all numbers")
 	// Testing contact information for invalid input (to many digits)
 	void testCustomerContactTooManyDigits() {
-		boolean isFormatted = addCustomer.validateContact("123956574659");
+		boolean isFormatted = addCustomer.validateContact("12345678");
 		Assertions.assertFalse(isFormatted);
 	}
 	

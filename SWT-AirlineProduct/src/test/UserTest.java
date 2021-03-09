@@ -37,15 +37,6 @@ public class UserTest {
 	void testCreateUser() {
 		
 		// Testing invalid input
-		Assertions.assertThrows(InvalidUserInputException.class, new Executable() {
-			
-			@Override
-			public void execute() throws Throwable {
-				User user = new User(id, "Todd", "Bauer63", "TB!Flo746", "sdjh834#!!");
-			}
-		});
-		
-		// Testing invalid input
 		Assertions.assertThrows(InvalidUserInputException.class, () ->
 			new User(id, "Todd", "Bauer63", "TB!Flo746", "sdjh834#!!"));
 		
@@ -57,6 +48,7 @@ public class UserTest {
 			new User(id, "2Todd", "Bauer63", "TB!Flo746", "sdjh834#!!"));
 		
 		// Testing invalid input
-		Assertions.assertThrows(InvalidUserInputException.class, () -> new User(id, "2Todd", "Bauer", "TBFlow", "l33tc0d3r"));
+		Assertions.assertThrows(InvalidUserInputException.class, () ->
+			new User(id, "2Todd", "Bauer", "TBFlow", "l33tc0d3r"));
 	}
 }
