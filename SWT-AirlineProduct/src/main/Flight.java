@@ -113,7 +113,7 @@ public class Flight {
 	}
 
 	public void setDate(String date) throws InvalidFlightInputException {
-		if (date.matches(date)) {
+		if (validateDate(date)) {
 			this.date = date;
 		} else {
 			throw new InvalidFlightInputException("Flight date must be in the format \"YYYY-MM-DD\".");

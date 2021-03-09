@@ -36,6 +36,28 @@ public class ticketTest {
 	}
 	
 	@Test
+	@DisplayName("User can only buy between 1 and 10 seats inclusive")
+	void testNumSeatsBounds() {
+		boolean result = ticket.validateNumSeats(-1);
+		Assertions.assertFalse(result);
+		
+		result = ticket.validateNumSeats(0);
+		Assertions.assertFalse(result);
+		
+		result = ticket.validateNumSeats(1);
+		Assertions.assertTrue(result);
+		
+		result = ticket.validateNumSeats(9);
+		Assertions.assertTrue(result);
+		
+		result = ticket.validateNumSeats(10);
+		Assertions.assertFalse(result);
+		
+		result = ticket.validateNumSeats(11);
+		Assertions.assertFalse(result);
+	}
+	
+	@Test
 	@DisplayName("Retrieve list of flights from India to Uk")
 	void testRetrieveFlights() {
 		Vector<Vector<String>> flights = ticket.createFlightList("India", "Uk");

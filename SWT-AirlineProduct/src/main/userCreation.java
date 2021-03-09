@@ -8,6 +8,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
+import main.User.InvalidUserInputException;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -27,32 +29,44 @@ public class userCreation extends javax.swing.JInternalFrame {
 	Connection con;
 	PreparedStatement pst;
 
-	public boolean createUser(String id, String firstname, String lastname, String username, String password) {
+	public void userToDB(User user) {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
 			pst = con.prepareStatement("insert into user(id,firstname,lastname,username,password)values(?,?,?,?,?)");
 
-			pst.setString(1, id);
-			pst.setString(2, firstname);
-			pst.setString(3, lastname);
-			pst.setString(4, username);
-			pst.setString(5, password);
+			pst.setString(1, user.getId());
+			pst.setString(2, user.getFirstName());
+			pst.setString(3, user.getLastName());
+			pst.setString(4, user.getUserName());
+			pst.setString(5, user.getPassword());
 
 			pst.executeUpdate();
 
-			JOptionPane.showMessageDialog(null, "User Createdd.........");
-			return true;
+			JOptionPane.showMessageDialog(null, "User Created.");
 		} catch (ClassNotFoundException ex) {
 			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
-			return false;
 		} catch (SQLException ex) {
 			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
-			return false;
 		}
 	}
 
+	public boolean validateId(String id) {
+		return id.matches("^FO[0-9]{3}$");
+	}
+	
+	public boolean validateName(String name) {
+		return name.matches("^[a-zA-Z]+$");
+	}
+	
+	public boolean validateUserName(String userName) {
+		return userName.matches("^[a-zA-Z]{4,20}$");
+	}
+	
+	public boolean validatePassword(String password) {
+		return password.matches("^[a-zA-Z0-9]+$");
+	}
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -193,7 +207,14 @@ public class userCreation extends javax.swing.JInternalFrame {
 		String username = txtusername.getText();
 		String password = txtpassword.getText();
 
-		createUser(id, firstname, lastname, username, password);
+		User user;
+		try {
+			user = new User(id, firstname, lastname, username, password);
+			userToDB(user);
+		} catch (InvalidUserInputException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}// GEN-LAST:event_jButton1ActionPerformed
 
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed

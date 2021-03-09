@@ -6,7 +6,6 @@ import org.junit.jupiter.api.*;
 
 import main.AutoIDService;
 import main.Flight;
-import main.Customer.InvalidCustomerInputException;
 import main.Flight.InvalidFlightInputException;
 
 public class FlightTest {
@@ -57,26 +56,26 @@ public class FlightTest {
 
 	@Test
 	@DisplayName("Id, invalid (Improper prefix)")
-	void testIdInvalidPrefix() throws InvalidCustomerInputException, Exception {
-		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
+	void testIdInvalidPrefix() throws InvalidFlightInputException {
+		InvalidFlightInputException e = Assertions.assertThrows(InvalidFlightInputException.class, () ->
 			flight.setId("FY003"));
-	Assertions.assertEquals("ID must be in the format \"FO###\".", e.getMessage());		
+	Assertions.assertEquals("Flight ID must be in the format \"FO###\".", e.getMessage());		
 	}
 
 	@Test
 	@DisplayName("Id, invalid (Too many digits)")
-	void testIdInvalidTooManyDigits() throws InvalidCustomerInputException, Exception {
-		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
+	void testIdInvalidTooManyDigits() throws InvalidFlightInputException {
+		InvalidFlightInputException e = Assertions.assertThrows(InvalidFlightInputException.class, () ->
 		flight.setId("FO0003"));
-	Assertions.assertEquals("ID must be in the format \"FO###\".", e.getMessage());		
+	Assertions.assertEquals("Flight ID must be in the format \"FO###\".", e.getMessage());		
 	}
 
 	@Test
 	@DisplayName("Id, invalid (Not enough digits)")
-	void testIdInvalidNotEnoughDigits() throws InvalidCustomerInputException, Exception {
-		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
+	void testIdInvalidNotEnoughDigits() throws InvalidFlightInputException {
+		InvalidFlightInputException e = Assertions.assertThrows(InvalidFlightInputException.class, () ->
 		flight.setId("FO03"));
-	Assertions.assertEquals("ID must be in the format \"FO###\".", e.getMessage());		
+	Assertions.assertEquals("Flight ID must be in the format \"FO###\".", e.getMessage());		
 	}
 
 }

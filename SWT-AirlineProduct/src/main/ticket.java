@@ -41,7 +41,19 @@ public class ticket extends javax.swing.JInternalFrame {
 	}
 
 	public int calcPriceTotal(int price, int numSeats) {
-		return price * numSeats;
+		if (validateNumSeats(numSeats)) {
+			return price * numSeats;
+		} else {
+			return -1;
+		}
+	}
+	
+	public boolean validateNumSeats(int numSeats) {
+		if (numSeats > 0 && numSeats < 10) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	
@@ -523,7 +535,11 @@ public class ticket extends javax.swing.JInternalFrame {
 
 		int tot = calcPriceTotal(price, qty);
 
-		txttotal.setText(String.valueOf(tot));
+		if (validateNumSeats(qty)) {
+			txttotal.setText(String.valueOf(tot));			
+		} else {
+			txttotal.setText("ERROR: Number of seats must be a value from 1 to 9.");
+		}
 
 	}// GEN-LAST:event_txtseatsStateChanged
 

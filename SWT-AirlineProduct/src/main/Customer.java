@@ -58,7 +58,7 @@ public class Customer {
 	}
 	
 	private boolean validateName(String name) {
-		return name.matches("^[a-zA-Z]+$");
+		return name.matches("^[a-zA-Z'-]+$");
 	}
 	
 	private boolean validateNic(String nic) {

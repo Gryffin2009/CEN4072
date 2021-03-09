@@ -85,14 +85,34 @@ public class CustomerTest {
 	@Test
 	@DisplayName("First name, valid")
 	void testFirstnameValid() {
-		Assertions.assertDoesNotThrow(() -> customer.setFirstname("Todd"));
+		Assertions.assertDoesNotThrow(() -> customer.setFirstname("brandon"));
+	}
+
+	@Test
+	@DisplayName("First name, valid with dash")
+	void testFirstnameValidDashes() {
+		Assertions.assertDoesNotThrow(() -> customer.setFirstname("la-brandon"));
+	}
+
+	@Test
+	@DisplayName("First name, valid with apostrophe")
+	void testFirstnameValidApostrophes() {
+		Assertions.assertDoesNotThrow(() -> customer.setFirstname("o'brandon"));
 	}
 
 	@Test
 	@DisplayName("First name, invalid (Numbers in name)")
 	void testFirstnameInvalidNumbers() throws InvalidCustomerInputException, Exception {
 		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
-			customer.setFirstname("Todd920"));
+			customer.setFirstname("brandon1"));
+		Assertions.assertEquals("Customer name must contain alphabetic characters only.", e.getMessage());
+	}
+
+	@Test
+	@DisplayName("First name, invalid (Symbols in name)")
+	void testFirstnameInvalidSymbols() throws InvalidCustomerInputException, Exception {
+		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
+			customer.setFirstname("brandon$"));
 		Assertions.assertEquals("Customer name must contain alphabetic characters only.", e.getMessage());
 	}
 
