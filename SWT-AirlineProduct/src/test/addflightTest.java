@@ -14,6 +14,7 @@ class addflightTest {
 	
 	@BeforeAll
 	static void beforeAll() {
+		//create new flight before all other tests.
 		thisFlight = new addflight();		
 	}
 	

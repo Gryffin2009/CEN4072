@@ -9,6 +9,7 @@ class userCreationTest {
 	static userCreation userCreation;
 	
 	@BeforeAll
+	// Create user before testing
 	static void beforeAll() {
 		userCreation = new userCreation();		
 	}
@@ -29,6 +30,7 @@ class userCreationTest {
 	}
 	
 	@Test
+	// Ensures that the name is a valid name (Only alphabetical characters)
 	void testNameValid() {
 		boolean result = userCreation.validateName("Todd");
 		Assertions.assertTrue(result);

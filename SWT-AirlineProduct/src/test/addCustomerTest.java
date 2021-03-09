@@ -36,6 +36,7 @@ public class addCustomerTest {
 
 	@Test
 	@DisplayName("Customer name, numbers in name")
+	// Testing customer name to see if name contains numerical characters.
 	void testCustomerNameValid() {
 		boolean isAlphabeticOnly = addCustomer.validateCustomerName("John290");
 		Assertions.assertFalse(isAlphabeticOnly);
@@ -43,6 +44,7 @@ public class addCustomerTest {
 
 	@Test
 	@DisplayName("Customer name, only alphabetic characters in name")
+	// Testing customer name to see if it contains only alphabetical characters.
 	void testCustomerNameInvalid() {
 		boolean isAlphabeticOnly = addCustomer.validateCustomerName("John");
 		Assertions.assertTrue(isAlphabeticOnly);
@@ -50,6 +52,7 @@ public class addCustomerTest {
 	
 	@Test
 	@DisplayName("Customer contact, correct format (11 characters, all numbers)")
+	// Testing contact information for valid input (11 digits & all numerical input)
 	void testCustomerContactValid() {
 		boolean isFormatted = addCustomer.validateContact("12395657465");
 		Assertions.assertTrue(isFormatted);
@@ -57,6 +60,7 @@ public class addCustomerTest {
 	
 	@Test
 	@DisplayName("Customer contact, incorrect format (10 characters, all numbers")
+	// Testing contact information for invalid input (not enough digits)
 	void testCustomerContactNotEnoughDigits() {
 		boolean isFormatted = addCustomer.validateContact("1239565746");
 		Assertions.assertFalse(isFormatted);
@@ -64,6 +68,7 @@ public class addCustomerTest {
 	
 	@Test
 	@DisplayName("Customer contact, incorrect format (12 characters, all numbers")
+	// Testing contact information for invalid input (to many digits)
 	void testCustomerContactTooManyDigits() {
 		boolean isFormatted = addCustomer.validateContact("123956574659");
 		Assertions.assertFalse(isFormatted);
@@ -71,6 +76,7 @@ public class addCustomerTest {
 	
 	@Test
 	@DisplayName("Customer contact, incorrect format (12 characters, all numbers")
+	// Testing contact information for invalid input (to many digits and incorrect format)
 	void testCustomerContactNotAllNumbers() {
 		boolean isFormatted = addCustomer.validateContact("1239j657465");
 		Assertions.assertFalse(isFormatted);
