@@ -1,8 +1,7 @@
 package test;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.function.Executable;
 
 import main.AutoIDService;
 import main.User;
@@ -33,15 +32,24 @@ public class UserTest {
 	@Test
 	@DisplayName("Create user, pairwise for all valid and invalid inputs")
 	void testCreateUser() {
-		InvalidUserInputException e = Assertions.assertThrows(InvalidUserInputException.class, () ->
+		
+		
+		Assertions.assertThrows(InvalidUserInputException.class, new Executable() {
+			
+			@Override
+			public void execute() throws Throwable {
+				User user = new User(id, "Todd", "Bauer63", "TB!Flo746", "sdjh834#!!");
+			}
+		});
+		
+		Assertions.assertThrows(InvalidUserInputException.class, () ->
 			new User(id, "Todd", "Bauer63", "TB!Flo746", "sdjh834#!!"));
 		
 		Assertions.assertDoesNotThrow(() -> new User(id, "Todd", "Bauer", "TBFlow", "l33tc0d3r"));
 
-		e = Assertions.assertThrows(InvalidUserInputException.class, () ->
+		Assertions.assertThrows(InvalidUserInputException.class, () ->
 			new User(id, "2Todd", "Bauer63", "TB!Flo746", "sdjh834#!!"));
 
-		e = Assertions.assertThrows(InvalidUserInputException.class, () ->
-			new User(id, "2Todd", "Bauer", "TBFlow", "l33tc0d3r"));
+		Assertions.assertThrows(InvalidUserInputException.class, () -> new User(id, "2Todd", "Bauer", "TBFlow", "l33tc0d3r"));
 	}
 }

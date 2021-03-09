@@ -28,6 +28,12 @@ class userCreationTest {
 		
 	}
 	
+	@Test
+	void testNameValid() {
+		boolean result = userCreation.validateName("Todd");
+		Assertions.assertTrue(result);
+	}
+	
 	/*
 	//The software shall allow the user to create a new user with a unique id, 
 	// first name, last name, username, and password. 

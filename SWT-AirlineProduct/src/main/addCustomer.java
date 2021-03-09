@@ -87,6 +87,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
 		return contact.matches("^[0-9]{11}$");
 	}
 	
+	/*
 	// TODO add address formatting regex checks
 	public boolean validateAddress(String address, String street, String city, String region, String zip, String country) {
 		boolean isValid = false;
@@ -106,28 +107,19 @@ public class addCustomer extends javax.swing.JInternalFrame {
 	public boolean validateDOB(String dob) {
 		return dob.matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");
 	}
+	*/
 	
-	public byte[] imageToByteArray(String path) {
-
-		try {
-			File image = new File(path);
-			FileInputStream fis = new FileInputStream(image);
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			byte[] buff = new byte[1024];
-			for (int readNum; (readNum = fis.read(buff)) != -1;) {
-				baos.write(buff, 0, readNum);
-			}
-			fis.close();
-			byte[] byteArray = baos.toByteArray();
-			return byteArray;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return null;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
+	public byte[] imageToByteArray(String path) throws FileNotFoundException, IOException {
+		File image = new File(path);
+		FileInputStream fis = new FileInputStream(image);
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		byte[] buff = new byte[1024];
+		for (int readNum; (readNum = fis.read(buff)) != -1;) {
+			baos.write(buff, 0, readNum);
 		}
-		
+		fis.close();
+		byte[] byteArray = baos.toByteArray();
+		return byteArray;
 	}
 
 

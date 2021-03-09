@@ -92,7 +92,7 @@ public class Customer {
 	}
 
 	private boolean validateGender(String gender) {
-		if (gender == "Male" || gender == "Female") {
+		if (gender.contains("Male") || gender.contains("Female")) {
 			return true;
 		} else {
 			return false;
@@ -232,29 +232,5 @@ public class Customer {
 		fis.close();
 		byte[] byteArray = baos.toByteArray();
 		photo = byteArray;
-	}
-	
-	
-	private byte[] imageToByteArray(String path) {
-
-		try {
-			File image = new File(path);
-			FileInputStream fis = new FileInputStream(image);
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			byte[] buff = new byte[1024];
-			for (int readNum; (readNum = fis.read(buff)) != -1;) {
-				baos.write(buff, 0, readNum);
-			}
-			fis.close();
-			byte[] byteArray = baos.toByteArray();
-			return byteArray;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return null;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-		
 	}
 }

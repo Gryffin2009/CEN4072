@@ -23,7 +23,7 @@ public class FlightTest {
 	
 	@BeforeAll
 	static void beforeAll() {
-		id = AutoIDService.generateAutoID("customer", "CS");
+		id = AutoIDService.generateAutoID("flight", "FO");
 		name = "Delta";
 		source = "Uk";
 		depart = "India";

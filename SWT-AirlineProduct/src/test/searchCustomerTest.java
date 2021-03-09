@@ -59,7 +59,7 @@ public class searchCustomerTest {
 	@Test
 	@DisplayName("Search by Customer ID, valid ID")
 	void testSearchByValidID() throws SQLException {
-		searchCustomer.searchByID("CS003");
+		searchCustomer.searchByID("CS002");
 	}
 	
 	@Test

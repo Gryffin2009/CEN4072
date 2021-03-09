@@ -25,6 +25,14 @@ public class addCustomerTest {
 	static void afterAll() {
 		
 	}
+	
+	@Test
+	@DisplayName("Image to byte array")
+	void testImageToByteArray() {
+		String photoPath = "src/test/media/CustomerPicture.png";
+		
+		Assertions.assertDoesNotThrow(() -> addCustomer.imageToByteArray(photoPath));
+	}
 
 	@Test
 	@DisplayName("Customer name, numbers in name")
