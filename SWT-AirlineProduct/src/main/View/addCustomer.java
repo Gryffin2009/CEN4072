@@ -1,4 +1,4 @@
-package main;
+package main.View;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -7,12 +7,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,6 +18,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import main.Model.Customer;
+import main.Service.AutoIDService;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -32,6 +29,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class addCustomer extends javax.swing.JInternalFrame {
 
+
+	byte[] userimage = null;
+	
 	/**
 	 * Creates new form addCustomer
 	 */
@@ -40,55 +40,21 @@ public class addCustomer extends javax.swing.JInternalFrame {
 		autoID();
 	}
 
-	Connection con;
-	PreparedStatement pst;
-
-	byte[] userimage = null;
-
-	// Accepts a Customer object and adds its properties to the database as a new customer entry.
-	public boolean customerToDB(Customer customer) {
-		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
-			pst = con.prepareStatement(
-					"insert into customer(id,firstname,lastname,nic,passport,address,dob,gender,contact,photo)values(?,?,?,?,?,?,?,?,?,?)");
-
-			pst.setString(1, customer.getId());
-			pst.setString(2, customer.getFirstname());
-			pst.setString(3, customer.getLastname());
-			pst.setString(4, customer.getNic());
-			pst.setString(5, customer.getPassport());
-			pst.setString(6, customer.getAddress());
-			pst.setString(7, customer.getDob());
-			pst.setString(8, customer.getGender());
-			pst.setString(9, customer.getContact());
-			pst.setBytes(10, customer.getPhoto());
-
-			pst.executeUpdate();
-
-			JOptionPane.showMessageDialog(null, "Registation Created.");
-
-			return true;
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
-			return false;
-		} catch (SQLException ex) {
-			Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
-			return false;
-		}
-
+	// Generates an ID for a new customer.
+	private void autoID() {
+		String id = AutoIDService.generateAutoID("customer", "CS");
+		txtid.setText(id);
 	}
 
-	// Validates a customer name to only contain letters, dashes, and apostrophes, as well as be at least 1 character.
-	public boolean validateCustomerName(String name) {
-		return name.matches("^[a-zA-Z'-]+$");
-	}
-	
-	// Validates a customer phone number to only allow numerical values. Must be 7 digits.
-	public boolean validateContact(String contact) {
-		return contact.matches("^[0-9]{7}$");
-	}
+//	// Validates a customer name to only contain letters, dashes, and apostrophes, as well as be at least 1 character.
+//	public boolean validateCustomerName(String name) {
+//		return name.matches("^[a-zA-Z'-]+$");
+//	}
+//	
+//	// Validates a customer phone number to only allow numerical values. Must be 7 digits.
+//	public boolean validateContact(String contact) {
+//		return contact.matches("^[0-9]{7}$");
+//	}
 	
 	/*
 	// TODO add address formatting regex checks
@@ -125,13 +91,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
 		byte[] byteArray = baos.toByteArray();
 		return byteArray;
 	}
-
-	// Generates an ID for a new customer.
-	public void autoID() {
-		String id = AutoIDService.generateAutoID("customer", "CS");
-		txtid.setText(id);
-	}
-
+	
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
@@ -426,32 +386,22 @@ public class addCustomer extends javax.swing.JInternalFrame {
 	}// GEN-LAST:event_jButton1ActionPerformed
 
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-		// TODO add your handling code here:
-
 		String id = txtid.getText();
 		String firstname = txtfirstname.getText();
 		String lastname = txtlastname.getText();
 		String nic = txtnic.getText();
 		String passport = txtpassport.getText();
 		String address = txtaddress.getText();
-
 		DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
 //		String date = da.format(txtdob.getDate());
 		String date = da.format(new Date());
-		String gender;
-
-		if (r1.isSelected()) {
-			gender = "Male";
-		} else {
-			gender = "Female";
-		}
+		String gender = r1.isSelected() ? "Male" : "Female";
 
 		String contact = txtcontact.getText();
-
-		Customer customer;
 		try {
-			customer = new Customer(id, firstname, lastname, nic, passport, address, date, gender, contact, userimage);
-			customerToDB(customer);
+			Customer customer = new Customer(id, firstname, lastname, nic, passport, address, date, gender, contact, userimage);
+			customer.updateInDatabase();
+			JOptionPane.showMessageDialog(this, "Registation Created.");
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(this, e.getMessage());
 		}
@@ -459,8 +409,6 @@ public class addCustomer extends javax.swing.JInternalFrame {
 	}// GEN-LAST:event_jButton2ActionPerformed
 	
 	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
-		// TODO add your handling code here:
-
 		this.hide();
 	}// GEN-LAST:event_jButton3ActionPerformed
 

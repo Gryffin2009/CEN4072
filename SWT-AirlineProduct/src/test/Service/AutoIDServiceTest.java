@@ -1,8 +1,9 @@
-package test;
+package test.Service;
 
 import org.junit.jupiter.api.*;
-import main.AutoIDService;
-import main.userCreation;
+
+import main.Service.AutoIDService;
+import main.View.userCreation;
 
 public class AutoIDServiceTest {
 	

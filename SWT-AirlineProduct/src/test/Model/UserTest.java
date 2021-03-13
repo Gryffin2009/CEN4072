@@ -1,11 +1,11 @@
-package test;
+package test.Model;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.function.Executable;
 
-import main.AutoIDService;
-import main.User;
-import main.User.InvalidUserInputException;
+import main.Model.User;
+import main.Model.User.InvalidUserInputException;
+import main.Service.AutoIDService;
 
 public class UserTest {
 	static String id;
@@ -28,6 +28,11 @@ public class UserTest {
 	
 	@AfterAll
 	static void afterAll() {
+		
+	}
+	
+	@Test 
+	void testUpdateInDatabase() {
 		
 	}
 	

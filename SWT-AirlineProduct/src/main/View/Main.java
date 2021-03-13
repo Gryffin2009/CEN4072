@@ -1,4 +1,4 @@
-package main;
+package main.View;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -124,17 +124,12 @@ public class Main extends javax.swing.JFrame {
 	}// </editor-fold>//GEN-END:initComponents
 
 	private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem1ActionPerformed
-		// TODO add your handling code here:
-
 		addCustomer cus = new addCustomer();
 		jDesktopPane1.add(cus);
 		cus.setVisible(true);
-
 	}// GEN-LAST:event_jMenuItem1ActionPerformed
 
 	private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem2ActionPerformed
-		// TODO add your handling code here:
-
 		searchCustomer scus = new searchCustomer();
 		jDesktopPane1.add(scus);
 		scus.setVisible(true);

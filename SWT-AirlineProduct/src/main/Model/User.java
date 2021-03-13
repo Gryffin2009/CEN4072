@@ -1,4 +1,11 @@
-package main;
+package main.Model;
+
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import main.Service.NetworkService;
+
 /*
  * Java Class to Contain User data. 
  */
@@ -6,6 +13,12 @@ public class User {
 
 	public class InvalidUserInputException extends Exception {
 		public InvalidUserInputException(String message) {
+			super(message);
+		}
+	}
+	
+	public class UpdateUserException extends Exception {
+		public UpdateUserException(String message) {
 			super(message);
 		}
 	}
@@ -92,7 +105,6 @@ public class User {
 	
 	// Constructor method to set the user attributes.
 	public User(String id, String firstName, String lastName, String userName, String password) throws InvalidUserInputException {
-		
 		setId(id);
 		setFirstName(firstName);
 		setLastName(lastName);
@@ -100,5 +112,21 @@ public class User {
 		setPassword(password);
 	}
 	
+	// Updates the user in the database.
+	public void updateInDatabase() throws UpdateUserException {
+		Connection con = NetworkService.getInstance().getConnection();
+		try {
+			PreparedStatement pst = con.prepareStatement("insert into user(id,firstname,lastname,username,password)values(?,?,?,?,?)");
+			pst.setString(1, this.getId());
+			pst.setString(2, this.getFirstName());
+			pst.setString(3, this.getLastName());
+			pst.setString(4, this.getUserName());
+			pst.setString(5, this.getPassword());
+			pst.executeUpdate();
+		} catch (SQLException ex) {
+			throw new UpdateUserException("Unable to update user in the database.");
+		}
+	}
+
 	
 }

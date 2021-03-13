@@ -1,13 +1,13 @@
-package main;
+package main.View;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import main.Service.NetworkService;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -23,9 +23,6 @@ public class Login extends javax.swing.JFrame {
 	public Login() {
 		initComponents();
 	}
-
-	Connection con;
-	PreparedStatement pst;
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -122,41 +119,35 @@ public class Login extends javax.swing.JFrame {
 		if (username.isEmpty() || password.isEmpty()) {
 			JOptionPane.showMessageDialog(this, "UserName or Password Blank");
 			return false;
-		} else {
-			try {
-				Class.forName("com.mysql.jdbc.Driver");
-				con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
-				pst = con.prepareStatement("select * from user where username = ? and password = ?");
-				pst.setString(1, username);
-				pst.setString(2, password);
+		}
 
-				ResultSet rs;
-				rs = pst.executeQuery();
+		Connection con = NetworkService.getInstance().getConnection();
+		
+		try {
+			PreparedStatement pst = con.prepareStatement("select * from user where username = ? and password = ?");
+			pst.setString(1, username);
+			pst.setString(2, password);
+			ResultSet rs = pst.executeQuery();
 
-				if (rs.next()) {
-					Main m = new Main();
-					this.hide();
-					m.setVisible(true);
-					return true;
-				} else {
-					JOptionPane.showMessageDialog(this, "UserName or Password do not Match");
-					txtuser.setText("");
-					txtpass.setText("");
-					txtuser.requestFocus();
-					return false;
-				}
-
-			} catch (ClassNotFoundException ex) {
-				Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-				return false;
-			} catch (SQLException ex) {
-				Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+			if (rs.next()) {
+				Main m = new Main();
+				this.hide();
+				m.setVisible(true);
+				return true;
+			} else {
+				JOptionPane.showMessageDialog(this, "UserName or Password do not Match");
+				txtuser.setText("");
+				txtpass.setText("");
+				txtuser.requestFocus();
 				return false;
 			}
-
+		} catch (SQLException ex) {
+			Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+			return false;
 		}
+
 	}
-	
+
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
 		// TODO add your handling code here:
 

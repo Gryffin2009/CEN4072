@@ -1,14 +1,13 @@
-package main;
+package main.View;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-import main.User.InvalidUserInputException;
+import main.Model.User;
+import main.Model.User.InvalidUserInputException;
+import main.Model.User.UpdateUserException;
+import main.Service.AutoIDService;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -25,48 +24,43 @@ public class userCreation extends javax.swing.JInternalFrame {
 		initComponents();
 		autoID();
 	}
+	
+	private void autoID() {
+		String id = AutoIDService.generateAutoID("user", "UO");
+		txtuserid.setText(id);
+	}
+	
+	
+//	public boolean validateId(String id) {
+//		return id.matches("^FO[0-9]{3}$");
+//	}
+//	
+//	public boolean validateName(String name) {
+//		return name.matches("^[a-zA-Z]+$");
+//	}
+//	
+//	public boolean validateUserName(String userName) {
+//		return userName.matches("^[a-zA-Z]{4,20}$");
+//	}
+//	
+//	public boolean validatePassword(String password) {
+//		return password.matches("^[a-zA-Z0-9]+$");
+//	}
 
-	Connection con;
-	PreparedStatement pst;
-
-	public void userToDB(User user) {
-
+	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+		String id = txtuserid.getText();
+		String firstname = txtfirstname.getText();
+		String lastname = txtlastname.getText();
+		String username = txtusername.getText();
+		String password = txtpassword.getText();
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
-			pst = con.prepareStatement("insert into user(id,firstname,lastname,username,password)values(?,?,?,?,?)");
-
-			pst.setString(1, user.getId());
-			pst.setString(2, user.getFirstName());
-			pst.setString(3, user.getLastName());
-			pst.setString(4, user.getUserName());
-			pst.setString(5, user.getPassword());
-
-			pst.executeUpdate();
-
+			User user = new User(id, firstname, lastname, username, password);
+			user.updateInDatabase();
 			JOptionPane.showMessageDialog(null, "User Created.");
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (SQLException ex) {
-			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (InvalidUserInputException | UpdateUserException e) {
+			Logger.getLogger(userCreation.class.getName()).log(Level.SEVERE, null, e);
 		}
-	}
-
-	public boolean validateId(String id) {
-		return id.matches("^FO[0-9]{3}$");
-	}
-	
-	public boolean validateName(String name) {
-		return name.matches("^[a-zA-Z]+$");
-	}
-	
-	public boolean validateUserName(String userName) {
-		return userName.matches("^[a-zA-Z]{4,20}$");
-	}
-	
-	public boolean validatePassword(String password) {
-		return password.matches("^[a-zA-Z0-9]+$");
-	}
+	}// GEN-LAST:event_jButton1ActionPerformed
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -197,35 +191,12 @@ public class userCreation extends javax.swing.JInternalFrame {
 
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
-	
-	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-		// TODO add your handling code here:
-
-		String id = txtuserid.getText();
-		String firstname = txtfirstname.getText();
-		String lastname = txtlastname.getText();
-		String username = txtusername.getText();
-		String password = txtpassword.getText();
-
-		User user;
-		try {
-			user = new User(id, firstname, lastname, username, password);
-			userToDB(user);
-		} catch (InvalidUserInputException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}// GEN-LAST:event_jButton1ActionPerformed
 
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
 		// TODO add your handling code here:
 		this.hide();
 	}// GEN-LAST:event_jButton2ActionPerformed
 
-	public void autoID() {
-		String id = AutoIDService.generateAutoID("user", "UO");
-		txtuserid.setText(id);
-	}
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JButton jButton1;

@@ -1,7 +1,8 @@
-package test;
+package test.View;
 
 import org.junit.jupiter.api.*;
-import main.ticketreport;
+
+import main.View.ticketreport;
 
 public class ticketReportTest {
 	

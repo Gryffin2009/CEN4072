@@ -1,7 +1,6 @@
-package main;
+package main.View;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -10,6 +9,8 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+
+import main.Service.NetworkService;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -25,9 +26,6 @@ public class ticketreport extends javax.swing.JInternalFrame {
 		initComponents();
 		LoadData();
 	}
-
-	Connection con;
-	PreparedStatement pst;
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -77,20 +75,17 @@ public class ticketreport extends javax.swing.JInternalFrame {
 	}// </editor-fold>//GEN-END:initComponents
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-		// TODO add your handling code here:
 		this.hide();
 	}// GEN-LAST:event_jButton1ActionPerformed
 
 	public void LoadData() {
+		Connection con = NetworkService.getInstance().getConnection();
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
-			pst = con.prepareStatement("SELECT * from ticket");
+			PreparedStatement pst = con.prepareStatement("SELECT * from ticket");
 			ResultSet rs = pst.executeQuery();
 
 			ResultSetMetaData rsm = rs.getMetaData();
-			int c;
-			c = rsm.getColumnCount();
+			int c = rsm.getColumnCount();
 
 			DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
 			Df.setRowCount(0);
@@ -110,11 +105,7 @@ public class ticketreport extends javax.swing.JInternalFrame {
 				}
 
 				Df.addRow(v2);
-
 			}
-
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (SQLException ex) {
 			Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
 		}

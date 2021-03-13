@@ -1,14 +1,32 @@
-package main;
+package main.Model;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.swing.JOptionPane;
+
+import main.Service.NetworkService;
 
 public class Flight {
 
-	// A custom exception to handle any invalid input to all of the properties of the Flight class.
+	// A custom exception to handle any invalid input to all of the properties of
+	// the Flight class.
 	public class InvalidFlightInputException extends Exception {
 		public InvalidFlightInputException(String message) {
 			super(message);
 		}
 	}
-	
+
+	public class UpdateFlightException extends Exception {
+		public UpdateFlightException(String message) {
+			super(message);
+		}
+	}
+
 	String id;
 	String name;
 	String source;
@@ -17,10 +35,10 @@ public class Flight {
 	String depTime;
 	String arrTime;
 	String charge;
-	
+
 	// Constructor for the Flight class.
-	public Flight(String id, String name, String source, String depart,
-			String date, String depTime, String arrTime, String charge) throws InvalidFlightInputException {
+	public Flight(String id, String name, String source, String depart, String date, String depTime, String arrTime,
+			String charge) throws InvalidFlightInputException {
 		setId(id);
 		setName(name);
 		setSource(source);
@@ -29,6 +47,26 @@ public class Flight {
 		setDepTime(depTime);
 		setArrTime(arrTime);
 		setCharge(charge);
+	}
+
+	public void updateInDatabase() throws UpdateFlightException {
+		Connection con = NetworkService.getInstance().getConnection();
+		try {
+			PreparedStatement pst = con.prepareStatement(
+					"insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)values(?,?,?,?,?,?,?,?)");
+
+			pst.setString(1, this.getId());
+			pst.setString(2, this.getName());
+			pst.setString(3, this.getSource());
+			pst.setString(4, this.getDepart());
+			pst.setString(5, this.getDate());
+			pst.setString(6, this.getDepTime());
+			pst.setString(7, this.getArrTime());
+			pst.setString(8, this.getCharge());
+			pst.executeUpdate();
+		} catch (SQLException ex) {
+			throw new UpdateFlightException(ex.getMessage());
+		}
 	}
 
 	// Ensures an Id is of the format FO###.
@@ -40,10 +78,12 @@ public class Flight {
 	private boolean validateName(String name) {
 		return name.matches("^[a-zA-Z]+$");
 	}
-	
-	// Ensures a location (e.g. source and depart) can only be the countries the airline flies to.
+
+	// Ensures a location (e.g. source and depart) can only be the countries the
+	// airline flies to.
 	private boolean validateLocale(String locale) {
-		if (locale == "India" || locale == "Srilanka" || locale == "Uk" || locale == "Usa" || locale == "Canada" || locale == "Chinna") {
+		if (locale == "India" || locale == "Srilanka" || locale == "Uk" || locale == "Usa" || locale == "Canada"
+				|| locale == "Chinna") {
 			return true;
 		} else {
 			return false;
@@ -54,12 +94,13 @@ public class Flight {
 	private boolean validateDate(String date) {
 		return date.matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");
 	}
-	
-	// Ensures a time is in the format #.## or ##.## followed by AM or PM. Also ensures the hour cannot be above 12.
+
+	// Ensures a time is in the format #.## or ##.## followed by AM or PM. Also
+	// ensures the hour cannot be above 12.
 	private boolean validateTime(String time) {
 		return time.matches("^([0-9]|1[0-2]).[0-9]{2}(AM|PM)$");
 	}
-	
+
 	// Ensured a charge contains only numbers.
 	private boolean validateCharge(String charge) {
 		return charge.matches("^[0-9]+$");
@@ -70,7 +111,8 @@ public class Flight {
 		return id;
 	}
 
-	// Sets a flight ID if valid, otherwise throws a custom exception marking an invalid property value.
+	// Sets a flight ID if valid, otherwise throws a custom exception marking an
+	// invalid property value.
 	public void setId(String id) throws InvalidFlightInputException {
 		if (validateId(id)) {
 			this.id = id;
@@ -84,7 +126,8 @@ public class Flight {
 		return name;
 	}
 
-	// Sets a flight name if valid, otherwise throws a custom exception marking an invalid property value.
+	// Sets a flight name if valid, otherwise throws a custom exception marking an
+	// invalid property value.
 	public void setName(String name) throws InvalidFlightInputException {
 		if (validateName(name)) {
 			this.name = name;
@@ -98,12 +141,14 @@ public class Flight {
 		return source;
 	}
 
-	// Sets a source country if valid, otherwise throws a custom exception marking an invalid property value.
+	// Sets a source country if valid, otherwise throws a custom exception marking
+	// an invalid property value.
 	public void setSource(String source) throws InvalidFlightInputException {
 		if (validateLocale(source)) {
 			this.source = source;
 		} else {
-			throw new InvalidFlightInputException("Flight source country must be: India, Srilanka, Uk, Usa, Canada, or Chinna.");
+			throw new InvalidFlightInputException(
+					"Flight source country must be: India, Srilanka, Uk, Usa, Canada, or Chinna.");
 		}
 	}
 
@@ -112,12 +157,14 @@ public class Flight {
 		return depart;
 	}
 
-	// Sets a departing country if valid, otherwise throws a custom exception marking an invalid property value.
+	// Sets a departing country if valid, otherwise throws a custom exception
+	// marking an invalid property value.
 	public void setDepart(String depart) throws InvalidFlightInputException {
 		if (validateLocale(depart)) {
 			this.depart = depart;
 		} else {
-			throw new InvalidFlightInputException("Flight departure country must be: India, Srilanka, Uk, Usa, Canada, or Chinna.");
+			throw new InvalidFlightInputException(
+					"Flight departure country must be: India, Srilanka, Uk, Usa, Canada, or Chinna.");
 		}
 	}
 
@@ -126,7 +173,8 @@ public class Flight {
 		return date;
 	}
 
-	// Sets the date of the flight, otherwise throws a custom exception marking an invalid property value.
+	// Sets the date of the flight, otherwise throws a custom exception marking an
+	// invalid property value.
 	public void setDate(String date) throws InvalidFlightInputException {
 		if (validateDate(date)) {
 			this.date = date;
@@ -140,12 +188,14 @@ public class Flight {
 		return depTime;
 	}
 
-	// Sets the flight's departure time if valid, otherwise throws a custom exception marking an invalid property value.
+	// Sets the flight's departure time if valid, otherwise throws a custom
+	// exception marking an invalid property value.
 	public void setDepTime(String depTime) throws InvalidFlightInputException {
 		if (validateTime(depTime)) {
 			this.depTime = depTime;
 		} else {
-			throw new InvalidFlightInputException("Flight departure time must be in the format \"#.##AM\" or \"#.##PM\", i.e. 8.00AM or 12.00PM.");
+			throw new InvalidFlightInputException(
+					"Flight departure time must be in the format \"#.##AM\" or \"#.##PM\", i.e. 8.00AM or 12.00PM.");
 		}
 	}
 
@@ -154,12 +204,14 @@ public class Flight {
 		return arrTime;
 	}
 
-	// Sets the flight's arrival time if valid, otherwise throws a custom exception marking an invalid property value.
+	// Sets the flight's arrival time if valid, otherwise throws a custom exception
+	// marking an invalid property value.
 	public void setArrTime(String arrTime) throws InvalidFlightInputException {
 		if (validateTime(arrTime)) {
 			this.arrTime = arrTime;
 		} else {
-			throw new InvalidFlightInputException("Flight arrival time must be in the format \"#.##AM\" or \"#.##PM\", i.e. 8.00AM or 12.00PM..");
+			throw new InvalidFlightInputException(
+					"Flight arrival time must be in the format \"#.##AM\" or \"#.##PM\", i.e. 8.00AM or 12.00PM..");
 		}
 	}
 
@@ -168,7 +220,8 @@ public class Flight {
 		return charge;
 	}
 
-	// Sets the price of the flight if valid, otherwise throws a custom exception marking an invalid property value.
+	// Sets the price of the flight if valid, otherwise throws a custom exception
+	// marking an invalid property value.
 	public void setCharge(String charge) throws InvalidFlightInputException {
 		if (validateCharge(charge)) {
 			this.charge = charge;

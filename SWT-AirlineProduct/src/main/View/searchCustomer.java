@@ -1,4 +1,4 @@
-package main;
+package main.View;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -8,11 +8,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,7 +23,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import main.Customer.InvalidCustomerInputException;
+import main.Model.Customer;
+import main.Model.Customer.InvalidCustomerInputException;
+import main.Model.Customer.UpdateCustomerException;
+import main.Service.NetworkService;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -40,40 +41,32 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 	 */
 	public searchCustomer() {
 		initComponents();
-
 	}
-
-	Connection con;
-	PreparedStatement pst;
 
 	String path = null;
 	byte[] userimage = null;
 	
-	public boolean validateID(String id) {
-		return id.matches("^CS[0-9]{3}$");
-	}
-	
+//	public boolean validateID(String id) {
+//		return id.matches("^CS[0-9]{3}$");
+//	}
+//	
 	public void searchByID(String id) throws SQLException {
 
+		Connection con = NetworkService.getInstance().getConnection();
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
-			pst = con.prepareStatement("select * from customer where id = ?");
+			PreparedStatement pst = con.prepareStatement("select * from customer where id = ?");
 			pst.setString(1, id);
 			ResultSet rs = pst.executeQuery();
 			rs.next();
-			
 			
 			String fname = rs.getString("firstname");
 			String lname = rs.getString("lastname");
 			String nic = rs.getString("nic");
 			String passport = rs.getString("passport");
-
 			String address = rs.getString("address");
 			String dob = rs.getString("dob");
 			Date parsedDob = new SimpleDateFormat("yyyy-MM-dd").parse(dob);
 			String gender = rs.getString("gender");
-
 			Blob blob = rs.getBlob("photo");
 			byte[] _imagebytes = blob.getBytes(1, (int) blob.length());
 			ImageIcon image = new ImageIcon(_imagebytes);
@@ -84,18 +77,18 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 			if (gender.equals("Female")) {
 				r1.setSelected(false);
 				r2.setSelected(true);
-
 			} else {
 				r1.setSelected(true);
 				r2.setSelected(false);
 			}
+			
 			String contact = rs.getString("contact");
 
 			try {
 				Customer customer = new Customer(id, fname, lname, nic, passport, address, dob, gender, contact, _imagebytes);
+
 			} catch (InvalidCustomerInputException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(this, e.getMessage());
 			}
 					
 			txtfirstname.setText(fname.trim());
@@ -106,8 +99,6 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 			txtcontact.setText(contact.trim());
 //				txtdob.setDate(date1);
 			txtphoto.setIcon(newImage);
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(searchCustomer.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (ParseException ex) {
 			Logger.getLogger(searchCustomer.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -433,60 +424,33 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 		DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
 //		String date = da.format(txtdob.getDate());
 		String date = da.format(new Date());
-		String Gender;
-
-		if (r1.isSelected()) {
-			Gender = "Male";
-		} else {
-			Gender = "FeMale";
-		}
+		String gender = r1.isSelected() ? "Male" : "Female";
 
 		String contact = txtcontact.getText();
+		// TODO
+		String photoPath = "";
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
-			pst = con.prepareStatement(
-					"update customer set firstname = ?,lastname = ?,nic = ?,passport = ?,address= ?,dob = ?,gender = ?,contact = ?,photo = ? where id = ?");
-
-			pst.setString(1, firstname);
-			pst.setString(2, lastname);
-			pst.setString(3, nic);
-			pst.setString(4, passport);
-			pst.setString(5, address);
-			pst.setString(6, date);
-			pst.setString(7, Gender);
-			pst.setString(8, contact);
-			pst.setBytes(9, userimage);
-			pst.setString(10, id);
-			pst.executeUpdate();
-
-			JOptionPane.showMessageDialog(null, "Registation Updateddddd.........");
-
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (SQLException ex) {
-			Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+			Customer customer = new Customer(id, firstname, lastname, nic, passport, address, date, gender, contact, photoPath);
+			customer.updateInDatabase();
+			JOptionPane.showMessageDialog(this, "Registation Updated.");
+		} catch (UpdateCustomerException | InvalidCustomerInputException | IOException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage());
 		}
 
 	}// GEN-LAST:event_jButton2ActionPerformed
 
 	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
-		// TODO add your handling code here:
 
 		this.hide();
 	}// GEN-LAST:event_jButton3ActionPerformed
 
 	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
-		// TODO add your handling code here:
-
-		String id = txtcustid.getText();
-				try {
+		String id = txtcustid.getText();		try {
 			searchByID(id);
 		} catch (SQLException ex) {
 			Logger.getLogger(searchCustomer.class.getName()).log(Level.SEVERE, null, ex);
 		}
-
 	}// GEN-LAST:event_jButton4ActionPerformed
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables

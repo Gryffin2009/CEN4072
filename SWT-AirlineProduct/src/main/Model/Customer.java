@@ -1,16 +1,29 @@
-package main;
+package main.Model;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import main.Service.NetworkService;
 
 public class Customer {
 
 	// A custom exception to handle any invalid input to all of the properties of the Customer class.
 	public class InvalidCustomerInputException extends Exception {
 		public InvalidCustomerInputException(String message) {
+			super(message);
+		}
+	}
+	
+	public class UpdateCustomerException extends Exception {
+		public UpdateCustomerException(String message) {
 			super(message);
 		}
 	}
@@ -54,6 +67,28 @@ public class Customer {
 		setGender(gender);
 		setContact(contact);
 		setPhoto(photo);
+	}
+	
+	// Updates a customer in the database.
+	public void updateInDatabase() throws UpdateCustomerException {
+		Connection con = NetworkService.getInstance().getConnection();
+		try {
+			PreparedStatement pst = con.prepareStatement(
+					"insert into customer(id,firstname,lastname,nic,passport,address,dob,gender,contact,photo)values(?,?,?,?,?,?,?,?,?,?)");
+			pst.setString(1, this.getId());
+			pst.setString(2, this.getFirstname());
+			pst.setString(3, this.getLastname());
+			pst.setString(4, this.getNic());
+			pst.setString(5, this.getPassport());
+			pst.setString(6, this.getAddress());
+			pst.setString(7, this.getDob());
+			pst.setString(8, this.getGender());
+			pst.setString(9, this.getContact());
+			pst.setBytes(10, this.getPhoto());
+			pst.executeUpdate();
+		} catch (SQLException ex) {
+			throw new UpdateCustomerException(ex.getMessage());
+		}
 	}
 	
 	// Ensures an Id is of the format CS###.

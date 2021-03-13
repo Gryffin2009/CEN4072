@@ -1,4 +1,4 @@
-package main;
+package main.Service;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import main.Environment;
 
 public class AutoIDService {
 
@@ -31,10 +33,10 @@ public class AutoIDService {
 				return prefix + String.format("%03d", id);
 			}
 		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(AutoIDService.class.getName()).log(Level.SEVERE, null, ex);
 			return null;
 		} catch (SQLException ex) {
-			Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(AutoIDService.class.getName()).log(Level.SEVERE, null, ex);
 			return null;
 		}
 

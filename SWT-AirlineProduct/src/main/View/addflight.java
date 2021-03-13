@@ -1,18 +1,13 @@
-package main;
+package main.View;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-import main.Flight.InvalidFlightInputException;
+import main.Model.Flight;
+import main.Model.Flight.InvalidFlightInputException;
+import main.Model.Flight.UpdateFlightException;
+import main.Service.AutoIDService;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -29,65 +24,14 @@ public class addflight extends javax.swing.JInternalFrame {
 		initComponents();
 		autoID();
 	}
-
-	Connection con;
-	PreparedStatement pst;
 	
-	public String[] locations;
-
-	public boolean flightToDB(Flight flight) {
-		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
-			pst = con.prepareStatement(
-					"insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)values(?,?,?,?,?,?,?,?)");
-
-			pst.setString(1, flight.getId());
-			pst.setString(2, flight.getName());
-			pst.setString(3, flight.getSource());
-			pst.setString(4, flight.getDepart());
-			pst.setString(5, flight.getDate());
-			pst.setString(6, flight.getDepTime());
-			pst.setString(7, flight.getArrTime());
-			pst.setString(8, flight.getCharge());
-
-			pst.executeUpdate();
-
-			JOptionPane.showMessageDialog(null, "Flight Created.");
-			return true;
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
-			return false;
-		} catch (SQLException ex) {
-			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
-			return false;
-		}
+	private void autoID() {
+		String id = AutoIDService.generateAutoID("flight", "FO");
+		txtflightid.setText(id);
 	}
-	
-	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-		// TODO add your handling code here:
-		String id = txtflightid.getText();
-		String flightname = txtflightname.getText();
 
-		String source = txtsource.getSelectedItem().toString().trim();
-		String depart = txtdepart.getSelectedItem().toString().trim();
-		
-		DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
-		String date = da.format(txtdate.getDate());
 
-		String departtime = txtdtime.getText();
-		String arrtime = txtarrtime.getText();
-		String flightcharge = txtflightcharge.getText();
-		
-		try {
-			Flight flight = new Flight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
-			flightToDB(flight);
-		} catch (InvalidFlightInputException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
-		}
-	}// GEN-LAST:event_jButton1ActionPerformed
-
+	public String[] locations;
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -100,7 +44,7 @@ public class addflight extends javax.swing.JInternalFrame {
 	private void initComponents() {
 
 		locations = new String[] { "India", "Srilanka", "Uk", "Usa", "Canada", "China" };
-		
+
 		jPanel1 = new javax.swing.JPanel();
 		jLabel1 = new javax.swing.JLabel();
 		txtflightid = new javax.swing.JLabel();
@@ -281,14 +225,32 @@ public class addflight extends javax.swing.JInternalFrame {
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
 
-	public void autoID() {
-		String id = AutoIDService.generateAutoID("flight", "FO");
-		txtflightid.setText(id);
-	}
+
+	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+		// TODO add your handling code here:
+		String id = txtflightid.getText();
+		String flightname = txtflightname.getText();
+
+		String source = txtsource.getSelectedItem().toString().trim();
+		String depart = txtdepart.getSelectedItem().toString().trim();
+
+		DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
+		String date = da.format(txtdate.getDate());
+
+		String departtime = txtdtime.getText();
+		String arrtime = txtarrtime.getText();
+		String flightcharge = txtflightcharge.getText();
+		
+		try {
+			Flight flight = new Flight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
+			flight.updateInDatabase();
+			JOptionPane.showMessageDialog(null, "Flight Created.");
+		} catch (InvalidFlightInputException | UpdateFlightException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+	}// GEN-LAST:event_jButton1ActionPerformed
 
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-		// TODO add your handling code here:
-
 		this.hide();
 	}// GEN-LAST:event_jButton2ActionPerformed
 

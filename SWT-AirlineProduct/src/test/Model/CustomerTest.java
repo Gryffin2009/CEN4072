@@ -1,49 +1,40 @@
-package test;
+package test.Model;
 
 import java.io.IOException;
 
 import org.junit.jupiter.api.*;
 
-import main.AutoIDService;
-import main.Customer;
-import main.Customer.InvalidCustomerInputException;
+import main.Model.Customer;
+import main.Model.Customer.InvalidCustomerInputException;
+import main.Service.AutoIDService;
 
 public class CustomerTest {
 	
-	static String id;
-	static String firstname;
-	static String lastname;
-	static String nic;
-	static String passport;
-	static String address;
-	static String dob;
-	static String gender;
-	static String contact;
-	static String photoPath;
+	
 	
 	Customer customer;
 	
 	@BeforeAll
 	static void beforeAll() {
 		
-		// Before any tests run, create values for the initial Customer object to be created with.
-		// This is necessary to test whether changing any individual properties will throw exceptions.
-		// This also facilitates input validation, as each setter in Customer contains validation methods.
-		id = AutoIDService.generateAutoID("customer", "CS");
-		firstname = "Todd";
-		lastname = "Bauer";
-		nic = "1293874532";
-		passport = "2398732423948";
-		address = "123 S. Washington St.";
-		dob = "1985-03-12";
-		gender = "Male";
-		contact = "1234567";
-		photoPath = "src/test/media/CustomerPicture.png";
 	}
 	
 	@BeforeEach
 	void beforeEach() throws InvalidCustomerInputException, IOException {
 		
+		// Before each tests run, reset values for the initial Customer object to be created with.
+		// This is necessary to test whether changing any individual properties will throw exceptions.
+		// This also facilitates input validation, as each setter in Customer contains validation methods.
+		String id = AutoIDService.generateAutoID("customer", "CS");
+		String firstname = "Todd";
+		String lastname = "Bauer";
+		String nic = "1293874532";
+		String passport = "2398732423948";
+		String address = "123 S. Washington St.";
+		String dob = "1985-03-12";
+		String gender = "Male";
+		String contact = "1234567";
+		String photoPath = "src/test/media/CustomerPicture.png";
 		// Create a fresh Customer to work with for every test. This ensures all tests are working from the same
 		// initial values, which ensures no test results will affect other tests.
 		customer = new Customer(id, firstname, lastname, nic, passport, address, dob, gender, contact, photoPath);

@@ -1,23 +1,24 @@
-package main;
+package main.View;
 
-import java.awt.Image;
-import java.sql.Blob;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
+import main.Model.Ticket;
+import main.Model.Ticket.InvalidTicketInputException;
+import main.Model.Ticket.UpdateTicketException;
+import main.Service.AutoIDService;
+import main.Service.NetworkService;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -34,13 +35,13 @@ public class ticket extends javax.swing.JInternalFrame {
 		initComponents();
 		autoID();
 	}
-
-	public void autoID() {
+	
+	private void autoID() {
 		String id = AutoIDService.generateAutoID("ticket", "TO");
 		txtticketno.setText(id);
 	}
 
-	public int calcPriceTotal(int price, int numSeats) {
+	private int calcPriceTotal(int price, int numSeats) {
 		if (validateNumSeats(numSeats)) {
 			return price * numSeats;
 		} else {
@@ -48,18 +49,13 @@ public class ticket extends javax.swing.JInternalFrame {
 		}
 	}
 	
-	public boolean validateNumSeats(int numSeats) {
+	private boolean validateNumSeats(int numSeats) {
 		if (numSeats > 0 && numSeats < 10) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
-	
-
-	Connection con;
-	PreparedStatement pst;
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -436,18 +432,15 @@ public class ticket extends javax.swing.JInternalFrame {
 	}// GEN-LAST:event_jButton3ActionPerformed
 
 	public Vector<Vector<String>> createFlightList(String source, String depart) {
-
+		Connection con = NetworkService.getInstance().getConnection();
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
-			pst = con.prepareStatement("SELECT * from flight WHERE source = ? and depart = ?");
-
+			PreparedStatement pst = con.prepareStatement("SELECT * from flight WHERE source = ? and depart = ?");
 			pst.setString(1, source);
 			pst.setString(2, depart);
 			ResultSet rs = pst.executeQuery();
-
 			ResultSetMetaData rsm = rs.getMetaData();
+			
 			int c;
 			c = rsm.getColumnCount();
 			Vector<Vector<String>> flights = new Vector<>();
@@ -470,9 +463,6 @@ public class ticket extends javax.swing.JInternalFrame {
 			
 			return flights;
 
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
-			return null;
 		} catch (SQLException ex) {
 			Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
 			return null;
@@ -480,13 +470,10 @@ public class ticket extends javax.swing.JInternalFrame {
 	}
 	
 	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
-		// TODO add your handling code here:
 		String id = txtcustid.getText();
-
+		Connection con = NetworkService.getInstance().getConnection();
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
-			pst = con.prepareStatement("select * from customer where id = ?");
+			PreparedStatement pst = con.prepareStatement("select * from customer where id = ?");
 			pst.setString(1, id);
 			ResultSet rs = pst.executeQuery();
 
@@ -495,18 +482,12 @@ public class ticket extends javax.swing.JInternalFrame {
 			} else {
 				String fname = rs.getString("firstname");
 				String lname = rs.getString("lastname");
-
 				String passport = rs.getString("passport");
-
 				txtfirstname.setText(fname.trim());
 				txtlastname.setText(lname.trim());
-
 				txtpassport.setText(passport.trim());
-
 			}
 
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (SQLException ex) {
 			Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -557,26 +538,11 @@ public class ticket extends javax.swing.JInternalFrame {
 		String date = da.format(new Date());
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
-			pst = con.prepareStatement(
-					"insert into ticket(id,flightid,custid,class,price,seats,date)values(?,?,?,?,?,?,?)");
-
-			pst.setString(1, ticketid);
-			pst.setString(2, flightid);
-			pst.setString(3, custid);
-			pst.setString(4, flightclass);
-			pst.setString(5, price);
-			pst.setString(6, seats);
-			pst.setString(7, date);
-
-			pst.executeUpdate();
-
-			JOptionPane.showMessageDialog(null, "Ticket Bookeed.........");
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (SQLException ex) {
-			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+			Ticket ticket = new Ticket(ticketid, flightid,custid,flightclass,price, seats, date);
+			ticket.updateInDatabase();
+			JOptionPane.showMessageDialog(this, "Ticket Booked.");
+		} catch (InvalidTicketInputException | UpdateTicketException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage());
 		}
 
 	}// GEN-LAST:event_jButton1ActionPerformed

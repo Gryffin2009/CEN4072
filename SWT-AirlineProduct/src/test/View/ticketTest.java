@@ -1,9 +1,10 @@
-package test;
+package test.View;
 
 import java.util.Vector;
 
 import org.junit.jupiter.api.*;
-import main.ticket;
+
+import main.View.ticket;
 
 public class ticketTest {
 	
