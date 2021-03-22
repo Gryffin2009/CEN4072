@@ -54,7 +54,6 @@ public class Flight {
 		try {
 			PreparedStatement pst = con.prepareStatement(
 					"insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)values(?,?,?,?,?,?,?,?)");
-
 			pst.setString(1, this.getId());
 			pst.setString(2, this.getName());
 			pst.setString(3, this.getSource());

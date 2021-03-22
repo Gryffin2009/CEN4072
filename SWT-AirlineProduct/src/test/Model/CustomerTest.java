@@ -10,13 +10,11 @@ import main.Service.AutoIDService;
 
 public class CustomerTest {
 	
-	
-	
 	Customer customer;
 	
 	@BeforeAll
 	static void beforeAll() {
-		
+
 	}
 	
 	@BeforeEach
