@@ -33,10 +33,11 @@ public class Customer {
 	private String lastname;
 	private String nic;
 	private String passport;
-	private String address;
+	private Address address;
 	private String dob;
 	private String gender;
 	private String contact;
+	private String phoneNumber;
 	private byte[] photo;
 	
 	// Constructor with the image as a byte[] array, which is how the image is stored in the database.
@@ -80,7 +81,7 @@ public class Customer {
 			pst.setString(3, this.getLastname());
 			pst.setString(4, this.getNic());
 			pst.setString(5, this.getPassport());
-			pst.setString(6, this.getAddress());
+			pst.setString(6, this.getAddressString());
 			pst.setString(7, this.getDob());
 			pst.setString(8, this.getGender());
 			pst.setString(9, this.getContact());
@@ -89,6 +90,19 @@ public class Customer {
 		} catch (SQLException ex) {
 			throw new UpdateCustomerException(ex.getMessage());
 		}
+	}
+	
+	public void setPhoneNumber(String phoneNumber) throws InvalidCustomerInputException {
+		if (validPhoneNumber(phoneNumber)) {
+			this.phoneNumber = phoneNumber;
+		} else {
+			throw new InvalidCustomerInputException("Invalid Phone Number");
+		}
+	}
+	
+	private boolean validPhoneNumber(String id) {
+		// TODO: Check this regex
+		return id.matches("^[0-9]{14}$");
 	}
 	
 	// Ensures an Id is of the format CS###.
@@ -219,19 +233,19 @@ public class Customer {
 	}
 
 	// Returns the address of the customer.
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
+	// Returns the string version of the address of the customer.
+	private String getAddressString() {
+		return address.toString();
+	}
+
 	// Sets the address of the customer.
-	public void setAddress(String address) throws InvalidCustomerInputException {
-		
+	public void setAddress(Address address) throws InvalidCustomerInputException {
 		//TODO Make an Address class!
-		if (address == address) {
-			this.address = address;
-		} else {
-			throw new InvalidCustomerInputException("");
-		}
+		throw new InvalidCustomerInputException("Make an Address class");
 	}
 
 	// Returns the date of birth of the customer.

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.*;
 
+import main.Model.Address;
 import main.Model.Customer;
 import main.Model.Customer.InvalidCustomerInputException;
 import main.Service.AutoIDService;
@@ -11,11 +12,6 @@ import main.Service.AutoIDService;
 public class CustomerTest {
 	
 	Customer customer;
-	
-	@BeforeAll
-	static void beforeAll() {
-
-	}
 	
 	@BeforeEach
 	void beforeEach() throws InvalidCustomerInputException, IOException {
@@ -38,110 +34,13 @@ public class CustomerTest {
 		customer = new Customer(id, firstname, lastname, nic, passport, address, dob, gender, contact, photoPath);
 	}
 	
-	@AfterEach
-	void afterEach() {
-		
-	}
-	
-	@AfterAll
-	static void afterAll() {
-		
-	}
-
-	// Tries to pass a valid Customer Id to the Customer class.
-	@Test
-	@DisplayName("Id, valid")
-	void testIdValid() {
-		Assertions.assertDoesNotThrow(() -> customer.setId("CS003"));
-	}
-
-	// Tries to pass an invalid Id to the customer class by using an Id with an incorrect prefix.
-	@Test
-	@DisplayName("Id, invalid (Improper prefix)")
-	void testIdInvalidPrefix() throws InvalidCustomerInputException, Exception {
-		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
-			customer.setId("CA003"));
-	Assertions.assertEquals("ID must be in the format \"CS###\".", e.getMessage());		
-	}
-
-	// Tries to pass an invalid Id to the customer class by using an Id with too many trailing digits.
-	@Test
-	@DisplayName("Id, invalid (Too many digits)")
-	void testIdInvalidTooManyDigits() throws InvalidCustomerInputException, Exception {
-		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
-			customer.setId("CS0003"));
-	Assertions.assertEquals("ID must be in the format \"CS###\".", e.getMessage());		
-	}
-
-	// Tries to pass an invalid Id to the customer class by using an Id with too few trailing digits.
-	@Test
-	@DisplayName("Id, invalid (Not enough digits)")
-	void testIdInvalidNotEnoughDigits() throws InvalidCustomerInputException, Exception {
-		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
-			customer.setId("CS03"));
-	Assertions.assertEquals("ID must be in the format \"CS###\".", e.getMessage());		
-	}
-
-	// Tries to pass a valid first name to the Customer class.
-	@Test
-	@DisplayName("First name, valid")
-	void testFirstnameValid() {
-		Assertions.assertDoesNotThrow(() -> customer.setFirstname("brandon"));
-	}
-
-	// Tries to pass a valid first name that includes a dash.
-	@Test
-	@DisplayName("First name, valid with dash")
-	void testFirstnameValidDashes() {
-		Assertions.assertDoesNotThrow(() -> customer.setFirstname("la-brandon"));
-	}
-
-	// Tries to pass a valid first name that includes an apostrophe.
-	@Test
-	@DisplayName("First name, valid with apostrophe")
-	void testFirstnameValidApostrophes() {
-		Assertions.assertDoesNotThrow(() -> customer.setFirstname("o'brandon"));
-	}
-
-	// Tries to pass an invalid first name by using a name that contains numbers.
-	@Test
-	@DisplayName("First name, invalid (Numbers in name)")
-	void testFirstnameInvalidNumbers() throws InvalidCustomerInputException, Exception {
-		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
-			customer.setFirstname("brandon1"));
-		Assertions.assertEquals("Customer name must contain alphabetic characters only.", e.getMessage());
-	}
-
-	// Tries to pass an invalid first name by using a name that contains symbols.
-	@Test
-	@DisplayName("First name, invalid (Symbols in name)")
-	void testFirstnameInvalidSymbols() throws InvalidCustomerInputException, Exception {
-		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
-			customer.setFirstname("brandon$"));
-		Assertions.assertEquals("Customer name must contain alphabetic characters only.", e.getMessage());
-	}
-
-	// Tries to pass a valid last name to the Customer class.
-	@Test
-	@DisplayName("Last name, valid")
-	void testLastnameValid() {
-		Assertions.assertDoesNotThrow(() -> customer.setLastname("Bauer"));
-	}
-
-	// Tries to pass an invalid last name by using a name that contains numbers.
-	@Test
-	@DisplayName("Last name, invalid (Numbers in name)")
-	void testLastnameInvalidNumbers() throws InvalidCustomerInputException, Exception {
-		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
-			customer.setLastname("120Bauer"));
-		Assertions.assertEquals("Customer name must contain alphabetic characters only.", e.getMessage());
-	}
-
 	// Tries to pass a valid NIC to the Customer class.
 	@Test
 	@DisplayName("NIC, valid")
 	void testNicValid() {
-		Assertions.assertDoesNotThrow(() -> customer.setNic("A0983427C"));
+		String nic = "A0983427C";
+		Assertions.assertDoesNotThrow(() -> customer.setNic(nic));
+		Assertions.assertEquals(nic, customer.getNic());
 	}
 
 	// Tries to pass an invalid NIC by using a value that contains symbols.
@@ -151,6 +50,27 @@ public class CustomerTest {
 		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
 			customer.setNic("A983324&93-2C"));
 		Assertions.assertEquals("Customer NIC must contain alphanumeric characters only.", e.getMessage());
+	}
+	
+	// Tries to pass an invalid phone number to the Customer class.
+	@Test
+	@DisplayName("Phone number, numerical input over 14 characters")
+	void testPhoneNumberMaximum() {
+		Assertions.assertDoesNotThrow(() -> customer.setPhoneNumber("239940423466543234"));
+	}
+
+	// Tries to pass a valid phone number to the Customer class.
+	@Test
+	@DisplayName("Phone number, numerical input under 14 characters")
+	void testValidPhoneNumber() {
+		Assertions.assertDoesNotThrow(() -> customer.setPhoneNumber("2399443234"));
+	}
+
+	// Tries to pass an invalid phone number to the Customer class.
+	@Test
+	@DisplayName("Phone number, numerical input under 7 characters")
+	void testPhoneNumberMinimum() {
+		Assertions.assertDoesNotThrow(() -> customer.setPhoneNumber("2394"));
 	}
 
 	// Tries to pass a valid passport number to the Customer class.
@@ -167,6 +87,149 @@ public class CustomerTest {
 		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
 			customer.setPassport("32489-4329!938"));
 		Assertions.assertEquals("Customer Passport must contain alphanumeric characters only.", e.getMessage());
+	}
+
+	
+	// Tries to pass a valid address name to the Customer class.
+	@Test
+	@DisplayName("Address, valid")
+	void testAddressValid() {
+		String streetAddress = "123 Main Street";
+		String city = "Fort Myers";
+		String state = "Florida";
+		String zipCode = "33913";
+		String country = "United States";
+		Address address = new Address(streetAddress, city, state, zipCode, country);
+		Assertions.assertDoesNotThrow(() -> customer.setAddress(address));
+	}
+
+	// Tries to pass a invalid address to the Customer class.
+	@Test
+	@DisplayName("Address, invalid")
+	void testAddressInvalid() {
+		Assertions.assertThrows(InvalidCustomerInputException.class, 
+				() -> customer.setAddress(null));
+	}
+
+	// Tries to pass a valid first name to the Customer class.
+	@Test
+	@DisplayName("First name, valid")
+	void testFirstnameValid() {
+		String name = "Brandon";
+		Assertions.assertDoesNotThrow(() -> customer.setFirstname(name));
+		Assertions.assertEquals(name, customer.getFirstname());
+	}
+
+	// Tries to pass a valid first name that includes a dash.
+	@Test
+	@DisplayName("First name, valid with dash")
+	void testFirstnameValidDashes() {
+		String name = "la-brandon";
+		Assertions.assertDoesNotThrow(() -> customer.setFirstname(name));
+		Assertions.assertEquals(name, customer.getFirstname());
+	}
+
+	// Tries to pass a valid first name that includes an apostrophe.
+	@Test
+	@DisplayName("First name, valid with apostrophe")
+	void testFirstnameValidApostrophes() {
+		String name = "o'brandon";
+		Assertions.assertDoesNotThrow(() -> customer.setFirstname(name));
+		Assertions.assertEquals(name, customer.getFirstname());
+	}
+
+	// Tries to pass a valid first name that includes an apostrophe.
+	@Test
+	@DisplayName("First name, valid with dash and apostrophe")
+	void testFirstnameValidApostrophesAndDashes() {
+		String name = "o'brand-on";
+		Assertions.assertDoesNotThrow(() -> customer.setFirstname(name));
+		Assertions.assertEquals(name, customer.getFirstname());
+	}
+
+	// Tries to pass an invalid first name by using a name that contains numbers.
+	@Test
+	@DisplayName("First name, invalid (Numbers in name)")
+	void testFirstnameInvalidNumbers() throws InvalidCustomerInputException, Exception {
+		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, 
+				() -> customer.setFirstname("brandon1"));
+		Assertions.assertEquals("Customer name must contain alphabetic characters only.", e.getMessage());
+	}
+
+	// Tries to pass an invalid first name by using a name that contains only numbers.
+	@Test
+	@DisplayName("First name, invalid (Numbers in name)")
+	void testFirstnameInvalidOnlyNumbers() throws InvalidCustomerInputException, Exception {
+		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, 
+				() -> customer.setFirstname("121231"));
+		Assertions.assertEquals("Customer name must contain alphabetic characters only.", e.getMessage());
+	}
+
+	// Tries to pass an invalid first name by using a name that contains symbols.
+	@Test
+	@DisplayName("First name, invalid (Symbols in name)")
+	void testFirstnameInvalidSymbols() throws InvalidCustomerInputException, Exception {
+		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
+			customer.setFirstname("brandon$"));
+		Assertions.assertEquals("Customer name must contain alphabetic characters only.", e.getMessage());
+	}
+
+	// Tries to pass a valid last name to the Customer class.
+	@Test
+	@DisplayName("Last name, valid")
+	void testLastnameValid() {
+		String name = "Bauer";
+		Assertions.assertDoesNotThrow(() -> customer.setLastname(name));
+		Assertions.assertEquals(name, customer.getLastname());
+	}
+	
+
+	// Tries to pass a valid last name to the Customer class.
+	@Test
+	@DisplayName("Last name, valid")
+	void testLastnameValidWithDashes() {
+		String name = "Bau-er";
+		Assertions.assertDoesNotThrow(() -> customer.setLastname(name));
+		Assertions.assertEquals(name, customer.getLastname());
+	}
+	
+
+	// Tries to pass a valid last name to the Customer class.
+	@Test
+	@DisplayName("Last name, valid")
+	void testLastnameValidWithApostrophes() {
+		String name = "Bau'er";
+		Assertions.assertDoesNotThrow(() -> customer.setLastname(name));
+		Assertions.assertEquals(name, customer.getLastname());
+	}
+	
+
+	// Tries to pass a valid last name to the Customer class.
+	@Test
+	@DisplayName("Last name, valid")
+	void testLastnameValidWithApostrophesAndDashes() {
+		String name = "Ba-u'er";
+		Assertions.assertDoesNotThrow(() -> customer.setLastname(name));
+		Assertions.assertEquals(name, customer.getLastname());
+	}
+	
+
+	// Tries to pass a invalid last name to the Customer class.
+	@Test
+	@DisplayName("Last name, invalid numerical")
+	void testLastnameInvalidNumerical() {
+		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
+		customer.setLastname("120123131"));
+		Assertions.assertEquals("Customer name must contain alphabetic characters only.", e.getMessage());
+	}
+	
+	// Tries to pass an invalid last name by using a name that contains numbers.
+	@Test
+	@DisplayName("Last name, invalid (Numbers in name)")
+	void testLastnameInvalidAlphaNumerical() throws InvalidCustomerInputException, Exception {
+		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
+			customer.setLastname("120Bauer"));
+		Assertions.assertEquals("Customer name must contain alphabetic characters only.", e.getMessage());
 	}
 
 	// Tries to pass a valid date of birth to the Customer class.
