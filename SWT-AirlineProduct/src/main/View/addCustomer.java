@@ -18,6 +18,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import main.Model.Address;
 import main.Model.Customer;
 import main.Service.AutoIDService;
 
@@ -391,7 +392,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
 		String lastname = txtlastname.getText();
 		String nic = txtnic.getText();
 		String passport = txtpassport.getText();
-		String address = txtaddress.getText();
+		String streetAddress = txtaddress.getText();
 		DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
 //		String date = da.format(txtdob.getDate());
 		String date = da.format(new Date());
@@ -399,6 +400,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
 
 		String contact = txtcontact.getText();
 		try {
+			Address address = new Address(streetAddress, "", "", "", "");
 			Customer customer = new Customer(id, firstname, lastname, nic, passport, address, date, gender, contact, userimage);
 			customer.updateInDatabase();
 			JOptionPane.showMessageDialog(this, "Registation Created.");

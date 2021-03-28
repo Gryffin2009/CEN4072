@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.junit.jupiter.api.*;
 
 import main.Model.Address;
+import main.Model.Address.InvalidAddressInputException;
 import main.Model.Customer;
 import main.Model.Customer.InvalidCustomerInputException;
 import main.Service.AutoIDService;
@@ -14,7 +15,7 @@ public class CustomerTest {
 	Customer customer;
 	
 	@BeforeEach
-	void beforeEach() throws InvalidCustomerInputException, IOException {
+	void beforeEach() throws InvalidCustomerInputException, IOException, InvalidAddressInputException {
 		
 		// Before each tests run, reset values for the initial Customer object to be created with.
 		// This is necessary to test whether changing any individual properties will throw exceptions.
@@ -24,14 +25,23 @@ public class CustomerTest {
 		String lastname = "Bauer";
 		String nic = "1293874532";
 		String passport = "2398732423948";
-		String address = "123 S. Washington St.";
 		String dob = "1985-03-12";
 		String gender = "Male";
 		String contact = "1234567";
 		String photoPath = "src/test/media/CustomerPicture.png";
+		
 		// Create a fresh Customer to work with for every test. This ensures all tests are working from the same
 		// initial values, which ensures no test results will affect other tests.
-		customer = new Customer(id, firstname, lastname, nic, passport, address, dob, gender, contact, photoPath);
+		customer = new Customer(id, firstname, lastname, nic, passport, fakeAddress(), dob, gender, contact, photoPath);
+	}
+	
+	Address fakeAddress() throws InvalidAddressInputException {
+		String streetAddress = "123 Main Street";
+		String city = "Fort Myers";
+		String state = "Florida";
+		String zipCode = "33913";
+		String country = "United States";
+		return new Address(streetAddress, city, state, zipCode, country);
 	}
 	
 	// Tries to pass a valid NIC to the Customer class.
@@ -47,8 +57,7 @@ public class CustomerTest {
 	@Test
 	@DisplayName("NIC, invalid (Non-alphanumeric characters)")
 	void testNicInvalidNonalphanumeric() throws InvalidCustomerInputException, Exception {
-		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
-			customer.setNic("A983324&93-2C"));
+		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () -> customer.setNic("A983324&93-2C"));
 		Assertions.assertEquals("Customer NIC must contain alphanumeric characters only.", e.getMessage());
 	}
 	
@@ -56,7 +65,8 @@ public class CustomerTest {
 	@Test
 	@DisplayName("Phone number, numerical input over 14 characters")
 	void testPhoneNumberMaximum() {
-		Assertions.assertDoesNotThrow(() -> customer.setPhoneNumber("239940423466543234"));
+		Exception e = Assertions.assertThrows(InvalidCustomerInputException.class, () -> customer.setPhoneNumber("239940423466543234"));
+		Assertions.assertEquals("Invalid Phone Number", e.getMessage());
 	}
 
 	// Tries to pass a valid phone number to the Customer class.
@@ -70,7 +80,8 @@ public class CustomerTest {
 	@Test
 	@DisplayName("Phone number, numerical input under 7 characters")
 	void testPhoneNumberMinimum() {
-		Assertions.assertDoesNotThrow(() -> customer.setPhoneNumber("2394"));
+		Exception e = Assertions.assertThrows(InvalidCustomerInputException.class, () -> customer.setPhoneNumber("2394"));
+		Assertions.assertEquals("Invalid Phone Number", e.getMessage());
 	}
 
 	// Tries to pass a valid passport number to the Customer class.
@@ -84,8 +95,7 @@ public class CustomerTest {
 	@Test
 	@DisplayName("Passport, invalid (Non-alphanumeric characters)")
 	void testPassportInvalidNonalphanumeric() throws InvalidCustomerInputException, Exception {
-		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
-			customer.setPassport("32489-4329!938"));
+		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () -> customer.setPassport("32489-4329!938"));
 		Assertions.assertEquals("Customer Passport must contain alphanumeric characters only.", e.getMessage());
 	}
 
@@ -94,21 +104,15 @@ public class CustomerTest {
 	@Test
 	@DisplayName("Address, valid")
 	void testAddressValid() {
-		String streetAddress = "123 Main Street";
-		String city = "Fort Myers";
-		String state = "Florida";
-		String zipCode = "33913";
-		String country = "United States";
-		Address address = new Address(streetAddress, city, state, zipCode, country);
-		Assertions.assertDoesNotThrow(() -> customer.setAddress(address));
+		Assertions.assertDoesNotThrow(() -> customer.setAddress(fakeAddress()));
 	}
 
 	// Tries to pass a invalid address to the Customer class.
 	@Test
 	@DisplayName("Address, invalid")
 	void testAddressInvalid() {
-		Assertions.assertThrows(InvalidCustomerInputException.class, 
-				() -> customer.setAddress(null));
+		Exception e = Assertions.assertThrows(InvalidCustomerInputException.class, () -> customer.setAddress(null));
+		Assertions.assertEquals("Invalid address.", e.getMessage());
 	}
 
 	// Tries to pass a valid first name to the Customer class.
@@ -160,8 +164,7 @@ public class CustomerTest {
 	@Test
 	@DisplayName("First name, invalid (Numbers in name)")
 	void testFirstnameInvalidOnlyNumbers() throws InvalidCustomerInputException, Exception {
-		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, 
-				() -> customer.setFirstname("121231"));
+		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () -> customer.setFirstname("121231"));
 		Assertions.assertEquals("Customer name must contain alphabetic characters only.", e.getMessage());
 	}
 
@@ -169,8 +172,7 @@ public class CustomerTest {
 	@Test
 	@DisplayName("First name, invalid (Symbols in name)")
 	void testFirstnameInvalidSymbols() throws InvalidCustomerInputException, Exception {
-		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
-			customer.setFirstname("brandon$"));
+		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () -> customer.setFirstname("brandon$"));
 		Assertions.assertEquals("Customer name must contain alphabetic characters only.", e.getMessage());
 	}
 
@@ -227,8 +229,7 @@ public class CustomerTest {
 	@Test
 	@DisplayName("Last name, invalid (Numbers in name)")
 	void testLastnameInvalidAlphaNumerical() throws InvalidCustomerInputException, Exception {
-		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
-			customer.setLastname("120Bauer"));
+		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () -> customer.setLastname("120Bauer"));
 		Assertions.assertEquals("Customer name must contain alphabetic characters only.", e.getMessage());
 	}
 
@@ -266,33 +267,8 @@ public class CustomerTest {
 	@Test
 	@DisplayName("Gender, invalid (Not Male or Female)")
 	void testGenderInvalidNonalphanumeric() throws InvalidCustomerInputException, Exception {
-		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
-			customer.setGender("Badger"));
+		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () -> customer.setGender("Badger"));
 		Assertions.assertEquals("Customer gender must be either Male or Female.", e.getMessage());
 	}
 
-	// Tries to pass a valid phone number to the Customer class.
-	@Test
-	@DisplayName("Contact number, valid")
-	void testContactValid() throws InvalidCustomerInputException, Exception {
-		Assertions.assertDoesNotThrow(() -> customer.setContact("1234567"));
-	}
-
-	// Tries to pass an invalid phone number by using a value that has too many numbers.
-	@Test
-	@DisplayName("Contact number, invalid (too many numbers)")
-	void testContactInvalidTooManyNumbers() throws InvalidCustomerInputException, Exception {
-		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
-			customer.setContact("12345678"));
-		Assertions.assertEquals("Customer phone number must be 7 numeric characters with no separators, i.e. 1234567.", e.getMessage());
-	}
-
-	// Tries to pass an invalid phone number by using a value that has too few numbers.
-	@Test
-	@DisplayName("Contact number, invalid (not enough numbers)")
-	void testContactInvalidNotEnoughNumbers() throws InvalidCustomerInputException, Exception {
-		InvalidCustomerInputException e = Assertions.assertThrows(InvalidCustomerInputException.class, () ->
-			customer.setContact("123456"));
-		Assertions.assertEquals("Customer phone number must be 7 numeric characters with no separators, i.e. 1234567.", e.getMessage());
-	}
 }

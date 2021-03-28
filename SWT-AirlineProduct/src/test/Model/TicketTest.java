@@ -12,12 +12,7 @@ import main.Service.AutoIDService;
 public class TicketTest {
 
 	Ticket ticket;
-
-	@BeforeAll
-	static void beforeAll() {
-
-	}
-
+	
 	@BeforeEach
 	void beforeEach() throws InvalidCustomerInputException, IOException {
 
@@ -43,13 +38,5 @@ public class TicketTest {
 		ticket = new Ticket(ticketid, flightid, custid, flightclass, price, seats, date);
 	}
 
-	@AfterEach
-	void afterEach() {
-
-	}
-
-	@AfterAll
-	static void afterAll() {
-
-	}
+	
 }

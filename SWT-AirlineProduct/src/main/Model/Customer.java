@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import main.Model.Address.InvalidAddressInputException;
 import main.Service.NetworkService;
 
 public class Customer {
@@ -36,13 +37,12 @@ public class Customer {
 	private Address address;
 	private String dob;
 	private String gender;
-	private String contact;
 	private String phoneNumber;
 	private byte[] photo;
 	
 	// Constructor with the image as a byte[] array, which is how the image is stored in the database.
 	public Customer(String id, String firstname, String lastname, String nic, String passport,
-			String address, String dob, String gender, String contact, byte[] photo) throws InvalidCustomerInputException {
+			Address address, String dob, String gender, String contact, byte[] photo) throws InvalidCustomerInputException {
 		setId(id);
 		setFirstname(firstname);
 		setLastname(lastname);
@@ -51,13 +51,13 @@ public class Customer {
 		setAddress(address);
 		setDob(dob);
 		setGender(gender);
-		setContact(contact);
+		setPhoneNumber(contact);
 		setPhoto(photo);
 	}
 	
 	// Constructor with image path, which then converts the image to a byte[] array so it can be stored in the database.
 	public Customer(String id, String firstname, String lastname, String nic, String passport,
-			String address, String dob, String gender, String contact, String photo) throws InvalidCustomerInputException, IOException {
+			Address address, String dob, String gender, String contact, String photo) throws InvalidCustomerInputException, IOException {
 		setId(id);
 		setFirstname(firstname);
 		setLastname(lastname);
@@ -66,7 +66,7 @@ public class Customer {
 		setAddress(address);
 		setDob(dob);
 		setGender(gender);
-		setContact(contact);
+		setPhoneNumber(contact);
 		setPhoto(photo);
 	}
 	
@@ -84,7 +84,7 @@ public class Customer {
 			pst.setString(6, this.getAddressString());
 			pst.setString(7, this.getDob());
 			pst.setString(8, this.getGender());
-			pst.setString(9, this.getContact());
+			pst.setString(9, this.getPhoneNumber());
 			pst.setBytes(10, this.getPhoto());
 			pst.executeUpdate();
 		} catch (SQLException ex) {
@@ -93,16 +93,20 @@ public class Customer {
 	}
 	
 	public void setPhoneNumber(String phoneNumber) throws InvalidCustomerInputException {
-		if (validPhoneNumber(phoneNumber)) {
+		if (validatePhoneNumber(phoneNumber)) {
 			this.phoneNumber = phoneNumber;
 		} else {
 			throw new InvalidCustomerInputException("Invalid Phone Number");
 		}
 	}
 	
-	private boolean validPhoneNumber(String id) {
-		// TODO: Check this regex
-		return id.matches("^[0-9]{14}$");
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	// Ensures a phone number consists only of numbers and has 7-13 digits.
+	private boolean validatePhoneNumber(String phoneNumber) {
+		return phoneNumber.matches("^[0-9]{7,13}$");
 	}
 	
 	// Ensures an Id is of the format CS###.
@@ -155,11 +159,6 @@ public class Customer {
 		} else {
 			return false;
 		}
-	}
-	
-	// Ensures a phone number consists only of numbers and has 7 digits.
-	private boolean validateContact(String contact) {
-		return contact.matches("^[0-9]{7}$");
 	}
 	
 	// Returns the customer ID.
@@ -244,8 +243,11 @@ public class Customer {
 
 	// Sets the address of the customer.
 	public void setAddress(Address address) throws InvalidCustomerInputException {
-		//TODO Make an Address class!
-		throw new InvalidCustomerInputException("Make an Address class");
+		if (address != null) {
+			this.address = address;
+		} else {
+			throw new InvalidCustomerInputException("Invalid address.");
+		}
 	}
 
 	// Returns the date of birth of the customer.
@@ -273,20 +275,6 @@ public class Customer {
 			this.gender = gender;
 		} else {
 			throw new InvalidCustomerInputException("Customer gender must be either Male or Female.");
-		}
-	}
-
-	// Returns the phone number of the customer.
-	public String getContact() {
-		return contact;
-	}
-
-	// Sets a phone number if valid, otherwise throws a custom exception marking an invalid property value.
-	public void setContact(String contact) throws InvalidCustomerInputException {
-		if (validateContact(contact)) {
-			this.contact = contact;
-		} else {
-			throw new InvalidCustomerInputException("Customer phone number must be 7 numeric characters with no separators, i.e. 1234567.");
 		}
 	}
 
