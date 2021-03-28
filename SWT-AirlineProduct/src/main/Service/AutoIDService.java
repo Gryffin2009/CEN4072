@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 import main.Environment;
 
 public class AutoIDService {
-
 	
 	// returns a string that represents the next unique id 
 	// for the given table. The prefix will precede the number
@@ -25,6 +24,11 @@ public class AutoIDService {
 			ResultSet rs = s.executeQuery("select MAX(id) from " + table);
 			rs.next();
 			rs.getString("MAX(id)");
+			
+			if (prefix.isEmpty()) {
+				return null;
+			}
+			
 			if (rs.getString("MAX(id)") == null) {
 				return prefix + "001";
 			} else {
@@ -32,10 +36,7 @@ public class AutoIDService {
 				id++;
 				return prefix + String.format("%03d", id);
 			}
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(AutoIDService.class.getName()).log(Level.SEVERE, null, ex);
-			return null;
-		} catch (SQLException ex) {
+		} catch (Exception ex) {
 			Logger.getLogger(AutoIDService.class.getName()).log(Level.SEVERE, null, ex);
 			return null;
 		}

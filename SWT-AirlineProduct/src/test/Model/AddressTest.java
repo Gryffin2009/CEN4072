@@ -41,14 +41,15 @@ public class AddressTest {
 	@Test
 	@DisplayName("Address, no numbers (Invalid)")
 	void testPassportInvalidNoNumbers() throws InvalidAddressInputException, Exception {
-		InvalidAddressInputException e = Assertions.assertThrows(InvalidAddressInputException.class, () -> address.setStreetAddress("main street"));
+		InvalidAddressInputException e = Assertions.assertThrows(InvalidAddressInputException.class, 
+				() -> address.setStreetAddress("main street"));
 		Assertions.assertEquals("Invalid street address", e.getMessage());
 	}
 
 	// Tries to pass an invalid street address to the Address class.
 	// Only numbers
 	@Test
-	@DisplayName("Address, no numbers (Invalid))")
+	@DisplayName("Address, only numbers (Invalid))")
 	void testPassportInvalidOnlyNumbers() throws InvalidAddressInputException, Exception {
 		InvalidAddressInputException e = Assertions.assertThrows(InvalidAddressInputException.class, () -> address.setStreetAddress("134134134"));
 		Assertions.assertEquals("Invalid street address", e.getMessage());

@@ -1,12 +1,10 @@
 package test.Model;
 
 import java.io.IOException;
-
 import org.junit.jupiter.api.*;
 
-import main.Model.Customer;
-import main.Model.Customer.InvalidCustomerInputException;
 import main.Model.Ticket;
+import main.Model.Ticket.InvalidTicketInputException;
 import main.Service.AutoIDService;
 
 public class TicketTest {
@@ -14,29 +12,51 @@ public class TicketTest {
 	Ticket ticket;
 	
 	@BeforeEach
-	void beforeEach() throws InvalidCustomerInputException, IOException {
+	void beforeEach() throws IOException, InvalidTicketInputException {
 
-		// Before each tests run, reset values for the initial Customer object to be
+		// Before each tests run, reset values for the initial Ticket object to be
 		// created with.
 		// This is necessary to test whether changing any individual properties will
 		// throw exceptions.
-		// This also facilitates input validation, as each setter in Customer contains
+		// This also facilitates input validation, as each setter in Ticket contains
 		// validation methods.
-		String id = AutoIDService.generateAutoID("customer", "CS");
-		String firstname = "Todd";
-		String lastname = "Bauer";
-		String nic = "1293874532";
-		String passport = "2398732423948";
-		String address = "123 S. Washington St.";
-		String dob = "1985-03-12";
-		String gender = "Male";
-		String contact = "1234567";
-		String photoPath = "src/test/media/CustomerPicture.png";
-		// Create a fresh Customer to work with for every test. This ensures all tests
+		String id = AutoIDService.generateAutoID("ticket", "TO");
+		String flightid = "";
+		String custid = "";
+		String flightclass = "business";
+		String price = "100";
+		String seats = "1";
+		String date = "2021-04-22";
+		// Create a fresh Ticket to work with for every test. This ensures all tests
 		// are working from the same
 		// initial values, which ensures no test results will affect other tests.
-		ticket = new Ticket(ticketid, flightid, custid, flightclass, price, seats, date);
+		ticket = new Ticket(id, flightid, custid, flightclass, price, seats, date);
 	}
 
+	// Tries to pass a valid street address to the Address class.
+	@Test
+	@DisplayName("Valid seats")
+	void testPassportValid() {
+		Assertions.assertDoesNotThrow(() -> ticket.setNumSeats(5));
+	}
+
+	// Tries to pass an invalid street address to the Address class.
+	// No numbers
+	@Test
+	@DisplayName("Invalid seats, too many")
+	void testPassportInvalidNoNumbers() throws InvalidTicketInputException {
+		Exception e = Assertions.assertThrows(InvalidTicketInputException.class, 
+				() -> ticket.setNumSeats(50));
+		Assertions.assertEquals("Invalid Number of Seats", e.getMessage());
+	}
+
+	// Tries to pass an invalid street address to the Address class.
+	// Only numbers
+	@Test
+	@DisplayName("Invalid seats, 0")
+	void testPassportInvalidOnlyNumbers() throws InvalidTicketInputException, Exception {
+		Exception e = Assertions.assertThrows(InvalidTicketInputException.class, () -> ticket.setNumSeats(0));
+		Assertions.assertEquals("Invalid Number of Seats", e.getMessage());
+	}
 	
 }

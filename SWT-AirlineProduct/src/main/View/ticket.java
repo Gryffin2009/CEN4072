@@ -35,26 +35,9 @@ public class ticket extends javax.swing.JInternalFrame {
 		initComponents();
 		autoID();
 	}
-	
 	private void autoID() {
 		String id = AutoIDService.generateAutoID("ticket", "TO");
 		txtticketno.setText(id);
-	}
-
-	private int calcPriceTotal(int price, int numSeats) {
-		if (validateNumSeats(numSeats)) {
-			return price * numSeats;
-		} else {
-			return -1;
-		}
-	}
-	
-	private boolean validateNumSeats(int numSeats) {
-		if (numSeats > 0 && numSeats < 10) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 	/**
@@ -513,15 +496,8 @@ public class ticket extends javax.swing.JInternalFrame {
 
 		int price = Integer.parseInt(txtprice.getText());
 		int qty = Integer.parseInt(txtseats.getValue().toString());
-
-		int tot = calcPriceTotal(price, qty);
-
-		if (validateNumSeats(qty)) {
-			txttotal.setText(String.valueOf(tot));			
-		} else {
-			txttotal.setText("ERROR: Number of seats must be a value from 1 to 9.");
-		}
-
+		int tot = price * qty;
+		txttotal.setText(String.valueOf(tot));
 	}// GEN-LAST:event_txtseatsStateChanged
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed

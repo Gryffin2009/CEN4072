@@ -56,6 +56,19 @@ public class Ticket {
 			throw new UpdateTicketException(ex.getMessage());
 		}
 	}
+	
+	public void setNumSeats(int numSeats) throws InvalidTicketInputException {
+		if (validNumSeats(numSeats)) {
+			this.seats = String.valueOf(numSeats);
+		} else {
+			throw new InvalidTicketInputException("Invalid Number of Seats");
+		}
+	}
+	
+	public boolean validNumSeats(int numSeats) {
+		return (numSeats > 0 && numSeats < 10);
+	}
+
 
 
 }

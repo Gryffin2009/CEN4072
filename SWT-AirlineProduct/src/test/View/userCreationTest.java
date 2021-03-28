@@ -14,29 +14,7 @@ class userCreationTest {
 	static void beforeAll() {
 		userCreation = new userCreation();		
 	}
-	
-	@BeforeEach
-	void beforeEach() {
-		
-	}
-	
-	@AfterEach
-	void afterEach() {
-		
-	}
-	
-	@AfterAll
-	static void afterAll() {
-		
-	}
-	
-	@Test
-	// Ensures that the name is a valid name (Only alphabetical characters)
-	void testNameValid() {
-		boolean result = userCreation.validateName("Todd");
-		Assertions.assertTrue(result);
-	}
-	
+
 	/*
 	//The software shall allow the user to create a new user with a unique id, 
 	// first name, last name, username, and password. 

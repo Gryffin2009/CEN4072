@@ -16,7 +16,6 @@ public class CustomerTest {
 	
 	@BeforeEach
 	void beforeEach() throws InvalidCustomerInputException, IOException, InvalidAddressInputException {
-		
 		// Before each tests run, reset values for the initial Customer object to be created with.
 		// This is necessary to test whether changing any individual properties will throw exceptions.
 		// This also facilitates input validation, as each setter in Customer contains validation methods.

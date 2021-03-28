@@ -23,6 +23,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import main.Model.Address;
+import main.Model.Address.InvalidAddressInputException;
 import main.Model.Customer;
 import main.Model.Customer.InvalidCustomerInputException;
 import main.Model.Customer.UpdateCustomerException;
@@ -45,7 +47,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 
 	String path = null;
 	byte[] userimage = null;
-	
+
 //	public boolean validateID(String id) {
 //		return id.matches("^CS[0-9]{3}$");
 //	}
@@ -58,7 +60,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 			pst.setString(1, id);
 			ResultSet rs = pst.executeQuery();
 			rs.next();
-			
+
 			String fname = rs.getString("firstname");
 			String lname = rs.getString("lastname");
 			String nic = rs.getString("nic");
@@ -81,16 +83,9 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 				r1.setSelected(true);
 				r2.setSelected(false);
 			}
-			
+
 			String contact = rs.getString("contact");
 
-			try {
-				Customer customer = new Customer(id, fname, lname, nic, passport, address, dob, gender, contact, _imagebytes);
-
-			} catch (InvalidCustomerInputException e) {
-				JOptionPane.showMessageDialog(this, e.getMessage());
-			}
-					
 			txtfirstname.setText(fname.trim());
 			txtlastname.setText(lname.trim());
 			txtnic.setText(nic.trim());
@@ -102,7 +97,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 		} catch (ParseException ex) {
 			Logger.getLogger(searchCustomer.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		
+
 	}
 
 	/**
@@ -419,7 +414,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 		String lastname = txtlastname.getText();
 		String nic = txtnic.getText();
 		String passport = txtpassport.getText();
-		String address = txtaddress.getText();
+		String streetAddress = txtaddress.getText();
 
 		DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
 //		String date = da.format(txtdob.getDate());
@@ -431,10 +426,13 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 		String photoPath = "";
 
 		try {
-			Customer customer = new Customer(id, firstname, lastname, nic, passport, address, date, gender, contact, photoPath);
+			// TODO fix address when fields are added
+			Address address = new Address(streetAddress, "", "","",""); 
+			Customer customer = new Customer(id, firstname, lastname, nic, passport, address, date, gender, contact,
+					photoPath);
 			customer.updateInDatabase();
 			JOptionPane.showMessageDialog(this, "Registation Updated.");
-		} catch (UpdateCustomerException | InvalidCustomerInputException | IOException e) {
+		} catch (UpdateCustomerException | InvalidCustomerInputException | IOException | InvalidAddressInputException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage());
 		}
 
@@ -446,7 +444,8 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 	}// GEN-LAST:event_jButton3ActionPerformed
 
 	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
-		String id = txtcustid.getText();		try {
+		String id = txtcustid.getText();
+		try {
 			searchByID(id);
 		} catch (SQLException ex) {
 			Logger.getLogger(searchCustomer.class.getName()).log(Level.SEVERE, null, ex);
