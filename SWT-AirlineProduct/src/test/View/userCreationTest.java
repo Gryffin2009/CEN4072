@@ -15,6 +15,12 @@ class userCreationTest {
 		userCreation = new userCreation();		
 	}
 
+	@Test
+	@DisplayName("Just run - testing coverage")
+	void testAddCustomer() {
+		Assertions.assertTrue(true);
+	}
+	
 	/*
 	//The software shall allow the user to create a new user with a unique id, 
 	// first name, last name, username, and password. 

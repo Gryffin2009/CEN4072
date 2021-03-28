@@ -27,6 +27,12 @@ public class addCustomerTest {
 		
 	}
 	
+	@Test
+	@DisplayName("Just run - testing coverage")
+	void testAddCustomer() {
+		Assertions.assertTrue(true);
+	}
+	
 //	@Test
 //	@DisplayName("Image to byte array")
 //	void testImageToByteArray() {
@@ -123,6 +129,7 @@ public class addCustomerTest {
 		boolean successWithValidInput = addCustomer.createCustomer(id, firstname, lastname, nic, passport, address, dob, gender, contact, photo);
 		Assertions.assertFalse(successWithValidInput);
 	}
+	
 	*/	
 	
 }

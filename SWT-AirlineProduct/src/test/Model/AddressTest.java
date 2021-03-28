@@ -21,18 +21,21 @@ public class AddressTest {
 	String zipCode = "33913";
 	String country = "United States";
 	
+	// Positive test
 	@BeforeEach
 	void beforeEach() throws IOException, InvalidAddressInputException {
 
 		// Create a fresh Address to work with for every test. This ensures all tests are working from the same
 		// initial values, which ensures no test results will affect other tests.
-		address = new Address(streetAddress, city, state, zipCode, country);
+		Assertions.assertDoesNotThrow(() -> {
+			address = new Address(streetAddress, city, state, zipCode, country);
+		});
 	}
 	
 	// Tries to pass a valid street address to the Address class.
 	@Test
 	@DisplayName("Address, valid")
-	void testPassportValid() {
+	void testAddressValid() {
 		Assertions.assertDoesNotThrow(() -> address.setStreetAddress("1234 main street"));
 	}
 
@@ -40,21 +43,50 @@ public class AddressTest {
 	// No numbers
 	@Test
 	@DisplayName("Address, no numbers (Invalid)")
-	void testPassportInvalidNoNumbers() throws InvalidAddressInputException, Exception {
+	void testAddressInvalidNoNumbers() throws InvalidAddressInputException, Exception {
 		InvalidAddressInputException e = Assertions.assertThrows(InvalidAddressInputException.class, 
 				() -> address.setStreetAddress("main street"));
 		Assertions.assertEquals("Invalid street address", e.getMessage());
 	}
 
-	// Tries to pass an invalid street address to the Address class.
+	// Tries to pass an invalid city to the Address class.
 	// Only numbers
 	@Test
-	@DisplayName("Address, only numbers (Invalid))")
-	void testPassportInvalidOnlyNumbers() throws InvalidAddressInputException, Exception {
-		InvalidAddressInputException e = Assertions.assertThrows(InvalidAddressInputException.class, () -> address.setStreetAddress("134134134"));
-		Assertions.assertEquals("Invalid street address", e.getMessage());
+	@DisplayName("Address city, empty (Invalid))")
+	void testCityInvalid() throws InvalidAddressInputException, Exception {
+		InvalidAddressInputException e = Assertions.assertThrows(InvalidAddressInputException.class, () -> address.setCity(""));
+		Assertions.assertEquals("Invalid city", e.getMessage());
 	}
+	
 
+	// Tries to pass an invalid state to the Address class.
+	// Only numbers
+	@Test
+	@DisplayName("Address state, empty (Invalid))")
+	void testStateInvalid() throws InvalidAddressInputException, Exception {
+		InvalidAddressInputException e = Assertions.assertThrows(InvalidAddressInputException.class, () -> address.setState(""));
+		Assertions.assertEquals("Invalid state", e.getMessage());
+	}
+	
+
+	// Tries to pass an invalid zipCode to the Address class.
+	// Only numbers
+	@Test
+	@DisplayName("Address zipCode, empty (Invalid))")
+	void testZipCodeInvalid() throws InvalidAddressInputException, Exception {
+		InvalidAddressInputException e = Assertions.assertThrows(InvalidAddressInputException.class, () -> address.setZipCode(""));
+		Assertions.assertEquals("Invalid zipCode", e.getMessage());
+	}
+	
+	// Tries to pass an invalid country to the Address class.
+	// Only numbers
+	@Test
+	@DisplayName("Address country, empty (Invalid))")
+	void testCountryInvalid() throws InvalidAddressInputException, Exception {
+		InvalidAddressInputException e = Assertions.assertThrows(InvalidAddressInputException.class, () -> address.setCountry(""));
+		Assertions.assertEquals("Invalid country", e.getMessage());
+	}
+	
 	// Ensure the printed string contains all 
 	@Test
 	@DisplayName("Address, toString()")
