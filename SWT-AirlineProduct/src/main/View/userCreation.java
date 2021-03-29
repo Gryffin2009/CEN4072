@@ -46,8 +46,8 @@ public class userCreation extends javax.swing.JInternalFrame {
 //	public boolean validatePassword(String password) {
 //		return password.matches("^[a-zA-Z0-9]+$");
 //	}
-
-	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+	
+	private void createNewUser() {
 		String id = txtuserid.getText();
 		String firstname = txtfirstname.getText();
 		String lastname = txtlastname.getText();
@@ -59,7 +59,11 @@ public class userCreation extends javax.swing.JInternalFrame {
 			JOptionPane.showMessageDialog(null, "User Created.");
 		} catch (InvalidUserInputException | UpdateUserException e) {
 			Logger.getLogger(userCreation.class.getName()).log(Level.SEVERE, null, e);
-		}
+		}		
+	}
+
+	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+		createNewUser();
 	}// GEN-LAST:event_jButton1ActionPerformed
 
 	/**
