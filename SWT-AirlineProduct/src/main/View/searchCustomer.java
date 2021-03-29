@@ -1,4 +1,4 @@
-package main.View;
+package View;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -23,12 +23,12 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import main.Model.Address;
-import main.Model.Address.InvalidAddressInputException;
-import main.Model.Customer;
-import main.Model.Customer.InvalidCustomerInputException;
-import main.Model.Customer.UpdateCustomerException;
-import main.Service.NetworkService;
+import Model.Address;
+import Model.Address.InvalidAddressInputException;
+import Model.Customer;
+import Model.Customer.InvalidCustomerInputException;
+import Model.Customer.UpdateCustomerException;
+import Service.NetworkService;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

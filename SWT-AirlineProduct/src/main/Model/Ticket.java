@@ -1,10 +1,10 @@
-package main.Model;
+package Model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import main.Service.NetworkService;
+import Service.NetworkService;
 
 public class Ticket {
 

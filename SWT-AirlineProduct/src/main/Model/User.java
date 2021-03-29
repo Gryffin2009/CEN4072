@@ -1,10 +1,10 @@
-package main.Model;
+package Model;
 
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import main.Service.NetworkService;
+import Service.NetworkService;
 
 /*
  * Java Class to Contain User data. 

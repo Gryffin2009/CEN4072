@@ -1,13 +1,14 @@
-package main.View;
+package View;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
-import main.Model.Flight;
-import main.Model.Flight.InvalidFlightInputException;
-import main.Model.Flight.UpdateFlightException;
-import main.Service.AutoIDService;
+import Model.Flight;
+import Model.Flight.InvalidFlightInputException;
+import Model.Flight.UpdateFlightException;
+import Service.AutoIDService;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.

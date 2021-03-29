@@ -1,12 +1,12 @@
-package test.Model;
+package Model;
 
 import java.io.IOException;
 
 import org.junit.jupiter.api.*;
 
-import main.Model.Flight;
-import main.Model.Flight.InvalidFlightInputException;
-import main.Service.AutoIDService;
+import Model.Flight;
+import Model.Flight.InvalidFlightInputException;
+import Service.AutoIDService;
 
 public class FlightTest {
 	
