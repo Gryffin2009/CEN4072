@@ -1,21 +1,15 @@
 package View;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.junit.jupiter.api.*;
 
-import View.addflight;
+class addFlightTest {
 
-class addflightTest {
-
-	static addflight thisFlight;
+	static AddFlight thisFlight;
 	
 	@BeforeAll
 	static void beforeAll() {
 		//create new flight before all other tests.
-		thisFlight = new addflight();		
+		thisFlight = new AddFlight();
 	}
 	
 	@BeforeEach

@@ -101,7 +101,7 @@ public class Main extends javax.swing.JFrame {
 
 		jMenu4.setText("User");
 
-		jMenuItem5.setText("UserCreation");
+		jMenuItem5.setText("AddUser");
 		jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jMenuItem5ActionPerformed(evt);
@@ -124,13 +124,13 @@ public class Main extends javax.swing.JFrame {
 	}// </editor-fold>//GEN-END:initComponents
 
 	private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem1ActionPerformed
-		addCustomer cus = new addCustomer();
+		AddCustomer cus = new AddCustomer();
 		jDesktopPane1.add(cus);
 		cus.setVisible(true);
 	}// GEN-LAST:event_jMenuItem1ActionPerformed
 
 	private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem2ActionPerformed
-		searchCustomer scus = new searchCustomer();
+		SearchCustomer scus = new SearchCustomer();
 		jDesktopPane1.add(scus);
 		scus.setVisible(true);
 
@@ -138,7 +138,7 @@ public class Main extends javax.swing.JFrame {
 
 	private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem4ActionPerformed
 		// TODO add your handling code here:
-		addflight f = new addflight();
+		AddFlight f = new AddFlight();
 		jDesktopPane1.add(f);
 		f.setVisible(true);
 
@@ -146,7 +146,7 @@ public class Main extends javax.swing.JFrame {
 
 	private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem3ActionPerformed
 		// TODO add your handling code here:
-		ticket t = new ticket();
+		AddTicket t = new AddTicket();
 		jDesktopPane1.add(t);
 		t.setVisible(true);
 
@@ -155,7 +155,7 @@ public class Main extends javax.swing.JFrame {
 	private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem6ActionPerformed
 		// TODO add your handling code here:
 
-		ticketreport ti = new ticketreport();
+		TicketReport ti = new TicketReport();
 		jDesktopPane1.add(ti);
 		ti.setVisible(true);
 
@@ -164,7 +164,7 @@ public class Main extends javax.swing.JFrame {
 	private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem5ActionPerformed
 		// TODO add your handling code here:
 
-		userCreation u = new userCreation();
+		AddUser u = new AddUser();
 		jDesktopPane1.add(u);
 		u.setVisible(true);
 

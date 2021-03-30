@@ -111,22 +111,4 @@ public class User {
 		setUserName(userName);
 		setPassword(password);
 	}
-	
-	// Updates the user in the database.
-	public void updateInDatabase() throws UpdateUserException {
-		Connection con = NetworkService.getInstance().getConnection();
-		try {
-			PreparedStatement pst = con.prepareStatement("insert into user(id,firstname,lastname,username,password)values(?,?,?,?,?)");
-			pst.setString(1, this.getId());
-			pst.setString(2, this.getFirstName());
-			pst.setString(3, this.getLastName());
-			pst.setString(4, this.getUserName());
-			pst.setString(5, this.getPassword());
-			pst.executeUpdate();
-		} catch (SQLException ex) {
-			throw new UpdateUserException("Unable to update user in the database.");
-		}
-	}
-
-	
 }

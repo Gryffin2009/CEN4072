@@ -2,16 +2,14 @@ package View;
 
 import org.junit.jupiter.api.*;
 
-import View.userCreation;
-
 class userCreationTest {
 
-	static userCreation userCreation;
+	static AddUser addUser;
 	
 	@BeforeAll
 	// Create user before testing
 	static void beforeAll() {
-		userCreation = new userCreation();		
+		addUser = new AddUser();
 	}
 
 	@Test
@@ -32,12 +30,12 @@ class userCreationTest {
 		
 		// Ensure valid input succeeds
 		String validUsername = "brandonbaker";
-		boolean successWithValidInput = userCreation.createUser(id, firstname, lastname, validUsername, password);
+		boolean successWithValidInput = AddUser.createUser(id, firstname, lastname, validUsername, password);
 		Assertions.assertTrue(successWithValidInput);
 
 		// Ensure invalid input does not succeed
 		String invalidUsername = "brandonbaker1";
-		boolean successWithInvalidInput = userCreation.createUser(id, firstname, lastname, invalidUsername, password);
+		boolean successWithInvalidInput = AddUser.createUser(id, firstname, lastname, invalidUsername, password);
 		Assertions.assertFalse(successWithInvalidInput);
 	}
 	*/

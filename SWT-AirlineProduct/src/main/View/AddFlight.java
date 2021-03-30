@@ -16,12 +16,12 @@ import Service.AutoIDService;
  * and open the template in the editor.
  */
 
-public class addflight extends javax.swing.JInternalFrame {
+public class AddFlight extends javax.swing.JInternalFrame {
 
 	/**
-	 * Creates new form addflight
+	 * Creates new form AddFlight
 	 */
-	public addflight() {
+	public AddFlight() {
 		initComponents();
 		autoID();
 	}

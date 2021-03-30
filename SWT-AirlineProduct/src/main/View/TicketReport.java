@@ -1,5 +1,8 @@
 package View;
 
+import Model.Ticket;
+import Model.Ticket.InvalidTicketInputException;
+import Service.TicketDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,12 +20,14 @@ import Service.NetworkService;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-public class ticketreport extends javax.swing.JInternalFrame {
+public class TicketReport extends javax.swing.JInternalFrame {
+
+	TicketDao tDao = new TicketDao();
 
 	/**
-	 * Creates new form ticketreport
+	 * Creates new form TicketReport
 	 */
-	public ticketreport() {
+	public TicketReport() {
 		initComponents();
 		LoadData();
 	}
@@ -79,35 +84,30 @@ public class ticketreport extends javax.swing.JInternalFrame {
 	}// GEN-LAST:event_jButton1ActionPerformed
 
 	public void LoadData() {
-		Connection con = NetworkService.getInstance().getConnection();
+
 		try {
-			PreparedStatement pst = con.prepareStatement("SELECT * from ticket");
-			ResultSet rs = pst.executeQuery();
-
-			ResultSetMetaData rsm = rs.getMetaData();
-			int c = rsm.getColumnCount();
-
+			Ticket[] tickets = tDao.getAll();
 			DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
 			Df.setRowCount(0);
 
-			while (rs.next()) {
-				Vector<String> v2 = new Vector<>();
 
-				for (int i = 1; i <= c; i++) {
-					v2.add(rs.getString("id"));
-					v2.add(rs.getString("flightid"));
-					v2.add(rs.getString("custid"));
-					v2.add(rs.getString("class"));
-					v2.add(rs.getString("price"));
-					v2.add(rs.getString("seats"));
-					v2.add(rs.getString("date"));
-
+				for (Ticket ticket : tickets) {
+					Vector<String> v2 = new Vector<>();
+					v2.add(ticket.getTicketId());
+					v2.add(ticket.getFlightId());
+					v2.add(ticket.getCustId());
+					v2.add(ticket.getFlightClass());
+					v2.add(ticket.getPrice());
+					v2.add(ticket.getSeats());
+					v2.add(ticket.getDate());
+					Df.addRow(v2);
 				}
 
-				Df.addRow(v2);
-			}
 		} catch (SQLException ex) {
-			Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(AddTicket.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (InvalidTicketInputException e) {
+			// TODO add proper error handling
+			e.printStackTrace();
 		}
 
 	}
