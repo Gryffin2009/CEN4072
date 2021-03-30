@@ -19,10 +19,10 @@ public class ImageOperations {
 
   public static BufferedImage chooseImage() throws IOException {
     JFileChooser picchooser = new JFileChooser();
-    picchooser.showOpenDialog(null);
     File pic = picchooser.getSelectedFile();
     FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images", "png", "jpg");
     picchooser.addChoosableFileFilter(filter);
+    picchooser.showOpenDialog(null);
     BufferedImage img;
     img = ImageIO.read(picchooser.getSelectedFile());
     return img;
