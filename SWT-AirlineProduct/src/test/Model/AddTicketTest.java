@@ -20,7 +20,7 @@ public class AddTicketTest {
 		// throw exceptions.
 		// This also facilitates input validation, as each setter in AddTicket contains
 		// validation methods.
-		String id = AutoIDService.generateAutoID("AddTicket", "TO");
+		String id = AutoIDService.generateAutoID("ticket", "TO");
 		String flightid = "";
 		String custid = "";
 		String flightclass = "business";
