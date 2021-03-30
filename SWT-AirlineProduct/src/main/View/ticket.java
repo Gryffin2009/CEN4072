@@ -1,4 +1,4 @@
-package main.View;
+package View;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,11 +14,11 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-import main.Model.Ticket;
-import main.Model.Ticket.InvalidTicketInputException;
-import main.Model.Ticket.UpdateTicketException;
-import main.Service.AutoIDService;
-import main.Service.NetworkService;
+import Model.Ticket;
+import Model.Ticket.InvalidTicketInputException;
+import Model.Ticket.UpdateTicketException;
+import Service.AutoIDService;
+import Service.NetworkService;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

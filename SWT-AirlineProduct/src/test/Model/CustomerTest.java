@@ -1,14 +1,14 @@
-package test.Model;
+package Model;
 
 import java.io.IOException;
 
 import org.junit.jupiter.api.*;
 
-import main.Model.Address;
-import main.Model.Address.InvalidAddressInputException;
-import main.Model.Customer;
-import main.Model.Customer.InvalidCustomerInputException;
-import main.Service.AutoIDService;
+import Model.Address;
+import Model.Address.InvalidAddressInputException;
+import Model.Customer;
+import Model.Customer.InvalidCustomerInputException;
+import Service.AutoIDService;
 
 public class CustomerTest {
 	

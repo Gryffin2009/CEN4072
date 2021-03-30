@@ -1,11 +1,11 @@
-package test.Model;
+package Model;
 
 import java.io.IOException;
 import org.junit.jupiter.api.*;
 
-import main.Model.Ticket;
-import main.Model.Ticket.InvalidTicketInputException;
-import main.Service.AutoIDService;
+import Model.Ticket;
+import Model.Ticket.InvalidTicketInputException;
+import Service.AutoIDService;
 
 public class TicketTest {
 

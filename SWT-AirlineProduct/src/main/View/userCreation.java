@@ -1,13 +1,13 @@
-package main.View;
+package View;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-import main.Model.User;
-import main.Model.User.InvalidUserInputException;
-import main.Model.User.UpdateUserException;
-import main.Service.AutoIDService;
+import Model.User;
+import Model.User.InvalidUserInputException;
+import Model.User.UpdateUserException;
+import Service.AutoIDService;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

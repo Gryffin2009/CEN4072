@@ -1,11 +1,11 @@
-package test.Model;
+package Model;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.function.Executable;
 
-import main.Model.User;
-import main.Model.User.InvalidUserInputException;
-import main.Service.AutoIDService;
+import Model.User;
+import Model.User.InvalidUserInputException;
+import Service.AutoIDService;
 
 public class UserTest {
 	static String id;

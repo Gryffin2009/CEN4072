@@ -1,4 +1,4 @@
-package main.View;
+package View;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -18,9 +18,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import main.Model.Address;
-import main.Model.Customer;
-import main.Service.AutoIDService;
+import Model.Address;
+import Model.Customer;
+import Service.AutoIDService;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -29,7 +29,6 @@ import main.Service.AutoIDService;
  */
 
 public class addCustomer extends javax.swing.JInternalFrame {
-
 
 	byte[] userimage = null;
 	

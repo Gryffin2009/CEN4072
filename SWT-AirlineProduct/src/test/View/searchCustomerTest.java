@@ -1,10 +1,10 @@
-package test.View;
+package View;
 
 import java.sql.SQLException;
 
 import org.junit.jupiter.api.*;
 
-import main.View.searchCustomer;
+import View.searchCustomer;
 
 public class searchCustomerTest {
 

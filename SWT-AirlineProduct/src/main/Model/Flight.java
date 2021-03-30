@@ -1,4 +1,4 @@
-package main.Model;
+package Model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
-import main.Service.NetworkService;
+import Service.NetworkService;
 
 public class Flight {
 

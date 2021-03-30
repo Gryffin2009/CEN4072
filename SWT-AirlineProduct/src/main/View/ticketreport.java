@@ -1,4 +1,4 @@
-package main.View;
+package View;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
-import main.Service.NetworkService;
+import Service.NetworkService;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

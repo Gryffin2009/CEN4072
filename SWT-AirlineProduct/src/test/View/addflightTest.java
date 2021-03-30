@@ -1,4 +1,4 @@
-package test.View;
+package View;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -6,7 +6,7 @@ import java.util.Date;
 
 import org.junit.jupiter.api.*;
 
-import main.View.addflight;
+import View.addflight;
 
 class addflightTest {
 

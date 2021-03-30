@@ -1,4 +1,4 @@
-package main.Model;
+package Model;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -11,8 +11,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import main.Model.Address.InvalidAddressInputException;
-import main.Service.NetworkService;
+import Model.Address.InvalidAddressInputException;
+import Service.NetworkService;
 
 public class Customer {
 
