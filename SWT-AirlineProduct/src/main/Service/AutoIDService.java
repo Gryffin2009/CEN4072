@@ -19,7 +19,7 @@ public class AutoIDService {
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
+			Connection con = NetworkService.getInstance().getConnection();
 			Statement s = con.createStatement();
 			ResultSet rs = s.executeQuery("select MAX(id) from " + table);
 			rs.next();

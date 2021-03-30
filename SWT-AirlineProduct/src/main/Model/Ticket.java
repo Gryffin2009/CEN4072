@@ -20,41 +20,80 @@ public class Ticket {
 		}
 	}
 
-	String ticketid;
-	String flightid;
-	String custid;
-	String flightclass;
+	String ticketId;
+	String flightId;
+	String custId;
+	String flightClass;
 	String price;
 	String seats;
 	String date;
 
-	public Ticket(String ticketid, String flightid, String custid, String flightclass, String price, String seats,
+	// TODO Error checking on all ticket properties
+	public String getTicketId() {
+		return ticketId;
+	}
+
+	public void setTicketId(String ticketId) {
+		this.ticketId = ticketId;
+	}
+
+	public String getFlightId() {
+		return flightId;
+	}
+
+	public void setFlightId(String flightId) {
+		this.flightId = flightId;
+	}
+
+	public String getCustId() {
+		return custId;
+	}
+
+	public void setCustId(String custId) {
+		this.custId = custId;
+	}
+
+	public String getFlightClass() {
+		return flightClass;
+	}
+
+	public void setFlightClass(String flightClass) {
+		this.flightClass = flightClass;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public String getSeats() {
+		return seats;
+	}
+
+	public void setSeats(String seats) {
+		this.seats = seats;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public Ticket(String ticketId, String flightId, String custId, String flightClass, String price, String seats,
 			String date) throws InvalidTicketInputException {
-		this.ticketid = ticketid;
-		this.flightid = flightid;
-		this.custid = custid;
-		this.flightclass = flightclass;
+		this.ticketId = ticketId;
+		this.flightId = flightId;
+		this.custId = custId;
+		this.flightClass = flightClass;
 		this.price = price;
 		this.seats = seats;
 		this.date = date;
-	}
-	
-	public void updateInDatabase() throws UpdateTicketException {
-		Connection con = NetworkService.getInstance().getConnection();
-		try {
-			PreparedStatement pst = con.prepareStatement(
-					"insert into ticket(id,flightid,custid,class,price,seats,date)values(?,?,?,?,?,?,?)");
-			pst.setString(1, ticketid);
-			pst.setString(2, flightid);
-			pst.setString(3, custid);
-			pst.setString(4, flightclass);
-			pst.setString(5, price);
-			pst.setString(6, seats);
-			pst.setString(7, date);
-			pst.executeUpdate();
-		} catch (SQLException ex) {
-			throw new UpdateTicketException(ex.getMessage());
-		}
 	}
 	
 	public void setNumSeats(int numSeats) throws InvalidTicketInputException {

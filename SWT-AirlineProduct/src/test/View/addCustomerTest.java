@@ -2,11 +2,9 @@ package View;
 
 import org.junit.jupiter.api.*;
 
-import View.addCustomer;
-
 public class addCustomerTest {
 
-	static addCustomer addCustomer;
+	static AddCustomer addCustomer;
 	
 	@BeforeAll
 	static void beforeAll() {
@@ -14,7 +12,7 @@ public class addCustomerTest {
 	
 	@BeforeEach
 	void beforeEach() {
-		addCustomer = new addCustomer();
+		addCustomer = new AddCustomer();
 	}
 	
 	@AfterEach
@@ -38,14 +36,14 @@ public class addCustomerTest {
 //	void testImageToByteArray() {
 //		String photoPath = "src/test/media/CustomerPicture.png";
 //		
-//		Assertions.assertDoesNotThrow(() -> addCustomer.imageToByteArray(photoPath));
+//		Assertions.assertDoesNotThrow(() -> AddCustomer.imageToByteArray(photoPath));
 //	}
 //
 //	@Test
 //	@DisplayName("Customer name, numbers in name")
 //	// Testing customer name to see if name contains numerical characters.
 //	void testCustomerNameValid() {
-//		boolean isAlphabeticOnly = addCustomer.validateCustomerName("John290");
+//		boolean isAlphabeticOnly = AddCustomer.validateCustomerName("John290");
 //		Assertions.assertFalse(isAlphabeticOnly);
 //	}
 //
@@ -53,7 +51,7 @@ public class addCustomerTest {
 //	@DisplayName("Customer name, only alphabetic characters in name")
 //	// Testing customer name to see if it contains only alphabetical characters.
 //	void testCustomerNameInvalid() {
-//		boolean isAlphabeticOnly = addCustomer.validateCustomerName("John");
+//		boolean isAlphabeticOnly = AddCustomer.validateCustomerName("John");
 //		Assertions.assertTrue(isAlphabeticOnly);
 //	}
 //	
@@ -61,7 +59,7 @@ public class addCustomerTest {
 //	@DisplayName("Customer contact, correct format (7 characters, all numbers)")
 //	// Testing contact information for valid input (7 digits & all numerical input)
 //	void testCustomerContactValid() {
-//		boolean isFormatted = addCustomer.validateContact("1234567");
+//		boolean isFormatted = AddCustomer.validateContact("1234567");
 //		Assertions.assertTrue(isFormatted);
 //	}
 //	
@@ -69,7 +67,7 @@ public class addCustomerTest {
 //	@DisplayName("Customer contact, incorrect format (10 characters, all numbers")
 //	// Testing contact information for invalid input (not enough digits)
 //	void testCustomerContactNotEnoughDigits() {
-//		boolean isFormatted = addCustomer.validateContact("123456");
+//		boolean isFormatted = AddCustomer.validateContact("123456");
 //		Assertions.assertFalse(isFormatted);
 //	}
 //	
@@ -77,7 +75,7 @@ public class addCustomerTest {
 //	@DisplayName("Customer contact, incorrect format (12 characters, all numbers")
 //	// Testing contact information for invalid input (to many digits)
 //	void testCustomerContactTooManyDigits() {
-//		boolean isFormatted = addCustomer.validateContact("12345678");
+//		boolean isFormatted = AddCustomer.validateContact("12345678");
 //		Assertions.assertFalse(isFormatted);
 //	}
 //	
@@ -85,7 +83,7 @@ public class addCustomerTest {
 //	@DisplayName("Customer contact, incorrect format (12 characters, all numbers")
 //	// Testing contact information for invalid input (to many digits and incorrect format)
 //	void testCustomerContactNotAllNumbers() {
-//		boolean isFormatted = addCustomer.validateContact("1239j657465");
+//		boolean isFormatted = AddCustomer.validateContact("1239j657465");
 //		Assertions.assertFalse(isFormatted);
 //	}
 	
@@ -103,10 +101,10 @@ public class addCustomerTest {
 		String gender = "Male";
 		String contact = "2395654";
 		String path = "src/test/media/CustomerPicture.png";
-		byte[] photo = addCustomer.imageToByteArray(path);
+		byte[] photo = AddCustomer.imageToByteArray(path);
 		
 		// Ensure valid input succeeds
-		boolean successWithValidInput = addCustomer.createCustomer(id, firstname, lastname, nic, passport, address, dob, gender, contact, photo);
+		boolean successWithValidInput = AddCustomer.createCustomer(id, firstname, lastname, nic, passport, address, dob, gender, contact, photo);
 		Assertions.assertTrue(successWithValidInput);
 	}
 	
@@ -123,10 +121,10 @@ public class addCustomerTest {
 		String gender = "Male";
 		String contact = "2395654";
 		String path = "src/test/media/CustomerPicture.png";
-		byte[] photo = addCustomer.imageToByteArray(path);
+		byte[] photo = AddCustomer.imageToByteArray(path);
 		
 		// Ensure valid input succeeds
-		boolean successWithValidInput = addCustomer.createCustomer(id, firstname, lastname, nic, passport, address, dob, gender, contact, photo);
+		boolean successWithValidInput = AddCustomer.createCustomer(id, firstname, lastname, nic, passport, address, dob, gender, contact, photo);
 		Assertions.assertFalse(successWithValidInput);
 	}
 	

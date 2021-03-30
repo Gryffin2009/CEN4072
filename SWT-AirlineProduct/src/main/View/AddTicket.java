@@ -1,5 +1,11 @@
 package View;
 
+import Model.Address.InvalidAddressInputException;
+import Model.Customer;
+import Model.Customer.InvalidCustomerInputException;
+import Model.Ticket;
+import Service.CustomerDao;
+import Service.TicketDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +20,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-import Model.Ticket;
 import Model.Ticket.InvalidTicketInputException;
 import Model.Ticket.UpdateTicketException;
 import Service.AutoIDService;
@@ -26,12 +31,14 @@ import Service.NetworkService;
  * and open the template in the editor.
  */
 
-public class ticket extends javax.swing.JInternalFrame {
+public class AddTicket extends javax.swing.JInternalFrame {
+	CustomerDao cDao = new CustomerDao();
+	TicketDao tDao = new TicketDao();
 
 	/**
-	 * Creates new form ticket
+	 * Creates new form AddTicket
 	 */
-	public ticket() {
+	public AddTicket() {
 		initComponents();
 		autoID();
 	}
@@ -447,32 +454,40 @@ public class ticket extends javax.swing.JInternalFrame {
 			return flights;
 
 		} catch (SQLException ex) {
-			Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(AddTicket.class.getName()).log(Level.SEVERE, null, ex);
 			return null;
 		}
 	}
 	
 	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
 		String id = txtcustid.getText();
-		Connection con = NetworkService.getInstance().getConnection();
-		try {
-			PreparedStatement pst = con.prepareStatement("select * from customer where id = ?");
-			pst.setString(1, id);
-			ResultSet rs = pst.executeQuery();
+		boolean isFound = false;
 
-			if (rs.next() == false) {
-				JOptionPane.showMessageDialog(this, "Record not Found");
-			} else {
-				String fname = rs.getString("firstname");
-				String lname = rs.getString("lastname");
-				String passport = rs.getString("passport");
-				txtfirstname.setText(fname.trim());
-				txtlastname.setText(lname.trim());
-				txtpassport.setText(passport.trim());
+		try {
+			Customer[] customers = cDao.getAll();
+			for (Customer customer : customers) {
+				if (customer.getId().equals(id)) {
+					String fname = customer.getFirstname();
+					String lname = customer.getLastname();
+					String passport = customer.getPassport();
+					txtfirstname.setText(fname.trim());
+					txtlastname.setText(lname.trim());
+					txtpassport.setText(passport.trim());
+					isFound = true;
+				}
 			}
 
+			if (isFound == false) {
+				JOptionPane.showMessageDialog(this, "Record not Found");
+			}
 		} catch (SQLException ex) {
-			Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(AddTicket.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (InvalidCustomerInputException e) {
+			// TODO add proper error handling
+			e.printStackTrace();
+		} catch (InvalidAddressInputException e) {
+			// TODO add proper error handling
+			e.printStackTrace();
 		}
 
 	}// GEN-LAST:event_jButton4ActionPerformed
@@ -509,15 +524,17 @@ public class ticket extends javax.swing.JInternalFrame {
 		String flightclass = txtclass.getSelectedItem().toString().trim();
 		String price = txtprice.getText();
 		String seats = txtseats.getValue().toString();
+
+		// TODO fix date of flight when fields are added to GUI
 		DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
-//		String date = da.format(txtdate.getDate());
+    //	String date = da.format(txtdate.getDate());
 		String date = da.format(new Date());
 
 		try {
 			Ticket ticket = new Ticket(ticketid, flightid,custid,flightclass,price, seats, date);
-			ticket.updateInDatabase();
+			tDao.add(ticket);
 			JOptionPane.showMessageDialog(this, "Ticket Booked.");
-		} catch (InvalidTicketInputException | UpdateTicketException e) {
+		} catch (InvalidTicketInputException | SQLException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage());
 		}
 

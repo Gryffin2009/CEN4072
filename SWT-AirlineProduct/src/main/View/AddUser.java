@@ -1,5 +1,7 @@
 package View;
 
+import Service.UserDao;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -15,12 +17,13 @@ import Service.AutoIDService;
  * and open the template in the editor.
  */
 
-public class userCreation extends javax.swing.JInternalFrame {
+public class AddUser extends javax.swing.JInternalFrame {
+	UserDao uDao = new UserDao();
 
 	/**
-	 * Creates new form userCreation
+	 * Creates new form AddUser
 	 */
-	public userCreation() {
+	public AddUser() {
 		initComponents();
 		autoID();
 	}
@@ -53,13 +56,17 @@ public class userCreation extends javax.swing.JInternalFrame {
 		String lastname = txtlastname.getText();
 		String username = txtusername.getText();
 		String password = txtpassword.getText();
+
 		try {
 			User user = new User(id, firstname, lastname, username, password);
-			user.updateInDatabase();
+			uDao.add(user);
 			JOptionPane.showMessageDialog(null, "User Created.");
-		} catch (InvalidUserInputException | UpdateUserException e) {
-			Logger.getLogger(userCreation.class.getName()).log(Level.SEVERE, null, e);
-		}		
+		} catch (InvalidUserInputException e) {
+			Logger.getLogger(AddUser.class.getName()).log(Level.SEVERE, null, e);
+		} catch (SQLException e) {
+			// TODO add proper error handling
+			e.printStackTrace();
+		}
 	}
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed

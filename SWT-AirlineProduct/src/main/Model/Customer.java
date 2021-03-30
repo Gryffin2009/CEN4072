@@ -52,7 +52,7 @@ public class Customer {
 		setDob(dob);
 		setGender(gender);
 		setPhoneNumber(contact);
-		setPhoto(photo);
+		setPhotoFromPath(photo);
 	}
 	
 	// Constructor with image path, which then converts the image to a byte[] array so it can be stored in the database.
@@ -68,28 +68,6 @@ public class Customer {
 		setGender(gender);
 		setPhoneNumber(contact);
 		setPhoto(photo);
-	}
-	
-	// Updates a customer in the database.
-	public void updateInDatabase() throws UpdateCustomerException {
-		Connection con = NetworkService.getInstance().getConnection();
-		try {
-			PreparedStatement pst = con.prepareStatement(
-					"insert into customer(id,firstname,lastname,nic,passport,address,dob,gender,contact,photo)values(?,?,?,?,?,?,?,?,?,?)");
-			pst.setString(1, this.getId());
-			pst.setString(2, this.getFirstname());
-			pst.setString(3, this.getLastname());
-			pst.setString(4, this.getNic());
-			pst.setString(5, this.getPassport());
-			pst.setString(6, this.getAddressString());
-			pst.setString(7, this.getDob());
-			pst.setString(8, this.getGender());
-			pst.setString(9, this.getPhoneNumber());
-			pst.setBytes(10, this.getPhoto());
-			pst.executeUpdate();
-		} catch (SQLException ex) {
-			throw new UpdateCustomerException(ex.getMessage());
-		}
 	}
 	
 	public void setPhoneNumber(String phoneNumber) throws InvalidCustomerInputException {
@@ -284,7 +262,7 @@ public class Customer {
 	}
 
 	// Sets a photo directly if the photo is given as a byte[].
-	public void setPhoto(byte[] photo) {
+	public void setPhotoFromPath(byte[] photo) {
 		this.photo = photo;
 	}
 

@@ -2,11 +2,9 @@ package View;
 
 import org.junit.jupiter.api.*;
 
-import View.ticketreport;
-
 public class ticketReportTest {
 	
-	static ticketreport ticketReport;
+	static TicketReport ticketReport;
 	
 	@BeforeAll
 	static void beforeAll() {	
@@ -14,7 +12,7 @@ public class ticketReportTest {
 	
 	@BeforeEach
 	void beforeEach() {
-		ticketReport = new ticketreport();	
+		ticketReport = new TicketReport();
 	}
 	
 	@AfterEach

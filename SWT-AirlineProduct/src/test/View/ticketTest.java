@@ -4,23 +4,21 @@ import java.util.Vector;
 
 import org.junit.jupiter.api.*;
 
-import View.ticket;
-
 public class ticketTest {
 	
-	static ticket ticket;
+	static AddTicket addTicket;
 	
 	@BeforeEach
-	// Before each test, create a new ticket
+	// Before each test, create a new AddTicket
 	void beforeEach() {
-		ticket = new ticket();	
+		addTicket = new AddTicket();
 	}
 	
 	@Test
 	@DisplayName("Retrieve list of flights from India to Uk")
 	// Ensures the program properly fetches the list of flights from the database.
 	void testRetrieveFlights() {
-		Vector<Vector<String>> flights = ticket.createFlightList("India", "Uk");
+		Vector<Vector<String>> flights = addTicket.createFlightList("India", "Uk");
 		Assertions.assertNotEquals(null, flights);
 	}
 }

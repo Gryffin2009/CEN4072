@@ -69,7 +69,7 @@ public class Address {
 	}
 
 	public String toString() {
-		return streetAddress + city + " " + state + " " + zipCode + " " + country;
+		return streetAddress + " " + city + " " + state + " " + zipCode + " " + country;
 	}
 
 }
