@@ -1,11 +1,9 @@
 package View;
 
 import Service.CustomerDao;
+import Service.ImageOperations;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -13,11 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Model.Address;
 import Model.Address.InvalidAddressInputException;
@@ -333,27 +328,10 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
 		// TODO add your handling code here:
 
 		try {
-			JFileChooser picchooser = new JFileChooser();
-			picchooser.showOpenDialog(null);
-			File pic = picchooser.getSelectedFile();
-			FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images", "png", "jpg");
-			picchooser.addChoosableFileFilter(filter);
-			path = pic.getAbsolutePath();
-			BufferedImage img;
-			img = ImageIO.read(picchooser.getSelectedFile());
-			ImageIcon imageIcon = new ImageIcon(
-					new ImageIcon(img).getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
-			txtphoto.setIcon(imageIcon);
-
-			File image = new File(path);
-			FileInputStream fis = new FileInputStream(image);
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			byte[] buff = new byte[1024];
-			for (int readNum; (readNum = fis.read(buff)) != -1;) {
-				baos.write(buff, 0, readNum);
-			}
-			userimage = baos.toByteArray();
-
+			BufferedImage img = ImageOperations.chooseImage();
+			ImageIcon icon = ImageOperations.imageToIcon(img);
+			txtphoto.setIcon(icon);
+			userimage = ImageOperations.imageToByteArray(img);
 		} catch (IOException ex) {
 			Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
 		}

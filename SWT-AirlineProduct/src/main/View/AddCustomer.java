@@ -1,23 +1,16 @@
 package View;
 
 import Service.CustomerDao;
-import java.awt.Image;
+import Service.ImageOperations;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Model.Address;
 import Model.Customer;
@@ -79,20 +72,6 @@ public class AddCustomer extends javax.swing.JInternalFrame {
 		return dob.matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");
 	}
 	*/
-	
-	// Converts an image at a specified path to a byte[] for storing in the database.
-	public byte[] imageToByteArray(String path) throws FileNotFoundException, IOException {
-		File image = new File(path);
-		FileInputStream fis = new FileInputStream(image);
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		byte[] buff = new byte[1024];
-		for (int readNum; (readNum = fis.read(buff)) != -1;) {
-			baos.write(buff, 0, readNum);
-		}
-		fis.close();
-		byte[] byteArray = baos.toByteArray();
-		return byteArray;
-	}
 	
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -368,18 +347,10 @@ public class AddCustomer extends javax.swing.JInternalFrame {
 		String path;
 
 		try {
-			JFileChooser picchooser = new JFileChooser();
-			picchooser.showOpenDialog(null);
-			File pic = picchooser.getSelectedFile();
-			FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images", "png", "jpg");
-			picchooser.addChoosableFileFilter(filter);
-			path = pic.getAbsolutePath();
-			BufferedImage img;
-			img = ImageIO.read(picchooser.getSelectedFile());
-			ImageIcon imageIcon = new ImageIcon(
-					new ImageIcon(img).getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
-			txtphoto.setIcon(imageIcon);
-			userimage = imageToByteArray(path);
+			BufferedImage image = ImageOperations.chooseImage();
+			ImageIcon icon = ImageOperations.imageToIcon(image);
+			txtphoto.setIcon(icon);
+			userimage = ImageOperations.imageToByteArray(image);
 
 		} catch (IOException ex) {
 			Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
@@ -397,7 +368,8 @@ public class AddCustomer extends javax.swing.JInternalFrame {
 
 		// TODO Fix date of birth when field is added to GUI
 		DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
-//		String date = da.format(txtdob.getDate());
+		//		String date = da.format(txtdob.getDate());
+
 		String date = da.format(new Date());
 		String gender = r1.isSelected() ? "Male" : "Female";
 		String contact = txtcontact.getText();
