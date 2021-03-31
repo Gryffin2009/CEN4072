@@ -31,18 +31,9 @@ public class CustomerTest {
 		
 		// Create a fresh Customer to work with for every test. This ensures all tests are working from the same
 		// initial values, which ensures no test results will affect other tests.
-		customer = new Customer(id, firstname, lastname, nic, passport, fakeAddress(), dob, gender, contact, photoPath);
+		customer = new Customer(id, firstname, lastname, nic, passport, addressStub(), dob, gender, contact, photoPath);
 	}
-	
-	Address fakeAddress() throws InvalidAddressInputException {
-		String streetAddress = "123 Main Street";
-		String city = "Fort Myers";
-		String state = "Florida";
-		String zipCode = "33913";
-		String country = "United States";
-		return new Address(streetAddress, city, state, zipCode, country);
-	}
-	
+
 	// Tries to pass a valid NIC to the Customer class.
 	@Test
 	@DisplayName("NIC, valid")
@@ -98,12 +89,21 @@ public class CustomerTest {
 		Assertions.assertEquals("Customer Passport must contain alphanumeric characters only.", e.getMessage());
 	}
 
-	
+
+	Address addressStub() throws InvalidAddressInputException {
+		String streetAddress = "123 Main Street";
+		String city = "Fort Myers";
+		String state = "Florida";
+		String zipCode = "33913";
+		String country = "United States";
+		return new Address(streetAddress, city, state, zipCode, country);
+	}
+
 	// Tries to pass a valid address name to the Customer class.
 	@Test
 	@DisplayName("Address, valid")
 	void testAddressValid() {
-		Assertions.assertDoesNotThrow(() -> customer.setAddress(fakeAddress()));
+		Assertions.assertDoesNotThrow(() -> customer.setAddress(addressStub()));
 	}
 
 	// Tries to pass a invalid address to the Customer class.

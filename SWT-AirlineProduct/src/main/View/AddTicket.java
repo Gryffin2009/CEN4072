@@ -482,10 +482,7 @@ public class AddTicket extends javax.swing.JInternalFrame {
 			}
 		} catch (SQLException ex) {
 			Logger.getLogger(AddTicket.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (InvalidCustomerInputException e) {
-			// TODO add proper error handling
-			e.printStackTrace();
-		} catch (InvalidAddressInputException e) {
+		} catch (InvalidCustomerInputException | InvalidAddressInputException e) {
 			// TODO add proper error handling
 			e.printStackTrace();
 		}

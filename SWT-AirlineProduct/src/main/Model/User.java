@@ -52,7 +52,7 @@ public class User {
 			this.firstName = firstName;
 		// If invalid first name, throw InvalidUIserInputException
 		} else {
-			throw new InvalidUserInputException("Usernames may only contain letters, dashes, and apostrophes.");
+			throw new InvalidUserInputException("Invalid First Name.");
 		}
 	}
 	
@@ -68,7 +68,7 @@ public class User {
 			this.lastName = lastName;
 		// If invalid last name, throw InvalidUserInputException
 		} else {
-			throw new InvalidUserInputException("Usernames may only contain letters, dashes, and apostrophes.");
+			throw new InvalidUserInputException("Invalid Last Name.");
 		}
 	}
 	// Accessor for userName variable
@@ -83,7 +83,7 @@ public class User {
 			this.userName = userName;
 		// If invalid user name, throw InvalidUserInputException
 		} else {
-			throw new InvalidUserInputException("Usernames may only contain letters, dashes, and apostrophes.");
+			throw new InvalidUserInputException("Invalid Username.");
 		}
 	}
 	
@@ -99,7 +99,7 @@ public class User {
 			this.password = password;
 		// If invalid password, throw InvalidUserInputException
 		} else {
-			throw new InvalidUserInputException("Usernames may only contain letters, dashes, and apostrophes.");
+			throw new InvalidUserInputException("Invalid Password.");
 		}
 	}
 	

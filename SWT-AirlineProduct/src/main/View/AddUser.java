@@ -32,24 +32,7 @@ public class AddUser extends javax.swing.JInternalFrame {
 		String id = AutoIDService.generateAutoID("user", "UO");
 		txtuserid.setText(id);
 	}
-	
-	
-//	public boolean validateId(String id) {
-//		return id.matches("^FO[0-9]{3}$");
-//	}
-//	
-//	public boolean validateName(String name) {
-//		return name.matches("^[a-zA-Z]+$");
-//	}
-//	
-//	public boolean validateUserName(String userName) {
-//		return userName.matches("^[a-zA-Z]{4,20}$");
-//	}
-//	
-//	public boolean validatePassword(String password) {
-//		return password.matches("^[a-zA-Z0-9]+$");
-//	}
-	
+
 	private void createNewUser() {
 		String id = txtuserid.getText();
 		String firstname = txtfirstname.getText();
