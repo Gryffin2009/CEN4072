@@ -2,6 +2,7 @@ package Model;
 
 public class Address {
 
+
 	public class InvalidAddressInputException extends Exception {
 		public InvalidAddressInputException(String message) {
 			super(message);
@@ -36,6 +37,8 @@ public class Address {
 		}
 	}
 
+	public String getStreetAddress() { return streetAddress; }
+
 	public void setCity(String city) throws InvalidAddressInputException {
 		if (!city.isEmpty()) {
 			this.city = city;
@@ -43,6 +46,8 @@ public class Address {
 			throw new InvalidAddressInputException("Invalid city");
 		}
 	}
+
+	public String getCity() { return city;}
 
 	public void setState(String state) throws InvalidAddressInputException {
 		if (!state.isEmpty()) {
@@ -52,6 +57,8 @@ public class Address {
 		}
 	}
 
+	public String getState() { return state;}
+
 	public void setZipCode(String zipCode) throws InvalidAddressInputException {
 		if (!zipCode.isEmpty()) {
 			this.zipCode = zipCode;
@@ -60,6 +67,8 @@ public class Address {
 		}
 	}
 
+	public String getZipCode() { return zipCode;}
+
 	public void setCountry(String country) throws InvalidAddressInputException {
 		if (!country.isEmpty()) {
 			this.country = country;
@@ -67,6 +76,8 @@ public class Address {
 			throw new InvalidAddressInputException("Invalid country");
 		}
 	}
+
+	public String getCountry() { return country;}
 
 	public String toString() {
 		return streetAddress + " " + city + " " + state + " " + zipCode + " " + country;
