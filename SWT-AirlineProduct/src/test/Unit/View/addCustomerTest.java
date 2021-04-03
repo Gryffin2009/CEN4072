@@ -1,5 +1,6 @@
-package View;
+package Unit.View;
 
+import View.AddCustomer;
 import org.junit.jupiter.api.*;
 
 public class addCustomerTest {

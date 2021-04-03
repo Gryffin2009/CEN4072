@@ -1,5 +1,6 @@
-package View;
+package Unit.View;
 
+import View.AddTicket;
 import java.util.Vector;
 
 import org.junit.jupiter.api.*;

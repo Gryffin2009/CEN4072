@@ -1,9 +1,9 @@
-package Model;
+package Unit.Model;
 
+import Model.Ticket;
 import java.io.IOException;
 import org.junit.jupiter.api.*;
 
-import Model.Ticket;
 import Model.Ticket.InvalidTicketInputException;
 import Service.AutoIDService;
 

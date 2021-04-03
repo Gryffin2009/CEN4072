@@ -1,5 +1,6 @@
-package View;
+package Unit.View;
 
+import View.AddFlight;
 import org.junit.jupiter.api.*;
 
 class addFlightTest {

@@ -1,8 +1,7 @@
-package View;
-
-import org.junit.jupiter.api.*;
+package Unit.View;
 
 import View.Login;
+import org.junit.jupiter.api.*;
 
 class LoginTest {
 	

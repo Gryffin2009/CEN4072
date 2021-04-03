@@ -1,5 +1,6 @@
-package Model;
+package Unit.Model;
 
+import Model.Address;
 import java.io.IOException;
 
 import org.junit.jupiter.api.Assertions;
@@ -7,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import Model.Address;
 import Model.Address.InvalidAddressInputException;
 
 public class AddressTest {

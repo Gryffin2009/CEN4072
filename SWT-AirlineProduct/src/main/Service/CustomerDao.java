@@ -4,19 +4,20 @@ import Model.Address;
 import Model.Address.InvalidAddressInputException;
 import Model.Customer;
 import Model.Customer.InvalidCustomerInputException;
-import java.awt.Image;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.ImageIcon;
 
 public class CustomerDao {
   private Connection con;
 
   public CustomerDao() {
     con = NetworkService.getInstance().getConnection();
+  }
+  public CustomerDao(Connection con) {
+    this.con = con;
   }
 
   public void add(Customer customer) throws SQLException {

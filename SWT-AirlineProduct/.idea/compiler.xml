@@ -9,7 +9,7 @@
         <module name="SWT-AirlineProduct" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="13">
       <module name="SWT-AirlineProduct" target="8" />
     </bytecodeTargetLevel>
   </component>

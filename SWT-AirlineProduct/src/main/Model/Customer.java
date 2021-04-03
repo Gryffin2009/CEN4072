@@ -5,14 +5,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import Model.Address.InvalidAddressInputException;
-import Service.NetworkService;
 
 public class Customer {
 
@@ -212,6 +204,11 @@ public class Customer {
 	// Returns the address of the customer.
 	public Address getAddress() {
 		return address;
+	}
+
+	// Returns the address of the customer.
+	public String getAddressAsString() {
+		return address.toString();
 	}
 
 	// Returns the string version of the address of the customer.

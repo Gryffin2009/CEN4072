@@ -1,5 +1,6 @@
-package View;
+package Unit.View;
 
+import View.SearchCustomer;
 import java.sql.SQLException;
 
 import org.junit.jupiter.api.*;

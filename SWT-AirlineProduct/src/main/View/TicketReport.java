@@ -3,17 +3,11 @@ package View;
 import Model.Ticket;
 import Model.Ticket.InvalidTicketInputException;
 import Service.TicketDao;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-
-import Service.NetworkService;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

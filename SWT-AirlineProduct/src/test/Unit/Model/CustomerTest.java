@@ -1,12 +1,12 @@
-package Model;
+package Unit.Model;
 
+import Model.Address;
+import Model.Customer;
 import java.io.IOException;
 
 import org.junit.jupiter.api.*;
 
-import Model.Address;
 import Model.Address.InvalidAddressInputException;
-import Model.Customer;
 import Model.Customer.InvalidCustomerInputException;
 import Service.AutoIDService;
 

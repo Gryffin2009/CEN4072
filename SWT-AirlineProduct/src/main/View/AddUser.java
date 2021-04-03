@@ -8,7 +8,6 @@ import javax.swing.JOptionPane;
 
 import Model.User;
 import Model.User.InvalidUserInputException;
-import Model.User.UpdateUserException;
 import Service.AutoIDService;
 
 /*

@@ -1,10 +1,10 @@
-package Service;
+package Unit.Service;
 
+import Service.AutoIDService;
 import org.junit.jupiter.api.*;
 //import org.junit.jupiter.params.ParameterizedTest;
 //import org.junit.jupiter.params.provider.ValueSource;
 
-import Service.AutoIDService;
 
 public class AutoIDServiceTest {
 	

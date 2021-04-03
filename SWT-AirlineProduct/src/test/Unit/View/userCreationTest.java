@@ -1,5 +1,6 @@
-package View;
+package Unit.View;
 
+import View.AddUser;
 import org.junit.jupiter.api.*;
 
 class userCreationTest {

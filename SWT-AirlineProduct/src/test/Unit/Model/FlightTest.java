@@ -1,10 +1,8 @@
-package Model;
-
-import java.io.IOException;
-
-import org.junit.jupiter.api.*;
+package Unit.Model;
 
 import Model.Flight;
+import org.junit.jupiter.api.*;
+
 import Model.Flight.InvalidFlightInputException;
 import Service.AutoIDService;
 

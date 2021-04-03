@@ -21,7 +21,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import Model.Ticket.InvalidTicketInputException;
-import Model.Ticket.UpdateTicketException;
 import Service.AutoIDService;
 import Service.NetworkService;
 

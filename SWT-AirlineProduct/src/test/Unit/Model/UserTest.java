@@ -1,5 +1,6 @@
-package Model;
+package Unit.Model;
 
+import Model.User;
 import org.junit.jupiter.api.*;
 import Model.User.InvalidUserInputException;
 import Service.AutoIDService;
