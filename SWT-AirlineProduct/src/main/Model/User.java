@@ -26,9 +26,7 @@ public class User {
 	String userName;
 	String password;
 
-	// Regular expression to chechk password requirements.
-	private static final String PASSWORDPATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{5,15}$";
-	// Accessor for id variable 
+	
 	public String getId() {
 		return id;
 	}
@@ -78,7 +76,7 @@ public class User {
 	public void setUserName(String userName) throws InvalidUserInputException {
 		// if statement with regular expression, used to ensure proper username input by user.
 
-		if (userName.matches(PASSWORDPATTERN)) {
+		if (userName.matches("^[a-zA-z]+$")) {
 			this.userName = userName;
 		// If invalid user name, throw InvalidUserInputException
 		} else {
