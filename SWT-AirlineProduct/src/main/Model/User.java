@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /*
@@ -44,7 +45,7 @@ public class User {
 	// Mutator for firstName variable
 	public void setFirstName(String firstName) throws InvalidUserInputException {
 		// if statement with regular expression, used to ensure proper firstname input by user.
-		if (firstName.matches("^[a-zA-Z'-]+$")) {
+		if (firstName.matches("^[a-zA-Z'’-]+$")) {
 			this.firstName = firstName;
 		// If invalid first name, throw InvalidUIserInputException
 		} else {
@@ -60,7 +61,7 @@ public class User {
 	// Mutator for lastName
 	public void setLastName(String lastName) throws InvalidUserInputException {
 		// if statement with regular expression, used to ensure proper lastName input by user.
-		if (lastName.matches("^[a-zA-Z'-]+$")) {
+		if (lastName.matches("^[a-zA-Z'’-]+$")) {
 			this.lastName = lastName;
 		// If invalid last name, throw InvalidUserInputException
 		} else {
@@ -91,8 +92,12 @@ public class User {
 	
 	//Mutator for password variable
 	public void setPassword(String password) throws InvalidUserInputException {
+		//String passwordPattern = "^[a-zA-Z0-9]+$";
+		String passwordPattern = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]*$";
+		Pattern pattern = Pattern.compile(passwordPattern);
+		Matcher matcher = pattern.matcher(password);
 		//if statement with regular expression, used to ensure proper password input by user.
-		if (password.matches("^[a-zA-Z0-9]+$")) {
+		if (matcher.matches()) {
 			this.password = password;
 		// If invalid password, throw InvalidUserInputException
 		} else {
