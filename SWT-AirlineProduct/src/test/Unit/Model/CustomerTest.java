@@ -27,7 +27,7 @@ public class CustomerTest {
 		String dob = "1985-03-12";
 		String gender = "Male";
 		String contact = "1234567";
-		String photoPath = "src/test/media/CustomerPicture.png";
+		String photoPath = "src/test/media/customer.jpg";
 		
 		// Create a fresh Customer to work with for every test. This ensures all tests are working from the same
 		// initial values, which ensures no test results will affect other tests.
