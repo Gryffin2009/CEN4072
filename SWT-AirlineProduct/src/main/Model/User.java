@@ -27,6 +27,10 @@ public class User {
 	String userName;
 	String password;
 
+	String passwordPattern;
+	Pattern pattern;
+	Matcher matcher;
+	boolean isMatch;
 
 	public String getId() {
 		return id;
@@ -92,12 +96,13 @@ public class User {
 	
 	//Mutator for password variable
 	public void setPassword(String password) throws InvalidUserInputException {
-		//String passwordPattern = "^[a-zA-Z0-9]+$";
-		String passwordPattern = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]*$";
-		Pattern pattern = Pattern.compile(passwordPattern);
-		Matcher matcher = pattern.matcher(password);
+		//passwordPattern = "^[a-zA-Z0-9]+$";
+		passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{5,15}$";
+		pattern = Pattern.compile(passwordPattern);
+		matcher = pattern.matcher(password);
+		isMatch = matcher.matches();
 		//if statement with regular expression, used to ensure proper password input by user.
-		if (matcher.matches()) {
+		if (isMatch) {
 			this.password = password;
 		// If invalid password, throw InvalidUserInputException
 		} else {

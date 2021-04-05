@@ -21,7 +21,7 @@ public class UserTest {
 
     @BeforeEach
     void beforeEach() throws InvalidUserInputException {
-        user = new User(id, "Todd", "Bauer", "TBFlow", "l33tc0d3r");
+        user = new User(id, "Todd", "Bauer", "TBFlow", "testPassw0rd");
     }
 
     @Test
@@ -39,7 +39,7 @@ public class UserTest {
                 new User(id, "Todd", "Bauer63", "TB!Flo746", "sdjh834#!!"));
 
         // Testing valid input
-        Assertions.assertDoesNotThrow(() -> new User(id, "Todd", "Bauer", "TBFlow", "l33tc0d3r"));
+        Assertions.assertDoesNotThrow(() -> new User(id, "Todd", "Bauer", "TBFlow", "l33Tc0d3r"));
 
         // Testing invalid input
         Assertions.assertThrows(InvalidUserInputException.class, () ->
