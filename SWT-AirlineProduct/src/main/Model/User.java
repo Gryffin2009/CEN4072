@@ -1,5 +1,10 @@
 package Model;
 
+import Service.NetworkService;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -79,14 +84,35 @@ public class User {
 	
 	// Mutator for userName variable
 	public void setUserName(String userName) throws InvalidUserInputException {
-		// if statement with regular expression, used to ensure proper username input by user.
 
-		if (userName.matches("^[a-zA-z]{4,20}$")) {
+		// if statement with regular expression, used to ensure proper username input by user.
+		if (userName.matches("^[a-zA-z]{4,20}$") && isUniqueUserName(userName)) {
 			this.userName = userName;
 		// If invalid user name, throw InvalidUserInputException
-		} else {
+		} else if (!userName.matches("^[a-zA-z]{4,20}$"))  {
 			throw new InvalidUserInputException("Invalid Username.");
+		} else {
+			throw new InvalidUserInputException("Username already exists.");
 		}
+	}
+
+	private boolean isUniqueUserName(String userName) {
+
+		try {
+			Connection con = NetworkService.getInstance().getConnection();
+			PreparedStatement ps = con.prepareStatement("SELECT count(*) FROM user WHERE username=?");
+			ps.setString(1, userName);
+			ResultSet rs = ps.executeQuery();
+
+			int count = 0;
+			if (rs.next()) {
+				count = rs.getInt(1);
+				return count <= 0;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 	// Accessor for password variable

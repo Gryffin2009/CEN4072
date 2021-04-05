@@ -120,7 +120,7 @@ public class UserTest {
     @Test
     void testNonUniqueUserName() {
         Exception e = Assertions.assertThrows(InvalidUserInputException.class, () -> user.setUserName("john"));
-        Assertions.assertEquals(e.getMessage(), "Invalid Username.");
+        Assertions.assertEquals(e.getMessage(), "Username already exists.");
     }
 
     @Test
