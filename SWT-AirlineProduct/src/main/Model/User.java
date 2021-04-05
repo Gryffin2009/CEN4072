@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.regex.Pattern;
+
 /*
  * Java Class to Contain User data. 
  */
@@ -23,7 +25,9 @@ public class User {
 	String lastName;
 	String userName;
 	String password;
-	
+
+	// Regular expression to chechk password requirements.
+	private static final String PASSWORDPATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{5,15}$";
 	// Accessor for id variable 
 	public String getId() {
 		return id;
@@ -73,7 +77,8 @@ public class User {
 	// Mutator for userName variable
 	public void setUserName(String userName) throws InvalidUserInputException {
 		// if statement with regular expression, used to ensure proper username input by user.
-		if (userName.matches("^[a-zA-Z]+$")) {
+
+		if (userName.matches(PASSWORDPATTERN)) {
 			this.userName = userName;
 		// If invalid user name, throw InvalidUserInputException
 		} else {
