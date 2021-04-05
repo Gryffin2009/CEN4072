@@ -119,7 +119,7 @@ public class Customer {
 	
 	// Ensures a date of birth is in the format YYY-MM-DD.
 	private boolean validateDob(String dob) {
-		return dob.matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");		
+		return dob.matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");
 	}
 
 	// Ensures a gender is either Male or Female.

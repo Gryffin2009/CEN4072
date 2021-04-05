@@ -1,6 +1,5 @@
 package Integration;
 
-
 import static org.mockito.Mockito.*;
 
 import Model.Address;
@@ -11,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.imageio.ImageIO;
 import org.junit.jupiter.api.Test;
@@ -27,6 +27,9 @@ public class CustomerDaoTest {
 
   @Mock
   private PreparedStatement stmt;
+
+  @Mock
+  private ResultSet rs;
 
   private Customer customer;
 
@@ -46,9 +49,8 @@ public class CustomerDaoTest {
 
   @Test
   public void addValidCustomerToDB() throws SQLException {
-    when(con.prepareStatement(any(String.class))).thenReturn(stmt);
-
     CustomerDao cDao = new CustomerDao(con);
+    when(con.prepareStatement(any(String.class))).thenReturn(stmt);
     cDao.add(customer);
 
     verify(con, times(1)).prepareStatement(anyString());
@@ -58,9 +60,42 @@ public class CustomerDaoTest {
   }
 
   @Test
-  public void passCustomerToDao() throws SQLException {
-    //Customer mockCustomer = mock(Customer.class);
-    //CustomerDao cDao = new CustomerDao();
-    //cDao.add(mockCustomer);
+  public void updateCustomerInDB() throws SQLException {
+    CustomerDao cDao = new CustomerDao(con);
+    when(con.prepareStatement(any(String.class))).thenReturn(stmt);
+    cDao.update(customer);
+
+    verify(con, times(1)).prepareStatement(anyString());
+    verify(stmt, times(9)).setString(anyInt(), anyString());
+    verify(stmt, times(1)).setBytes(anyInt(), any(byte[].class));
+    verify(stmt, times(1)).executeUpdate();
   }
+
+  /*
+  @Test
+  public void getCustomerFromDB()
+      throws SQLException, InvalidAddressInputException, InvalidCustomerInputException {
+    CustomerDao cDao = new CustomerDao(con);
+    when(con.prepareStatement(any(String.class))).thenReturn(stmt);
+    when(stmt.executeQuery()).thenReturn(rs);
+    when(rs.next()).thenReturn(Boolean.TRUE);
+
+    Customer actualCustomer = cDao.get("CS001");
+    verify(con, times(1)).prepareStatement(anyString());
+    verify(stmt, times(1)).setString(anyInt(), anyString());
+    verify(stmt, times(1)).executeQuery();
+    verify(rs, times(7)).getString(anyString());
+    verify(rs, times(1)).getBlob(anyString());
+  }
+  */
+
+  /*
+  @Test
+  public void passCustomerToDao() throws SQLException, InvalidCustomerInputException {
+    Customer mockCustomer = mock(Customer.class);
+    Address mockAddress = mock(Address.class);
+    mockCustomer.setAddress(mockAddress);
+    CustomerDao cDao = new CustomerDao();
+  }
+  */
 }
