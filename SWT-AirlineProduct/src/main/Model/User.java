@@ -26,7 +26,7 @@ public class User {
 	String userName;
 	String password;
 
-	
+
 	public String getId() {
 		return id;
 	}
@@ -76,7 +76,7 @@ public class User {
 	public void setUserName(String userName) throws InvalidUserInputException {
 		// if statement with regular expression, used to ensure proper username input by user.
 
-		if (userName.matches("^[a-zA-z]+$")) {
+		if (userName.matches("^[a-zA-z]{4,20}$")) {
 			this.userName = userName;
 		// If invalid user name, throw InvalidUserInputException
 		} else {
