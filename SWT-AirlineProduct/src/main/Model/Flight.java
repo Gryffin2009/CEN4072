@@ -16,12 +16,6 @@ public class Flight {
 		}
 	}
 
-	public class UpdateFlightException extends Exception {
-		public UpdateFlightException(String message) {
-			super(message);
-		}
-	}
-
 	String id;
 	String name;
 	String source;
@@ -44,7 +38,7 @@ public class Flight {
 		setCharge(charge);
 	}
 
-	public void updateInDatabase() throws UpdateFlightException {
+	public void updateInDatabase() throws Exception {
 		Connection con = NetworkService.getInstance().getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(
@@ -58,8 +52,8 @@ public class Flight {
 			pst.setString(7, this.getArrTime());
 			pst.setString(8, this.getCharge());
 			pst.executeUpdate();
-		} catch (SQLException ex) {
-			throw new UpdateFlightException(ex.getMessage());
+		} catch (Exception ex) {
+			throw new Exception("invalid value for flight");
 		}
 	}
 
@@ -76,12 +70,8 @@ public class Flight {
 	// Ensures a location (e.g. source and depart) can only be the countries the
 	// airline flies to.
 	private boolean validateLocale(String locale) {
-		if (locale == "India" || locale == "Srilanka" || locale == "Uk" || locale == "Usa" || locale == "Canada"
-				|| locale == "Chinna") {
-			return true;
-		} else {
-			return false;
-		}
+		return locale.equals("India") || locale.equals("Srilanka") || locale.equals("UK") || locale.equals("USA") || locale.equals("Canada")
+				|| locale.equals("China");
 	}
 
 	// Ensures a date is in the format YYY-MM-DD.
@@ -142,7 +132,7 @@ public class Flight {
 			this.source = source;
 		} else {
 			throw new InvalidFlightInputException(
-					"Flight source country must be: India, Srilanka, Uk, Usa, Canada, or Chinna.");
+					"Flight source country must be: India, Srilanka, UK, USA, Canada, or China.");
 		}
 	}
 
@@ -158,7 +148,7 @@ public class Flight {
 			this.depart = depart;
 		} else {
 			throw new InvalidFlightInputException(
-					"Flight departure country must be: India, Srilanka, Uk, Usa, Canada, or Chinna.");
+					"Flight departure country must be: India, Srilanka, UK, USA, Canada, or China.");
 		}
 	}
 

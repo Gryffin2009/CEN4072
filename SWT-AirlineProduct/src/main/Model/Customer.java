@@ -14,12 +14,6 @@ public class Customer {
 			super(message);
 		}
 	}
-	
-	public class UpdateCustomerException extends Exception {
-		public UpdateCustomerException(String message) {
-			super(message);
-		}
-	}
 
 	private String id;
 	private String firstname;
@@ -78,12 +72,7 @@ public class Customer {
 	private boolean validatePhoneNumber(String phoneNumber) {
 		return phoneNumber.matches("^[0-9]{7,13}$");
 	}
-	
-	// Ensures an Id is of the format CS###.
-	private boolean validateId(String id) {
-		return id.matches("^CS[0-9]{3}$");
-	}
-	
+
 	// Ensures a name contains only letters, dashes, and/or apostrophes, as well as at least 1 character.
 	private boolean validateName(String name) {
 		return name.matches("^[a-zA-Z'-]+$");
@@ -137,12 +126,8 @@ public class Customer {
 	}
 
 	// Sets an ID if valid, otherwise throws a custom exception marking an invalid property value.
-	public void setId(String id) throws InvalidCustomerInputException {
-		if (validateId(id)) {
-			this.id = id;
-		} else {
-			throw new InvalidCustomerInputException("ID must be in the format \"CS###\".");
-		}
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	// Returns the first name of the customer.
@@ -211,15 +196,11 @@ public class Customer {
 		return address.toString();
 	}
 
-	// Returns the string version of the address of the customer.
-	private String getAddressString() {
-		return address.toString();
-	}
-
 	// Sets the address of the customer.
 	public void setAddress(Address address) throws InvalidCustomerInputException {
 		if (address != null) {
 			this.address = address;
+			System.out.println("didSet address " + getAddressAsString());
 		} else {
 			throw new InvalidCustomerInputException("Invalid address.");
 		}

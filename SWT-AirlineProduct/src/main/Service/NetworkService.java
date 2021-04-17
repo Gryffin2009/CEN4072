@@ -17,9 +17,7 @@ public class NetworkService {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection(Environment.DATABASE_PATH, "root", Environment.DATABASE_PASSWORD);
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(NetworkService.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (SQLException ex) {
+		} catch (Exception ex) {
 			Logger.getLogger(NetworkService.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}

@@ -24,7 +24,6 @@ public class AutoIDService {
 			if (prefix.isEmpty()) {
 				return null;
 			}
-			
 			if (rs.getString("MAX(id)") == null) {
 				return prefix + "001";
 			} else {
@@ -33,7 +32,6 @@ public class AutoIDService {
 				return prefix + String.format("%03d", id);
 			}
 		} catch (Exception ex) {
-			Logger.getLogger(AutoIDService.class.getName()).log(Level.SEVERE, null, ex);
 			return null;
 		}
 

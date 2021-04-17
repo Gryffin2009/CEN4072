@@ -2,7 +2,6 @@ package Model;
 
 public class Address {
 
-
 	public class InvalidAddressInputException extends Exception {
 		public InvalidAddressInputException(String message) {
 			super(message);
@@ -80,7 +79,7 @@ public class Address {
 	public String getCountry() { return country;}
 
 	public String toString() {
-		return streetAddress + " " + city + " " + state + " " + zipCode + " " + country;
+		return getStreetAddress() + " " + getCity() + " " + getState() + " " + getZipCode() + " " + getCountry();
 	}
 
 }

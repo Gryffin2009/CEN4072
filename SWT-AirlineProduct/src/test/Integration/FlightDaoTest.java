@@ -30,7 +30,7 @@ public class FlightDaoTest {
 
   @BeforeEach
   public void setUp() throws Exception {
-    flight = new Flight("FO001", "Delta", "India", "Uk",
+    flight = new Flight("FO001", "Delta", "India", "UK",
         "2019-06-14", "8.00AM", "10.00PM", "50000");
   }
 

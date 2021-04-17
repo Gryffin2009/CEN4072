@@ -3,7 +3,6 @@ package Unit.Model;
 import Model.Ticket;
 import java.io.IOException;
 import org.junit.jupiter.api.*;
-
 import Model.Ticket.InvalidTicketInputException;
 import Service.AutoIDService;
 
@@ -23,7 +22,7 @@ public class AddTicketTest {
 		String id = AutoIDService.generateAutoID("ticket", "TO");
 		String flightid = "";
 		String custid = "";
-		String flightclass = "business";
+		String flightclass = "Business";
 		String price = "100";
 		String seats = "1";
 		String date = "2021-04-22";
@@ -44,7 +43,7 @@ public class AddTicketTest {
 	// No numbers
 	@Test
 	@DisplayName("Invalid seats, too many")
-	void testPassportInvalidNoNumbers() throws InvalidTicketInputException {
+	void testSeatsInvalidNoNumbers() throws InvalidTicketInputException {
 		Exception e = Assertions.assertThrows(InvalidTicketInputException.class, 
 				() -> ticket.setNumSeats(50));
 		Assertions.assertEquals("Invalid Number of Seats", e.getMessage());
@@ -54,9 +53,38 @@ public class AddTicketTest {
 	// Only numbers
 	@Test
 	@DisplayName("Invalid seats, 0")
-	void testPassportInvalidOnlyNumbers() throws InvalidTicketInputException, Exception {
+	void testPassportInvalidOnlyNumbers() throws InvalidTicketInputException {
 		Exception e = Assertions.assertThrows(InvalidTicketInputException.class, () -> ticket.setNumSeats(0));
 		Assertions.assertEquals("Invalid Number of Seats", e.getMessage());
 	}
-	
+
+	@Test
+	@DisplayName("Valid Date, proper format")
+	void testValidDate() throws InvalidTicketInputException {
+		Assertions.assertDoesNotThrow(() -> ticket.setDate("2021-04-22"));
+	}
+
+	@Test
+	@DisplayName("Invalid Date, improper format")
+	void testInvalidDate() throws InvalidTicketInputException {
+		Exception e = Assertions.assertThrows(InvalidTicketInputException.class, () -> ticket.setDate("HELLO"));
+		Assertions.assertEquals("Invalid date. Improper format.", e.getMessage());
+	}
+
+	@Test
+	@DisplayName("Valid price, numeric")
+	void testValidPrice() throws InvalidTicketInputException {
+		Assertions.assertDoesNotThrow(() -> ticket.setPrice("100"));
+	}
+
+	@Test
+	@DisplayName("Invalid price, alphanumeric")
+	void testInvalidPrice() throws InvalidTicketInputException {
+		Exception e = Assertions.assertThrows(InvalidTicketInputException.class, () -> ticket.setPrice("H3LL0"));
+		Assertions.assertEquals("Invalid price. Numeric input only.", e.getMessage());
+	}
+
+
+
+
 }

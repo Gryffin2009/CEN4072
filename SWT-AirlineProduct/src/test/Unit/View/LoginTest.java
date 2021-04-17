@@ -16,13 +16,20 @@ class LoginTest {
 	@Test
 	void test() {
 		String username = "john";
-		
-		// Ensure valid password succeeds
 		String validPassword = "123";
 		boolean successWithValidPassword = login.login(username, validPassword);
 		Assertions.assertTrue(successWithValidPassword);
-		
-		// Ensure invalid password fails
+	}
+
+	@Test
+	void testEmptyLogin() {
+		Assertions.assertFalse(login.login("", ""));
+	}
+
+	// Ensure invalid password fails
+	@Test
+	void testInvalidLogin() {
+		String username = "john";
 		String invalidPassword = "321";
 		boolean successWithInvalidPassword = login.login(username, invalidPassword);
 		Assertions.assertFalse(successWithInvalidPassword);

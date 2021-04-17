@@ -6,7 +6,6 @@ import javax.swing.JOptionPane;
 
 import Model.Flight;
 import Model.Flight.InvalidFlightInputException;
-import Model.Flight.UpdateFlightException;
 import Service.AutoIDService;
 
 
@@ -44,7 +43,7 @@ public class AddFlight extends javax.swing.JInternalFrame {
 	// Code">//GEN-BEGIN:initComponents
 	private void initComponents() {
 
-		locations = new String[] { "India", "Srilanka", "Uk", "Usa", "Canada", "China" };
+		locations = new String[] { "India", "Srilanka", "UK", "USA", "Canada", "China" };
 
 		jPanel1 = new javax.swing.JPanel();
 		jLabel1 = new javax.swing.JLabel();
@@ -246,7 +245,7 @@ public class AddFlight extends javax.swing.JInternalFrame {
 			Flight flight = new Flight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
 			flight.updateInDatabase();
 			JOptionPane.showMessageDialog(null, "Flight Created.");
-		} catch (InvalidFlightInputException | UpdateFlightException e) {
+		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}// GEN-LAST:event_jButton1ActionPerformed

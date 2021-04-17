@@ -18,13 +18,7 @@ public class User {
 			super(message);
 		}
 	}
-	
-	public class UpdateUserException extends Exception {
-		public UpdateUserException(String message) {
-			super(message);
-		}
-	}
-	
+
 	// User Attributes 
 	String id;
 	String firstName;
@@ -51,6 +45,22 @@ public class User {
 		return firstName;
 	}
 
+	//Accesor for lastName variable
+	public String getLastName() {
+		return lastName;
+	}
+
+	// Accessor for userName variable
+	public String getUserName() {
+		return userName;
+	}
+
+	// Accessor for password variable
+	public String getPassword() {
+		return password;
+	}
+
+
 	// Mutator for firstName variable
 	public void setFirstName(String firstName) throws InvalidUserInputException {
 		// if statement with regular expression, used to ensure proper firstname input by user.
@@ -61,12 +71,7 @@ public class User {
 			throw new InvalidUserInputException("Invalid First Name.");
 		}
 	}
-	
-	//Accesor for lastName variable
-	public String getLastName() {
-		return lastName;
-	}
-	
+
 	// Mutator for lastName
 	public void setLastName(String lastName) throws InvalidUserInputException {
 		// if statement with regular expression, used to ensure proper lastName input by user.
@@ -77,11 +82,7 @@ public class User {
 			throw new InvalidUserInputException("Invalid Last Name.");
 		}
 	}
-	// Accessor for userName variable
-	public String getUserName() {
-		return userName;
-	}
-	
+
 	// Mutator for userName variable
 	public void setUserName(String userName) throws InvalidUserInputException {
 
@@ -96,8 +97,7 @@ public class User {
 		}
 	}
 
-	private boolean isUniqueUserName(String userName) {
-
+	private boolean isUniqueUserName(String userName) throws InvalidUserInputException {
 		try {
 			Connection con = NetworkService.getInstance().getConnection();
 			PreparedStatement ps = con.prepareStatement("SELECT count(*) FROM user WHERE username=?");
@@ -109,16 +109,10 @@ public class User {
 				count = rs.getInt(1);
 				return count <= 0;
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		} catch (SQLException e) { e.printStackTrace(); }
 		return false;
 	}
-	
-	// Accessor for password variable
-	public String getPassword() {
-		return password;
-	}
+
 	
 	//Mutator for password variable
 	public void setPassword(String password) throws InvalidUserInputException {
@@ -135,6 +129,11 @@ public class User {
 			throw new InvalidUserInputException("Invalid Password.");
 		}
 	}
+
+	public String toString() {
+		return getId() + " " + getFirstName() + " " + getLastName() + " " + getUserName() + " " + getPassword();
+	}
+
 	
 	// Constructor method to set the user attributes.
 	public User(String id, String firstName, String lastName, String userName, String password) throws InvalidUserInputException {
@@ -143,5 +142,6 @@ public class User {
 		setLastName(lastName);
 		setUserName(userName);
 		setPassword(password);
+		System.out.println("Successfully initialized user. " + toString());
 	}
 }

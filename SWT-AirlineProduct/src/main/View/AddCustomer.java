@@ -55,16 +55,6 @@ public class AddCustomer extends javax.swing.JInternalFrame {
 		txtid.setText(id);
 	}
 
-//	// Validates a customer name to only contain letters, dashes, and apostrophes, as well as be at least 1 character.
-//	public boolean validateCustomerName(String name) {
-//		return name.matches("^[a-zA-Z'-]+$");
-//	}
-//	
-//	// Validates a customer phone number to only allow numerical values. Must be 7 digits.
-//	public boolean validateContact(String contact) {
-//		return contact.matches("^[0-9]{7}$");
-//	}
-	
 	/*
 	// TODO add address formatting regex checks
 	public boolean validateAddress(String address, String street, String city, String region, String zip, String country) {

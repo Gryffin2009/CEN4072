@@ -97,11 +97,8 @@ public class TicketReport extends javax.swing.JInternalFrame {
 					Df.addRow(v2);
 				}
 
-		} catch (SQLException ex) {
+		} catch (Exception ex) {
 			Logger.getLogger(AddTicket.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (InvalidTicketInputException e) {
-			// TODO add proper error handling
-			e.printStackTrace();
 		}
 
 	}
