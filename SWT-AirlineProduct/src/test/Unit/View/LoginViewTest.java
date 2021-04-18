@@ -35,6 +35,7 @@ public class LoginViewTest {
     JTextComponentFixture userNameTextField = window.textBox("userTxt").requireEditable();
     JTextComponentFixture passwordTextField = window.textBox("passwordTxt").requireEditable();
     JButtonFixture loginButton = window.button("loginBtn").requireEnabled();
+    JButtonFixture cancelButton = window.button("cancelBtn").requireEnabled();
   }
 
   @Test
@@ -44,6 +45,11 @@ public class LoginViewTest {
     JButtonFixture loginButton = window.button("loginBtn").click();
   }
 
+  @Test
+  public void closeLoginWindow() {
+    JButtonFixture cancelButton = window.button("cancelBtn").click();
+  }
+  
   @AfterEach
   public void tearDown() {
     window.cleanUp();
