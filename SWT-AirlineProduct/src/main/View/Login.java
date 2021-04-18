@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,10 +50,13 @@ public class Login extends javax.swing.JFrame {
 				new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
 		jLabel1.setText("UserName");
-
 		jLabel2.setText("Password");
 
+		txtpass.setName("passwordTxt");
+		txtuser.setName("userTxt")
+		;
 		jButton1.setText("Login");
+		jButton1.setName("loginBtn");
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton1ActionPerformed(evt);
@@ -60,6 +64,12 @@ public class Login extends javax.swing.JFrame {
 		});
 
 		jButton2.setText("Cancel");
+		jButton2.setName("cancelBtn");
+		jButton2.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				jButton2ActionPerformed(evt);
+			}
+		});
 
 		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
 		jPanel1.setLayout(jPanel1Layout);
@@ -147,6 +157,12 @@ public class Login extends javax.swing.JFrame {
 		}
 
 	}
+
+
+	private void jButton2ActionPerformed(ActionEvent evt) {
+		System.exit(0);
+	}
+
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
 		// TODO add your handling code here:
