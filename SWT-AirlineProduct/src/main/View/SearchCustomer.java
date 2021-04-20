@@ -46,15 +46,51 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
 	 */
 	public SearchCustomer() {
 		initComponents();
+		setIdentifiers();
 	}
 
 	private String path = null;
 	private byte[] userimage = null;
 	private CustomerDao cDao = new CustomerDao();
 
-//	public boolean validateID(String id) {
-//		return id.matches("^CS[0-9]{3}$");
-//	}
+	private void setIdentifiers() {
+		this.setName("SearchCustomer");
+		jButton1.setName("jButton1");
+		jButton2.setName("jButton2");
+		jButton3.setName("jButton3");
+		jButton4.setName("jButton4");
+		jLabel1.setName("jLabel1");
+		jLabel10.setName("jLabel10");
+		jLabel2.setName("jLabel2");
+		jLabel3.setName("jLabel3");
+		jLabel4.setName("jLabel4");
+		jLabel5.setName("jLabel5");
+		jLabel6.setName("jLabel6");
+		jLabel8.setName("jLabel8");
+		jPanel1.setName("jPanel1");
+		jPanel2.setName("jPanel2");
+		jLabel9.setName("jLabel9");
+		jScrollPane1.setName("jScrollPane1");
+		r1.setName("r1");
+		r2.setName("r2");
+		txtStreetAddress.setName("txtStreetAddress");
+		txtcontact.setName("txtcontact");
+		txtcustid.setName("txtcustid");
+		txtfirstname.setName("txtfirstname");
+		txtlastname.setName("txtlastname");
+		txtnic.setName("txtnic");
+		txtpassport.setName("txtpassport");
+		txtphoto.setName("txtphoto");
+		cityLabel.setName("cityLabel");
+		stateLabel.setName("stateLabel");
+		zipCodeLabel.setName("zipCodeLabel");
+		countryLabel.setName("countryLabel");
+		txtCity.setName("txtCity");
+		txtState.setName("txtState");
+		txtZipCode.setName("txtZipCode");
+		txtCountry.setName("txtCountry");
+		txtDob.setName("txtDob");
+	}
 
 	private ImageIcon imageToIcon(byte[] photo) {
 		ImageIcon image = new ImageIcon(photo);
@@ -416,9 +452,6 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
 		String zipCode = txtZipCode.getText();
 		String country = txtCountry.getText();
 
-
-
-		// TODO fix date of birth when field is added to GUI
 		DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
 		// String date = da.format(txtdob.getDate());
 		String date = da.format(new Date());
@@ -426,11 +459,9 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
 		String gender = r1.isSelected() ? "Male" : "Female";
 		String contact = txtcontact.getText();
 
-		// TODO
 		String photoPath = "";
 
 		try {
-			// TODO fix address when fields are added to GUI
 			Address address = new Address(streetAddress, city, state,zipCode,country);
 			Customer customer = new Customer(id, firstname, lastname, nic,
 					passport, address, date, gender, contact, photoPath);
@@ -443,7 +474,6 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
 	} // GEN-LAST:event_jButton2ActionPerformed
 
 	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
-
 		this.hide();
 	}// GEN-LAST:event_jButton3ActionPerformed
 
@@ -464,18 +494,13 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
 			txtcontact.setText(customer.getPhoneNumber());
 			txtDob.setText(customer.getDob());
 
-			// TODO display date of birth when field is added
 //		txtdob.setDate(date1);
 
 			byte[] photo = customer.getPhoto();
 			ImageIcon icon = imageToIcon(photo);
 			txtphoto.setIcon(icon);
-		} catch (SQLException ex) {
+		} catch (Exception ex) {
 			Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (InvalidAddressInputException e) {
-			e.printStackTrace();
-		} catch (InvalidCustomerInputException e) {
-			e.printStackTrace();
 		}
 	}// GEN-LAST:event_jButton4ActionPerformed
 

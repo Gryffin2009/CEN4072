@@ -27,8 +27,8 @@ public class ticketReportTest {
 	}
 
 	@Test
-	@DisplayName("Change price based on number of seats")
-	void testUndefined() {
+	void testLoadAll() {
+		ticketReport.LoadData();
 	}
 	
 	
