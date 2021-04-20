@@ -30,7 +30,7 @@ import Service.NetworkService;
  * and open the template in the editor.
  */
 
-public class AddTicket extends javax.swing.JFrame {
+public class AddTicket extends javax.swing.JInternalFrame {
 	CustomerDao cDao = new CustomerDao();
 	TicketDao tDao = new TicketDao();
 
@@ -49,17 +49,18 @@ public class AddTicket extends javax.swing.JFrame {
 	}
 
 	private void setIdentifiers() {
-//		jButton1;
-//		jButton2;
-//		jButton3;
-//		jButton4;
-//		txtprice;
-//		txtseats;
-//		txtsource;
-//		jTable1;
-//		txtclass;
-//		txtcustid;
-//		txtdepart;
+		this.setName("AddTicket");
+		jButton1.setName("jButton1");
+		jButton2.setName("jButton2");
+		jButton3.setName("jButton3");
+		jButton4.setName("jButton4");
+		txtprice.setName("txtprice");
+		txtseats.setName("txtseats");
+		txtsource.setName("txtsource");
+		jTable1.setName("jTable1");
+		txtclass.setName("txtclass");
+		txtcustid.setName("txtcustid");
+		txtdepart.setName("txtdepart");
 	}
 
 	/**
@@ -492,14 +493,11 @@ public class AddTicket extends javax.swing.JFrame {
 				}
 			}
 
-			if (isFound == false) {
+			if (!isFound) {
 				JOptionPane.showMessageDialog(this, "Record not Found");
 			}
-		} catch (SQLException ex) {
+		} catch (Exception ex) {
 			Logger.getLogger(AddTicket.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (InvalidCustomerInputException | InvalidAddressInputException e) {
-			// TODO add proper error handling
-			e.printStackTrace();
 		}
 
 	}// GEN-LAST:event_jButton4ActionPerformed
