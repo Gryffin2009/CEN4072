@@ -1,14 +1,8 @@
 package Unit.View;
 
 import View.Login;
-import javax.swing.JTextField;
-import org.assertj.swing.edt.FailOnThreadViolationRepaintManager;
 import org.assertj.swing.edt.GuiActionRunner;
 import org.assertj.swing.fixture.*;
-import org.assertj.swing.junit.testcase.AssertJSwingJUnitTestCase;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,14 +18,14 @@ public class LoginViewTest {
   }
 
   @Test
-  public void loginComponentsVisible() {
+  public void isLoginComponentsVisible() {
     JTextComponentFixture userNameTextField = window.textBox("userTxt").requireVisible();
     JTextComponentFixture passwordTextField = window.textBox("passwordTxt").requireVisible();
     JButtonFixture loginButton = window.button("loginBtn").requireVisible();
   }
 
   @Test
-  public void logincomponentsFunctional() {
+  public void isLoginComponentsFunctional() {
     JTextComponentFixture userNameTextField = window.textBox("userTxt").requireEditable();
     JTextComponentFixture passwordTextField = window.textBox("passwordTxt").requireEditable();
     JButtonFixture loginButton = window.button("loginBtn").requireEnabled();
@@ -49,7 +43,7 @@ public class LoginViewTest {
   public void closeLoginWindow() {
     JButtonFixture cancelButton = window.button("cancelBtn").click();
   }
-  
+
   @AfterEach
   public void tearDown() {
     window.cleanUp();
