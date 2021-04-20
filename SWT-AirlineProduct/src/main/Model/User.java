@@ -87,7 +87,7 @@ public class User {
 	public void setUserName(String userName) throws InvalidUserInputException {
 
 		// if statement with regular expression, used to ensure proper username input by user.
-		if (userName.matches("^[a-zA-z]{4,20}$") && isUniqueUserName(userName)) {
+		if (userName.matches("^[a-zA-z]{4,20}$")) {
 			this.userName = userName;
 		// If invalid user name, throw InvalidUserInputException
 		} else if (!userName.matches("^[a-zA-z]{4,20}$"))  {
@@ -142,6 +142,5 @@ public class User {
 		setLastName(lastName);
 		setUserName(userName);
 		setPassword(password);
-		System.out.println("Successfully initialized user. " + toString());
 	}
 }

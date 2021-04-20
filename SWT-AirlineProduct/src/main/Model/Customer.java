@@ -200,7 +200,6 @@ public class Customer {
 	public void setAddress(Address address) throws InvalidCustomerInputException {
 		if (address != null) {
 			this.address = address;
-			System.out.println("didSet address " + getAddressAsString());
 		} else {
 			throw new InvalidCustomerInputException("Invalid address.");
 		}

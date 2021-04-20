@@ -16,7 +16,7 @@ class LoginTest {
 	@Test
 	void test() {
 		String username = "john";
-		String validPassword = "123";
+		String validPassword = "Passw0rd";
 		boolean successWithValidPassword = login.login(username, validPassword);
 		Assertions.assertTrue(successWithValidPassword);
 	}

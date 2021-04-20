@@ -3,11 +3,13 @@ package Integration;
 import static org.mockito.Mockito.*;
 
 import Model.Ticket;
+import Model.Ticket.InvalidTicketInputException;
 import Service.TicketDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -54,5 +56,25 @@ public class TicketDaoTest {
     verify(con, times(1)).prepareStatement(anyString());
     verify(stmt, times(7)).setString(anyInt(), anyString());
     verify(stmt, times(1)).executeUpdate();
+  }
+
+  @Test
+  public void getTicketFromDB() throws SQLException, InvalidTicketInputException {
+    TicketDao ticketDao = new TicketDao();
+    Ticket actualTicket = ticketDao.get("TO001");
+
+    Assertions.assertEquals("FO003", actualTicket.getFlightId());
+    Assertions.assertEquals("CS001", actualTicket.getCustId());
+    Assertions.assertEquals("Economy", actualTicket.getFlightClass());
+    Assertions.assertEquals("9000", actualTicket.getPrice());
+    Assertions.assertEquals("1", actualTicket.getSeats());
+    Assertions.assertEquals("2019-06-15", actualTicket.getDate());
+  }
+
+  @Test
+  public void getAllTicketsFromDB() throws SQLException, InvalidTicketInputException {
+    TicketDao ticketDao = new TicketDao();
+    Ticket[] allFlights = ticketDao.getAll();
+    Assertions.assertNotNull(allFlights);
   }
 }

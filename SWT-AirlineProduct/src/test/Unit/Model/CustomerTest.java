@@ -89,7 +89,6 @@ public class CustomerTest {
 		Assertions.assertEquals("Customer Passport must contain alphanumeric characters only.", e.getMessage());
 	}
 
-
 	Address addressStub() throws InvalidAddressInputException {
 		String streetAddress = "123 Main Street";
 		String city = "Fort Myers";

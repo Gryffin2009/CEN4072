@@ -73,7 +73,7 @@ public class FlightDao {
     rs.close();
     Flight[] flights = new Flight[ticketCount];
 
-    pst = con.prepareStatement("SELECT * from customer");
+    pst = con.prepareStatement("SELECT * from flight");
     rs = pst.executeQuery();
 
     int i = 0;

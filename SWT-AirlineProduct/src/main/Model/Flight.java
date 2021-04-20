@@ -64,13 +64,13 @@ public class Flight {
 
 	// Ensures a name contains only letters and is at least 1 character.
 	private boolean validateName(String name) {
-		return name.matches("^[a-zA-Z]+$");
+		return name.matches("^[a-zA-Z\\s]+$");
 	}
 
 	// Ensures a location (e.g. source and depart) can only be the countries the
 	// airline flies to.
 	private boolean validateLocale(String locale) {
-		return locale.equals("India") || locale.equals("Srilanka") || locale.equals("UK") || locale.equals("USA") || locale.equals("Canada")
+		return locale.equals("India") || locale.equals("Srilanka") || locale.equals("UK") || locale.equals("Uk") || locale.equals("USA") || locale.equals("Canada")
 				|| locale.equals("China");
 	}
 
@@ -132,7 +132,7 @@ public class Flight {
 			this.source = source;
 		} else {
 			throw new InvalidFlightInputException(
-					"Flight source country must be: India, Srilanka, UK, USA, Canada, or China.");
+					"Flight source country must be: India, Srilanka, Uk, USA, Canada, or China.");
 		}
 	}
 
@@ -148,7 +148,7 @@ public class Flight {
 			this.depart = depart;
 		} else {
 			throw new InvalidFlightInputException(
-					"Flight departure country must be: India, Srilanka, UK, USA, Canada, or China.");
+					"Flight departure country must be: India, Srilanka, Uk, USA, Canada, or China.");
 		}
 	}
 

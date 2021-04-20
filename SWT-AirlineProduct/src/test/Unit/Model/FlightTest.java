@@ -125,7 +125,7 @@ public class FlightTest {
     void testDepartInvalidFormat() throws InvalidFlightInputException {
         InvalidFlightInputException e = Assertions.assertThrows(InvalidFlightInputException.class, () ->
                 flight.setDepart("HELLO"));
-        Assertions.assertEquals("Flight departure country must be: India, Srilanka, UK, USA, Canada, or China.", e.getMessage());
+        Assertions.assertEquals("Flight departure country must be: India, Srilanka, Uk, USA, Canada, or China.", e.getMessage());
     }
 
 
@@ -134,7 +134,7 @@ public class FlightTest {
     void testSourceInvalidFormat() throws InvalidFlightInputException {
         InvalidFlightInputException e = Assertions.assertThrows(InvalidFlightInputException.class, () ->
                 flight.setSource("HELLO"));
-        Assertions.assertEquals("Flight source country must be: India, Srilanka, UK, USA, Canada, or China.", e.getMessage());
+        Assertions.assertEquals("Flight source country must be: India, Srilanka, Uk, USA, Canada, or China.", e.getMessage());
     }
 
     @Test

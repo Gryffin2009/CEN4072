@@ -45,7 +45,7 @@ public class CustomerDao {
     AddCustomerFromPreparedStatement(pst, customer);
   }
 
-  public void AddCustomerFromPreparedStatement(PreparedStatement pst, Customer customer)
+  private void AddCustomerFromPreparedStatement(PreparedStatement pst, Customer customer)
       throws SQLException {
     pst.setString(1, customer.getId());
     pst.setString(2, customer.getFirstname());
@@ -57,14 +57,15 @@ public class CustomerDao {
     pst.setString(8, customer.getGender());
     pst.setString(9, customer.getPhoneNumber());
     pst.setBytes(10, customer.getPhoto());
-    pst.executeUpdate();}
+    pst.executeUpdate();
+  }
 
   public Customer get(String id) throws SQLException, InvalidAddressInputException, InvalidCustomerInputException {
     PreparedStatement pst = con.prepareStatement("select * from customer where id = ?");
     pst.setString(1, id);
     ResultSet rs = pst.executeQuery();
     rs.next();
-    return GetFlightFromResultSet(rs);
+    return GetCustomerFromResultSet(rs);
   }
 
   public Customer[] getAll()
@@ -81,13 +82,13 @@ public class CustomerDao {
 
     int i = 0;
     while (rs.next()) {
-      customers[i] = GetFlightFromResultSet(rs);
+      customers[i] = GetCustomerFromResultSet(rs);
       i++;
     }
     return customers;
   }
 
-  public Customer GetFlightFromResultSet(ResultSet rs)
+  private Customer GetCustomerFromResultSet(ResultSet rs)
       throws SQLException, InvalidAddressInputException, InvalidCustomerInputException {
     String id = rs.getString("id");
     String fname = rs.getString("firstname");
@@ -105,7 +106,6 @@ public class CustomerDao {
     Blob blob = rs.getBlob("photo");
     byte[] _imagebytes = blob.getBytes(1, (int) blob.length());
 
-    Customer customer = new Customer(id, fname, lname, nic, passport, address, dob, gender, contact, _imagebytes);
-    return customer;
+    return new Customer(id, fname, lname, nic, passport, address, dob, gender, contact, _imagebytes);
   }
 }
