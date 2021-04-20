@@ -5,6 +5,8 @@ package View;
  * and open the template in the editor.
  */
 
+import javax.swing.*;
+
 public class Main extends javax.swing.JFrame {
 
 	/**
@@ -12,6 +14,13 @@ public class Main extends javax.swing.JFrame {
 	 */
 	public Main() {
 		initComponents();
+		setIdentifiers();
+	}
+
+	private void setIdentifiers() {
+		JMenuItem[] menuItems = {jMenuItem1,jMenuItem2,jMenuItem3,jMenuItem4,jMenuItem5,jMenuItem6};
+		for (int i = 1; i <= menuItems.length; i++)
+			menuItems[i - 1].setName("jMenuItem" + i);
 	}
 
 	/**

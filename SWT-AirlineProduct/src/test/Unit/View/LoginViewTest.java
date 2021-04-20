@@ -12,7 +12,8 @@ public class LoginViewTest {
 
   @BeforeEach
   public void setUp() {
-    Login frame = GuiActionRunner.execute(() -> new Login());
+    Login frame = GuiActionRunner.execute(Login::new);
+
     window = new FrameFixture(frame);
     window.show(); // shows the frame to test
   }

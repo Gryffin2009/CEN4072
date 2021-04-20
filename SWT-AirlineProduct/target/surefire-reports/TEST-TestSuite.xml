@@ -1,119 +1,381 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="50" failures="0" name="TestSuite" time="1.973" errors="0" skipped="0">
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="TestSuite" time="31.221" tests="88" errors="0" skipped="0" failures="0">
   <properties>
-    <property name="idea.version" value="2020.3.2"/>
-    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
-    <property name="sun.boot.library.path" value="C:\Users\brand\.jdks\corretto-1.8.0_282\jre\bin"/>
-    <property name="java.vm.version" value="25.282-b08"/>
-    <property name="java.vm.vendor" value="Amazon.com Inc."/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\Users\brand\Documents\GitHub\CEN4072\SWT-AirlineProduct"/>
-    <property name="java.vendor.url" value="https://aws.amazon.com/corretto/"/>
-    <property name="path.separator" value=";"/>
-    <property name="guice.disable.misplaced.annotation.check" value="true"/>
-    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
     <property name="file.encoding.pkg" value="sun.io"/>
-    <property name="user.script" value=""/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\brand\Documents\GitHub\CEN4072\SWT-AirlineProduct\target\test-classes;C:\Users\brand\Documents\GitHub\CEN4072\SWT-AirlineProduct\target\classes;C:\Users\brand\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.7.1\junit-jupiter-api-5.7.1.jar;C:\Users\brand\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\brand\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\brand\.m2\repository\org\junit\platform\junit-platform-commons\1.7.1\junit-platform-commons-1.7.1.jar;C:\Users\brand\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.7.1\junit-jupiter-engine-5.7.1.jar;C:\Users\brand\.m2\repository\org\junit\platform\junit-platform-engine\1.7.1\junit-platform-engine-1.7.1.jar;C:\Users\brand\.m2\repository\org\junit\platform\junit-platform-runner\1.2.0\junit-platform-runner-1.2.0.jar;C:\Users\brand\.m2\repository\org\junit\platform\junit-platform-launcher\1.2.0\junit-platform-launcher-1.2.0.jar;C:\Users\brand\.m2\repository\org\junit\platform\junit-platform-suite-api\1.2.0\junit-platform-suite-api-1.2.0.jar;C:\Users\brand\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\brand\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\brand\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.2.0\junit-jupiter-params-5.2.0.jar;C:\Users\brand\.m2\repository\org\mockito\mockito-core\3.8.0\mockito-core-3.8.0.jar;C:\Users\brand\.m2\repository\net\bytebuddy\byte-buddy\1.10.20\byte-buddy-1.10.20.jar;C:\Users\brand\.m2\repository\net\bytebuddy\byte-buddy-agent\1.10.20\byte-buddy-agent-1.10.20.jar;C:\Users\brand\.m2\repository\org\objenesis\objenesis\3.1\objenesis-3.1.jar;C:\Users\brand\.m2\repository\org\mockito\mockito-junit-jupiter\3.8.0\mockito-junit-jupiter-3.8.0.jar;C:\Users\brand\.m2\repository\mysql\mysql-connector-java\8.0.23\mysql-connector-java-8.0.23.jar;C:\Users\brand\.m2\repository\com\google\protobuf\protobuf-java\3.11.4\protobuf-java-3.11.4.jar;C:\Users\brand\.m2\repository\com\toedter\jcalendar\1.4\jcalendar-1.4.jar;C:\Users\brand\.m2\repository\org\assertj\assertj-swing-junit\3.17.1\assertj-swing-junit-3.17.1.jar;C:\Users\brand\.m2\repository\org\assertj\assertj-swing\3.17.1\assertj-swing-3.17.1.jar;C:\Users\brand\.m2\repository\org\assertj\assertj-core\3.17.2\assertj-core-3.17.2.jar;C:\Users\brand\.m2\repository\org\easytesting\fest-util\1.2.5\fest-util-1.2.5.jar;C:\Users\brand\.m2\repository\org\easytesting\fest-reflect\1.4.1\fest-reflect-1.4.1.jar;"/>
+    <property name="java.vm.vendor" value="Amazon.com Inc."/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://aws.amazon.com/corretto/"/>
+    <property name="user.timezone" value="America/New_York"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="os.name" value="Windows 10"/>
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="sun.os.patch.level" value=""/>
-    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Users\brand\Documents\GitHub\CEN4072\SWT-AirlineProduct"/>
-    <property name="intellij.debug.agent" value="true"/>
-    <property name="java.runtime.version" value="1.8.0_282-b08"/>
-    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="java.endorsed.dirs" value="C:\Users\brand\.jdks\corretto-1.8.0_282\jre\lib\endorsed"/>
-    <property name="os.arch" value="amd64"/>
-    <property name="java.io.tmpdir" value="C:\Users\brand\AppData\Local\Temp\"/>
-    <property name="line.separator" value="
-"/>
-    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="user.variant" value=""/>
-    <property name="os.name" value="Windows 10"/>
-    <property name="maven.ext.class.path" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.3.2\plugins\maven\lib\maven-event-listener.jar"/>
-    <property name="classworlds.conf" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.3.2\plugins\maven\lib\maven3\bin\m2.conf"/>
-    <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Users\brand\.jdks\corretto-1.8.0_282\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Oculus\Support\oculus-runtime;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Dart\dart-sdk\bin;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\Brackets\command;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\apache-maven-3.6.3-bin\apache-maven-3.6.3\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\brand\AppData\Local\Microsoft\WindowsApps;C:\Users\brand\AppData\Local\Programs\Microsoft VS Code\bin;C:\src\flutter\bin;C:\Users\brand\AppData\Local\GitHubDesktop\bin;C:\Windows\System32;;C:\Users\brand\AppData\Local\Microsoft\WindowsApps;."/>
-    <property name="jboss.modules.system.pkgs" value="com.intellij.rt"/>
-    <property name="maven.conf" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.3.2\plugins\maven\lib\maven3/conf"/>
-    <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="java.class.version" value="52.0"/>
-    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="10.0"/>
-    <property name="user.home" value="C:\Users\brand"/>
-    <property name="user.timezone" value="America/New_York"/>
-    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
-    <property name="java.specification.version" value="1.8"/>
-    <property name="file.encoding" value="UTF-8"/>
-    <property name="user.name" value="brand"/>
-    <property name="java.class.path" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.3.2\plugins\maven\lib\maven3\boot\plexus-classworlds-2.6.0.jar;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.3.2\plugins\maven\lib\maven3\boot\plexus-classworlds.license;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.3.2\lib\idea_rt.jar;C:\Users\brand\AppData\Local\JetBrains\IdeaIC2020.3\captureAgent\debugger-agent.jar"/>
-    <property name="java.vm.specification.version" value="1.8"/>
-    <property name="sun.arch.data.model" value="64"/>
-    <property name="java.home" value="C:\Users\brand\.jdks\corretto-1.8.0_282\jre"/>
-    <property name="sun.java.command" value="org.codehaus.classworlds.Launcher -Didea.version=2020.3.2 install"/>
-    <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="user.language" value="en"/>
-    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
-    <property name="java.vm.info" value="mixed mode"/>
-    <property name="java.version" value="1.8.0_282"/>
-    <property name="java.ext.dirs" value="C:\Users\brand\.jdks\corretto-1.8.0_282\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
-    <property name="sun.boot.class.path" value="C:\Users\brand\.jdks\corretto-1.8.0_282\jre\lib\resources.jar;C:\Users\brand\.jdks\corretto-1.8.0_282\jre\lib\rt.jar;C:\Users\brand\.jdks\corretto-1.8.0_282\jre\lib\sunrsasign.jar;C:\Users\brand\.jdks\corretto-1.8.0_282\jre\lib\jsse.jar;C:\Users\brand\.jdks\corretto-1.8.0_282\jre\lib\jce.jar;C:\Users\brand\.jdks\corretto-1.8.0_282\jre\lib\charsets.jar;C:\Users\brand\.jdks\corretto-1.8.0_282\jre\lib\jfr.jar;C:\Users\brand\.jdks\corretto-1.8.0_282\jre\classes"/>
-    <property name="java.vendor" value="Amazon.com Inc."/>
-    <property name="maven.home" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.3.2\plugins\maven\lib\maven3"/>
-    <property name="file.separator" value="\"/>
-    <property name="java.vendor.url.bug" value="https://github.com/corretto/corretto-8/issues/"/>
+    <property name="sun.boot.library.path" value="C:\Users\brand\.jdks\corretto-1.8.0_282\jre\bin"/>
+    <property name="sun.java.command" value="C:\Users\brand\AppData\Local\Temp\surefire5504364475613526629\surefirebooter2271795028789122489.jar C:\Users\brand\AppData\Local\Temp\surefire5504364475613526629 2021-04-19T20-08-05_501-jvmRun1 surefire3232268812987972668tmp surefire_08507329445062239079tmp"/>
+    <property name="surefire.test.class.path" value="C:\Users\brand\Documents\GitHub\CEN4072\SWT-AirlineProduct\target\test-classes;C:\Users\brand\Documents\GitHub\CEN4072\SWT-AirlineProduct\target\classes;C:\Users\brand\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.7.1\junit-jupiter-api-5.7.1.jar;C:\Users\brand\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\brand\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\brand\.m2\repository\org\junit\platform\junit-platform-commons\1.7.1\junit-platform-commons-1.7.1.jar;C:\Users\brand\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.7.1\junit-jupiter-engine-5.7.1.jar;C:\Users\brand\.m2\repository\org\junit\platform\junit-platform-engine\1.7.1\junit-platform-engine-1.7.1.jar;C:\Users\brand\.m2\repository\org\junit\platform\junit-platform-runner\1.2.0\junit-platform-runner-1.2.0.jar;C:\Users\brand\.m2\repository\org\junit\platform\junit-platform-launcher\1.2.0\junit-platform-launcher-1.2.0.jar;C:\Users\brand\.m2\repository\org\junit\platform\junit-platform-suite-api\1.2.0\junit-platform-suite-api-1.2.0.jar;C:\Users\brand\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\brand\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\brand\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.2.0\junit-jupiter-params-5.2.0.jar;C:\Users\brand\.m2\repository\org\mockito\mockito-core\3.8.0\mockito-core-3.8.0.jar;C:\Users\brand\.m2\repository\net\bytebuddy\byte-buddy\1.10.20\byte-buddy-1.10.20.jar;C:\Users\brand\.m2\repository\net\bytebuddy\byte-buddy-agent\1.10.20\byte-buddy-agent-1.10.20.jar;C:\Users\brand\.m2\repository\org\objenesis\objenesis\3.1\objenesis-3.1.jar;C:\Users\brand\.m2\repository\org\mockito\mockito-junit-jupiter\3.8.0\mockito-junit-jupiter-3.8.0.jar;C:\Users\brand\.m2\repository\mysql\mysql-connector-java\8.0.23\mysql-connector-java-8.0.23.jar;C:\Users\brand\.m2\repository\com\google\protobuf\protobuf-java\3.11.4\protobuf-java-3.11.4.jar;C:\Users\brand\.m2\repository\com\toedter\jcalendar\1.4\jcalendar-1.4.jar;C:\Users\brand\.m2\repository\org\assertj\assertj-swing-junit\3.17.1\assertj-swing-junit-3.17.1.jar;C:\Users\brand\.m2\repository\org\assertj\assertj-swing\3.17.1\assertj-swing-3.17.1.jar;C:\Users\brand\.m2\repository\org\assertj\assertj-core\3.17.2\assertj-core-3.17.2.jar;C:\Users\brand\.m2\repository\org\easytesting\fest-util\1.2.5\fest-util-1.2.5.jar;C:\Users\brand\.m2\repository\org\easytesting\fest-reflect\1.4.1\fest-reflect-1.4.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\brand"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.home" value="C:\Users\brand\.jdks\corretto-1.8.0_282\jre"/>
+    <property name="basedir" value="C:\Users\brand\Documents\GitHub\CEN4072\SWT-AirlineProduct"/>
+    <property name="file.separator" value="\"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="C:\Users\brand\AppData\Local\Temp\surefire5504364475613526629\surefirebooter2271795028789122489.jar"/>
+    <property name="sun.boot.class.path" value="C:\Users\brand\.jdks\corretto-1.8.0_282\jre\lib\resources.jar;C:\Users\brand\.jdks\corretto-1.8.0_282\jre\lib\rt.jar;C:\Users\brand\.jdks\corretto-1.8.0_282\jre\lib\sunrsasign.jar;C:\Users\brand\.jdks\corretto-1.8.0_282\jre\lib\jsse.jar;C:\Users\brand\.jdks\corretto-1.8.0_282\jre\lib\jce.jar;C:\Users\brand\.jdks\corretto-1.8.0_282\jre\lib\charsets.jar;C:\Users\brand\.jdks\corretto-1.8.0_282\jre\lib\jfr.jar;C:\Users\brand\.jdks\corretto-1.8.0_282\jre\classes"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="1.8.0_282-b08"/>
+    <property name="user.name" value="brand"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.endorsed.dirs" value="C:\Users\brand\.jdks\corretto-1.8.0_282\jre\lib\endorsed"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\brand\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/corretto/corretto-8/issues/"/>
+    <property name="java.io.tmpdir" value="C:\Users\brand\AppData\Local\Temp\"/>
+    <property name="idea.version" value="2020.3.2"/>
+    <property name="java.version" value="1.8.0_282"/>
+    <property name="user.dir" value="C:\Users\brand\Documents\GitHub\CEN4072\SWT-AirlineProduct"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.library.path" value="C:\Users\brand\.jdks\corretto-1.8.0_282\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Oculus\Support\oculus-runtime;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Dart\dart-sdk\bin;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\Brackets\command;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\apache-maven-3.6.3-bin\apache-maven-3.6.3\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\brand\AppData\Local\Microsoft\WindowsApps;C:\Users\brand\AppData\Local\Programs\Microsoft VS Code\bin;C:\src\flutter\bin;C:\Users\brand\AppData\Local\GitHubDesktop\bin;C:\Windows\System32;;C:\Users\brand\AppData\Local\Microsoft\WindowsApps;."/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vendor" value="Amazon.com Inc."/>
+    <property name="java.vm.version" value="25.282-b08"/>
+    <property name="java.ext.dirs" value="C:\Users\brand\.jdks\corretto-1.8.0_282\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="sun.desktop" value="windows"/>
-    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="java.class.version" value="52.0"/>
   </properties>
-  <testcase classname="AddressTest" name="Address country, empty (Invalid))" time="0.009"/>
-  <testcase classname="AddressTest" name="Address, no numbers (Invalid)" time="0"/>
-  <testcase classname="AddressTest" name="Address state, empty (Invalid))" time="0"/>
-  <testcase classname="AddressTest" name="Address city, empty (Invalid))" time="0"/>
-  <testcase classname="AddressTest" name="Address, toString()" time="0"/>
-  <testcase classname="AddressTest" name="Address zipCode, empty (Invalid))" time="0"/>
-  <testcase classname="AddressTest" name="Address, valid" time="0.001"/>
-  <testcase classname="AddTicketTest" name="Valid seats" time="0.185"/>
-  <testcase classname="AddTicketTest" name="Invalid seats, 0" time="0.001"/>
-  <testcase classname="AddTicketTest" name="Invalid seats, too many" time="0.001"/>
-  <testcase classname="CustomerTest" name="Last name, invalid numerical" time="0.003"/>
-  <testcase classname="CustomerTest" name="First name, valid with dash and apostrophe" time="0.002"/>
-  <testcase classname="CustomerTest" name="Passport, valid" time="0.002"/>
-  <testcase classname="CustomerTest" name="Last name, valid" time="0.003"/>
-  <testcase classname="CustomerTest" name="Last name, valid" time="0.002"/>
-  <testcase classname="CustomerTest" name="NIC, invalid (Non-alphanumeric characters)" time="0.002"/>
-  <testcase classname="CustomerTest" name="Last name, invalid (Numbers in name)" time="0.002"/>
-  <testcase classname="CustomerTest" name="First name, valid" time="0.003"/>
-  <testcase classname="CustomerTest" name="Last name, valid" time="0.003"/>
-  <testcase classname="CustomerTest" name="Passport, invalid (Non-alphanumeric characters)" time="0.003"/>
-  <testcase classname="CustomerTest" name="First name, valid with dash" time="0.002"/>
-  <testcase classname="CustomerTest" name="Phone number, numerical input under 14 characters" time="0.002"/>
-  <testcase classname="CustomerTest" name="Gender, valid (Female)" time="0.002"/>
-  <testcase classname="CustomerTest" name="NIC, valid" time="0.002"/>
-  <testcase classname="CustomerTest" name="Last name, valid" time="0.008"/>
-  <testcase classname="CustomerTest" name="First name, invalid (Numbers in name)" time="0.003"/>
-  <testcase classname="CustomerTest" name="Date of birth, invalid (Illegal format)" time="0.003"/>
-  <testcase classname="CustomerTest" name="Address, invalid" time="0.002"/>
-  <testcase classname="CustomerTest" name="Address, valid" time="0.002"/>
-  <testcase classname="CustomerTest" name="First name, valid with apostrophe" time="0.002"/>
-  <testcase classname="CustomerTest" name="Phone number, numerical input over 14 characters" time="0.002"/>
-  <testcase classname="CustomerTest" name="First name, invalid (Numbers in name)" time="0.002"/>
-  <testcase classname="CustomerTest" name="Date of birth, valid" time="0.002"/>
-  <testcase classname="CustomerTest" name="Phone number, numerical input under 7 characters" time="0.002"/>
-  <testcase classname="CustomerTest" name="First name, invalid (Symbols in name)" time="0.002"/>
-  <testcase classname="CustomerTest" name="Gender, invalid (Not Male or Female)" time="0.002"/>
-  <testcase classname="CustomerTest" name="Gender, valid (Male)" time="0.002"/>
-  <testcase classname="FlightTest" name="Id, invalid (Not enough digits)" time="0.006"/>
-  <testcase classname="FlightTest" name="Id, invalid (Too many digits)" time="0"/>
-  <testcase classname="FlightTest" name="Id, invalid (Improper prefix)" time="0"/>
-  <testcase classname="FlightTest" name="Id, valid" time="0.001"/>
-  <testcase classname="addCustomerTest" name="Just run - testing coverage" time="0.263"/>
-  <testcase classname="addFlightTest" name="testFields()" time="0"/>
-  <testcase classname="LoginTest" name="test()" time="1.34"/>
-  <testcase classname="searchCustomerTest" name="Search by Customer ID, valid ID" time="0.03"/>
-  <testcase classname="searchCustomerTest" name="Search by Customer ID, SQLException" time="0.004"/>
-  <testcase classname="ticketReportTest" name="Change price based on number of seats" time="0.021"/>
-  <testcase classname="ticketTest" name="Retrieve list of flights from India to Uk" time="0.044"/>
-  <testcase classname="userCreationTest" name="Just run - testing coverage" time="0"/>
-  <testcase classname="AutoIDServiceTest" name="testAutoIDInvalid()" time="0"/>
+  <testcase name="testAutoIDInvalid()" classname="AutoIDServiceTest" time="0.399">
+    <system-err><![CDATA[Loading class `com.mysql.jdbc.Driver'. This is deprecated. The new driver class is `com.mysql.cj.jdbc.Driver'. The driver is automatically registered via the SPI and manual loading of the driver class is generally unnecessary.
+]]></system-err>
+  </testcase>
+  <testcase name="testFields()" classname="addFlightTest" time="0.002"/>
+  <testcase name="Address country, empty (Invalid))" classname="AddressTest" time="0.002"/>
+  <testcase name="Address, no numbers (Invalid)" classname="AddressTest" time="0.001"/>
+  <testcase name="Address state, empty (Invalid))" classname="AddressTest" time="0"/>
+  <testcase name="Address city, empty (Invalid))" classname="AddressTest" time="0"/>
+  <testcase name="Address, toString()" classname="AddressTest" time="0.001"/>
+  <testcase name="Address zipCode, empty (Invalid))" classname="AddressTest" time="0.001"/>
+  <testcase name="Address, valid" classname="AddressTest" time="0"/>
+  <testcase name="Search by Customer ID, valid ID" classname="searchCustomerTest" time="0.06"/>
+  <testcase name="Search by Customer ID, SQLException" classname="searchCustomerTest" time="0.009"/>
+  <testcase name="Retrieve list of flights from India to Uk" classname="ticketTest" time="0.089"/>
+  <testcase name="Valid seats" classname="AddTicketTest" time="0.002"/>
+  <testcase name="Invalid seats, too many" classname="AddTicketTest" time="0.001"/>
+  <testcase name="Invalid Date, improper format" classname="AddTicketTest" time="0"/>
+  <testcase name="Valid price, numeric" classname="AddTicketTest" time="0"/>
+  <testcase name="Valid Date, proper format" classname="AddTicketTest" time="0.001"/>
+  <testcase name="Invalid seats, 0" classname="AddTicketTest" time="0"/>
+  <testcase name="Invalid price, alphanumeric" classname="AddTicketTest" time="0"/>
+  <testcase name="Just run - testing coverage" classname="userCreationTest" time="0"/>
+  <testcase name="Change price based on number of seats" classname="ticketReportTest" time="0.026">
+    <system-err><![CDATA[Apr 19, 2021 8:08:08 PM View.TicketReport LoadData
+SEVERE: null
+Model.Ticket$InvalidTicketInputException: Invalid number of seats.
+	at Model.Ticket.setSeats(Ticket.java:49)
+	at Model.Ticket.<init>(Ticket.java:111)
+	at Service.TicketDao.GetTicketFromResultSet(TicketDao.java:96)
+	at Service.TicketDao.getAll(TicketDao.java:79)
+	at View.TicketReport.LoadData(TicketReport.java:83)
+	at View.TicketReport.<init>(TicketReport.java:26)
+	at Unit.View.ticketReportTest.beforeEach(ticketReportTest.java:16)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:688)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:149)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptLifecycleMethod(TimeoutExtension.java:126)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptBeforeEachMethod(TimeoutExtension.java:76)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(ExecutableInvoker.java:115)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.lambda$invoke$0(ExecutableInvoker.java:105)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:104)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:98)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeMethodInExtensionContext(ClassBasedTestDescriptor.java:490)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$synthesizeBeforeEachMethodAdapter$19(ClassBasedTestDescriptor.java:475)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeBeforeEachMethods$2(TestMethodTestDescriptor.java:167)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeBeforeMethodsOrCallbacksUntilExceptionOccurs$5(TestMethodTestDescriptor.java:195)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeBeforeMethodsOrCallbacksUntilExceptionOccurs(TestMethodTestDescriptor.java:195)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeBeforeEachMethods(TestMethodTestDescriptor.java:164)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:127)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:65)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:32)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:51)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:170)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:154)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:90)
+	at org.junit.platform.runner.JUnitPlatform.run(JUnitPlatform.java:139)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:364)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:272)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:237)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:158)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:428)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:562)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:548)
+
+]]></system-err>
+  </testcase>
+  <testcase name="Just run - testing coverage" classname="addCustomerTest" time="0.044"/>
+  <testcase name="arrival time, invalid (improper format)" classname="FlightTest" time="0.002"/>
+  <testcase name="Update in database" classname="FlightTest" time="0.005"/>
+  <testcase name="Id, invalid (Not enough digits)" classname="FlightTest" time="0.005"/>
+  <testcase name="Id, invalid (Improper prefix)" classname="FlightTest" time="0.001"/>
+  <testcase name="charge, invalid (alphabetic)" classname="FlightTest" time="0.001"/>
+  <testcase name="date, invalid (improper format)" classname="FlightTest" time="0.001"/>
+  <testcase name="Id, invalid (Too many digits)" classname="FlightTest" time="0.001"/>
+  <testcase name="source location, invalid option" classname="FlightTest" time="0.001"/>
+  <testcase name="Id, valid" classname="FlightTest" time="0.003"/>
+  <testcase name="name, invalid (alphanumeric)" classname="FlightTest" time="0.002"/>
+  <testcase name="departure location, invalid option" classname="FlightTest" time="0.002"/>
+  <testcase name="departure time, invalid (improper format)" classname="FlightTest" time="0.002"/>
+  <testcase name="testInvalidUsernameTooManyChar()" classname="UserTest" time="0.003">
+    <system-out><![CDATA[Successfully initialized user. null Todd Bauer TBFlow testPassw0rd
+]]></system-out>
+  </testcase>
+  <testcase name="testValidPassword()" classname="UserTest" time="0.002">
+    <system-out><![CDATA[Successfully initialized user. null Todd Bauer TBFlow testPassw0rd
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateInDatabase()" classname="UserTest" time="0.001">
+    <system-out><![CDATA[Successfully initialized user. null Todd Bauer TBFlow testPassw0rd
+]]></system-out>
+  </testcase>
+  <testcase name="testValidLastName()" classname="UserTest" time="0.002">
+    <system-out><![CDATA[Successfully initialized user. null Todd Bauer TBFlow testPassw0rd
+]]></system-out>
+  </testcase>
+  <testcase name="testNonUniqueUserName()" classname="UserTest" time="0.001">
+    <system-out><![CDATA[Successfully initialized user. null Todd Bauer TBFlow testPassw0rd
+]]></system-out>
+  </testcase>
+  <testcase name="Create user, pairwise for all valid and invalid inputs" classname="UserTest" time="0.003">
+    <system-out><![CDATA[Successfully initialized user. null Todd Bauer TBFlow testPassw0rd
+Successfully initialized user. null Todd Bauer TBFlow l33Tc0d3r
+]]></system-out>
+  </testcase>
+  <testcase name="testValidUsername()" classname="UserTest" time="0.002">
+    <system-out><![CDATA[Successfully initialized user. null Todd Bauer TBFlow testPassw0rd
+]]></system-out>
+  </testcase>
+  <testcase name="testInvalidUsernameTooLittleChar()" classname="UserTest" time="0.002">
+    <system-out><![CDATA[Successfully initialized user. null Todd Bauer TBFlow testPassw0rd
+]]></system-out>
+  </testcase>
+  <testcase name="testInvalidLastNameNumbers()" classname="UserTest" time="0.001">
+    <system-out><![CDATA[Successfully initialized user. null Todd Bauer TBFlow testPassw0rd
+]]></system-out>
+  </testcase>
+  <testcase name="testUniqueUserName()" classname="UserTest" time="0.002">
+    <system-out><![CDATA[Successfully initialized user. null Todd Bauer TBFlow testPassw0rd
+]]></system-out>
+  </testcase>
+  <testcase name="testInvalidFirstNameNumbers()" classname="UserTest" time="0.001">
+    <system-out><![CDATA[Successfully initialized user. null Todd Bauer TBFlow testPassw0rd
+]]></system-out>
+  </testcase>
+  <testcase name="testValidFirstName()" classname="UserTest" time="0.001">
+    <system-out><![CDATA[Successfully initialized user. null Todd Bauer TBFlow testPassw0rd
+]]></system-out>
+  </testcase>
+  <testcase name="[1] 123451123(testInvalidPasswordNoLetters" classname="String)" time="0.013">
+    <system-out><![CDATA[Successfully initialized user. null Todd Bauer TBFlow testPassw0rd
+]]></system-out>
+  </testcase>
+  <testcase name="[2] ADFADFA12(testInvalidPasswordNoLetters" classname="String)" time="0.001">
+    <system-out><![CDATA[Successfully initialized user. null Todd Bauer TBFlow testPassw0rd
+]]></system-out>
+  </testcase>
+  <testcase name="[3] fadifjadijfaoijdsfoiajdsfoijadsoi1Pf(testInvalidPasswordNoLetters" classname="String)" time="0.001">
+    <system-out><![CDATA[Successfully initialized user. null Todd Bauer TBFlow testPassw0rd
+]]></system-out>
+  </testcase>
+  <testcase name="[4] a(testInvalidPasswordNoLetters" classname="String)" time="0.001">
+    <system-out><![CDATA[Successfully initialized user. null Todd Bauer TBFlow testPassw0rd
+]]></system-out>
+  </testcase>
+  <testcase name="[5] testpassw0rd(testInvalidPasswordNoLetters" classname="String)" time="0.001">
+    <system-out><![CDATA[Successfully initialized user. null Todd Bauer TBFlow testPassw0rd
+]]></system-out>
+  </testcase>
+  <testcase name="[6] testPassword(testInvalidPasswordNoLetters" classname="String)" time="0">
+    <system-out><![CDATA[Successfully initialized user. null Todd Bauer TBFlow testPassw0rd
+]]></system-out>
+  </testcase>
+  <testcase name="Last name, invalid numerical" classname="CustomerTest" time="0.002">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="First name, valid with dash and apostrophe" classname="CustomerTest" time="0.002">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="Passport, valid" classname="CustomerTest" time="0.002">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="Last name, valid" classname="CustomerTest" time="0.001">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="Last name, valid" classname="CustomerTest" time="0.002">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="Last name, valid" classname="CustomerTest" time="0.001">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="Last name, valid" classname="CustomerTest" time="0.001">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="NIC, invalid (Non-alphanumeric characters)" classname="CustomerTest" time="0.002">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="Last name, invalid (Numbers in name)" classname="CustomerTest" time="0.002">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="First name, valid" classname="CustomerTest" time="0.001">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="Passport, invalid (Non-alphanumeric characters)" classname="CustomerTest" time="0.001">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="First name, valid with dash" classname="CustomerTest" time="0.002">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="Phone number, numerical input under 14 characters" classname="CustomerTest" time="0.001">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="Gender, valid (Female)" classname="CustomerTest" time="0.002">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="NIC, valid" classname="CustomerTest" time="0.001">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="First name, invalid (Numbers in name)" classname="CustomerTest" time="0.002">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="First name, invalid (Numbers in name)" classname="CustomerTest" time="0.003">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="Date of birth, invalid (Illegal format)" classname="CustomerTest" time="0.002">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="Address, invalid" classname="CustomerTest" time="0.002">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="Address, valid" classname="CustomerTest" time="0.002">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="First name, valid with apostrophe" classname="CustomerTest" time="0.002">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="Phone number, numerical input over 14 characters" classname="CustomerTest" time="0.002">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="Date of birth, valid" classname="CustomerTest" time="0.002">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="Phone number, numerical input under 7 characters" classname="CustomerTest" time="0.002">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="First name, invalid (Symbols in name)" classname="CustomerTest" time="0.001">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="Gender, invalid (Not Male or Female)" classname="CustomerTest" time="0.002">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="Gender, valid (Male)" classname="CustomerTest" time="0.002">
+    <system-out><![CDATA[didSet address 123 Main Street Fort Myers Florida 33913 United States
+]]></system-out>
+  </testcase>
+  <testcase name="testEmptyLogin()" classname="LoginTest" time="27.189"/>
+  <testcase name="test()" classname="LoginTest" time="0.071"/>
+  <testcase name="testInvalidLogin()" classname="LoginTest" time="1.256"/>
+  <testcase name="updateCustomerInDB()" classname="CustomerDaoTest" time="0.834">
+    <system-out><![CDATA[didSet address 123 S. Washington St. Fort Myers FL 33904 USA
+]]></system-out>
+  </testcase>
+  <testcase name="addValidCustomerToDB()" classname="CustomerDaoTest" time="0.08">
+    <system-out><![CDATA[didSet address 123 S. Washington St. Fort Myers FL 33904 USA
+]]></system-out>
+  </testcase>
+  <testcase name="addValidTicketToDB()" classname="TicketDaoTest" time="0.001"/>
+  <testcase name="updateTicketInDB()" classname="TicketDaoTest" time="0.001"/>
+  <testcase name="addValidFlightToDB()" classname="FlightDaoTest" time="0.009"/>
+  <testcase name="updateFlightInDB()" classname="FlightDaoTest" time="0.002"/>
 </testsuite>

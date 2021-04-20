@@ -30,7 +30,7 @@ import Service.NetworkService;
  * and open the template in the editor.
  */
 
-public class AddTicket extends javax.swing.JInternalFrame {
+public class AddTicket extends javax.swing.JFrame {
 	CustomerDao cDao = new CustomerDao();
 	TicketDao tDao = new TicketDao();
 
@@ -40,10 +40,26 @@ public class AddTicket extends javax.swing.JInternalFrame {
 	public AddTicket() {
 		initComponents();
 		autoID();
+		setIdentifiers();
 	}
+
 	private void autoID() {
 		String id = AutoIDService.generateAutoID("ticket", "TO");
 		txtticketno.setText(id);
+	}
+
+	private void setIdentifiers() {
+//		jButton1;
+//		jButton2;
+//		jButton3;
+//		jButton4;
+//		txtprice;
+//		txtseats;
+//		txtsource;
+//		jTable1;
+//		txtclass;
+//		txtcustid;
+//		txtdepart;
 	}
 
 	/**
