@@ -4,8 +4,6 @@ import Model.User;
 import org.junit.jupiter.api.*;
 import Model.User.InvalidUserInputException;
 import Service.AutoIDService;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class UserTest {
     static String id;
@@ -70,30 +68,7 @@ public class UserTest {
     }
 
 
-    @Test
-    void testValidPassword() {
-        Assertions.assertDoesNotThrow(() -> user.setPassword("testPassw0rd"));
-    }
 
-    // TODO there is not a test case table for these
-    // They might be able to be combined into one test case table?
-    // testInvalidPasswordNoLetters
-    // testInvalidPasswordNoLowercase
-    // testInvalidPasswordTooManyChar
-    // testInvalidPasswordTooLittleChar
-
-    // But there is a test case table for:
-    // testInvalidPasswordNoUppercase
-    // testInvalidPasswordNoNumbers
-    // the following test tests all 6 above test cases
-    @ParameterizedTest
-    @ValueSource(strings = {"123451123", "ADFADFA12",
-            "fadifjadijfaoijdsfoiajdsfoijadsoi1Pf", "a",
-            "testpassw0rd", "testPassword"})
-    void testInvalidPasswordNoLetters(String password) {
-        Exception e = Assertions.assertThrows(InvalidUserInputException.class, () -> user.setPassword(password));
-        Assertions.assertEquals(e.getMessage(), "Invalid Password.");
-    }
 
     @Test
     void testValidFirstName() {

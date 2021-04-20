@@ -1,4 +1,4 @@
-package Unit.View;
+package GUI;
 
 import View.Main;
 import org.assertj.swing.edt.GuiActionRunner;
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 
-public class SearchCustomerViewTest {
+public class AddTicketViewTest {
     private FrameFixture window;
     private JInternalFrameFixture sut;
 
@@ -20,8 +20,8 @@ public class SearchCustomerViewTest {
         window = new FrameFixture(frame);
         window.show(); // shows the frame to tests
 
-        window.menuItem("jMenuItem2").click();
-        sut = window.internalFrame("SearchCustomer");
+        window.menuItem("jMenuItem3").click();
+        sut = window.internalFrame("AddTicket");
     }
 
     @AfterEach
@@ -30,12 +30,21 @@ public class SearchCustomerViewTest {
     }
 
     @Test
-    void testUpdateCustomer() throws InterruptedException {
-        sut.textBox("txtcustid").setText("CS001");
+    void testAddTicket() throws InterruptedException {
+        sut.textBox("txtcustid").setText("CS001");;
         sut.button("jButton4").click();
 
-        sut.textBox("txtfirstname").setText("Brandon");
-        sut.textBox("txtlastname").setText("Baker");
-        sut.button("jButton2").click();
+        sut.comboBox("txtsource").selectItem(0);
+        sut.comboBox("txtdepart").selectItem(2);
+        sut.button("jButton3").click();
+
+        sut.table().cell("India").click();
+
+        sut.comboBox("txtclass").selectItem("Economy");
+        sut.textBox("txtprice").setText("100");
+        sut.spinner("txtseats").increment();
+
+        sut.button("jButton1").click();
     }
+
 }

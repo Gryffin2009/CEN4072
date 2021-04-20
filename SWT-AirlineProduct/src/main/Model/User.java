@@ -90,10 +90,8 @@ public class User {
 		if (userName.matches("^[a-zA-z]{4,20}$")) {
 			this.userName = userName;
 		// If invalid user name, throw InvalidUserInputException
-		} else if (!userName.matches("^[a-zA-z]{4,20}$"))  {
-			throw new InvalidUserInputException("Invalid Username.");
 		} else {
-			throw new InvalidUserInputException("Username already exists.");
+			throw new InvalidUserInputException("Invalid Username.");
 		}
 	}
 

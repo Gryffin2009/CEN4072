@@ -1,4 +1,4 @@
-package Unit.View;
+package GUI;
 
 import View.Login;
 import View.Main;

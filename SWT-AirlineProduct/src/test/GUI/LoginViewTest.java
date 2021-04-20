@@ -1,4 +1,4 @@
-package Unit.View;
+package GUI;
 
 import View.Login;
 import org.assertj.swing.edt.GuiActionRunner;
@@ -36,7 +36,7 @@ public class LoginViewTest {
   @Test
   public void loginTestComponents() {
     JTextComponentFixture userNameTextField = window.textBox("userTxt").enterText("john");
-    JTextComponentFixture passwordTextField = window.textBox("passwordTxt").enterText("123");
+    JTextComponentFixture passwordTextField = window.textBox("passwordTxt").enterText("Passw0rd");
     JButtonFixture loginButton = window.button("loginBtn").click();
   }
 

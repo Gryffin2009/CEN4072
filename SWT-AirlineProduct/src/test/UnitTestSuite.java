@@ -5,7 +5,6 @@ import org.junit.runner.RunWith;
 
 @RunWith(JUnitPlatform.class)
 @SuiteDisplayName("JUnit Platform Suite Demo")
-@SelectPackages({"Unit", "Integration"})
-public class TestSuite {
-
+@SelectPackages({"Unit"})
+public class UnitTestSuite {
 }
