@@ -248,6 +248,16 @@ public class CustomerTest {
 	}
 
 	// Tries to pass a valid gender to the Customer class.
+	/*
+	 * Test Case ID: TC-C-15
+	 * Requirement ID/Description: C-8 Customers shall have a valid gender. A valid gender shall
+	 * 			be either male or female.
+	 * Purpose: To ensure only valid values are accepted.
+	 * Test setup: A customer object is created for the setup.
+	 * Test Strategy: positive
+	 * Input: "Male"
+	 * Expected Output: Gender value is accepted.
+	 */
 	@Test
 	@DisplayName("Gender, valid (Male)")
 	void testGenderValidMale() {
@@ -255,6 +265,16 @@ public class CustomerTest {
 	}
 
 	// Tries to pass a valid gender to the Customer class.
+	/*
+	 * Test Case ID: TC-C-16
+	 * Requirement ID/Description: C-8 Customers shall have a valid gender. A valid gender shall
+	 * 			be either male or female.
+	 * Purpose: To ensure only valid values are accepted.
+	 * Test setup: A customer object is created for the setup.
+	 * Test Strategy: positive
+	 * Input: "Female"
+	 * Expected Output: Gender value is accepted.
+	 */
 	@Test
 	@DisplayName("Gender, valid (Female)")
 	void testGenderValidFemale() {
@@ -262,6 +282,16 @@ public class CustomerTest {
 	}
 
 	// Tries to pass an invalid gender by using a gender that is not Male or Female.
+	/*
+	 * Test Case ID: TC-C-17
+	 * Requirement ID/Description: C-8 Customers shall have a valid gender. A valid gender shall
+	 * 			be either male or female.
+	 * Purpose: To ensure only valid values are accepted.
+	 * Test setup: A customer object is created for the setup.
+	 * Test Strategy: negative
+	 * Input: "Badger"
+	 * Expected Output: Gender value is not accepted.
+	 */
 	@Test
 	@DisplayName("Gender, invalid (Not Male or Female)")
 	void testGenderInvalidNonalphanumeric() throws InvalidCustomerInputException, Exception {
