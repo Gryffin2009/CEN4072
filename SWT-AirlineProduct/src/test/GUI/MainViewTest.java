@@ -1,16 +1,11 @@
 package GUI;
 
-import View.Login;
 import View.Main;
 import org.assertj.swing.edt.GuiActionRunner;
 import org.assertj.swing.fixture.FrameFixture;
-import org.assertj.swing.fixture.JButtonFixture;
-import org.assertj.swing.fixture.JTextComponentFixture;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import javax.swing.*;
 
 public class MainViewTest {
     private FrameFixture window;
@@ -27,6 +22,22 @@ public class MainViewTest {
         window.cleanUp();
     }
 
+    /*
+    Test Case ID: #MUI-1-1
+    Requirement ID/Description: All other UI windows shall be accessible from the Main UI window.
+    Test Setup: Create a window frame of the Main screen with AssertJ.
+    Test Strategy: Use AssertJ to systematically click every toolbar navigation option to open
+        the following windows:
+        add customer
+        search customer
+        book ticket
+        add flight
+        ticket report
+        add user
+    Input: The user clicks on every toolbar navigation option.
+    Expected Output: All relevant windows are opened from the Main window with no errors or
+        missing windows.
+     */
     @Test
     public void testAllMenuItems() {
         String[] menuItems = {"jMenuItem1","jMenuItem2","jMenuItem3","jMenuItem4","jMenuItem5","jMenuItem6"};

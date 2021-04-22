@@ -1,8 +1,6 @@
 package View;
 
-import Model.Address.InvalidAddressInputException;
 import Model.Customer;
-import Model.Customer.InvalidCustomerInputException;
 import Model.Ticket;
 import Service.CustomerDao;
 import Service.TicketDao;

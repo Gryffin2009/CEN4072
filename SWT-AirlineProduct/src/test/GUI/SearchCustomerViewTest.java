@@ -29,6 +29,18 @@ public class SearchCustomerViewTest {
         window.cleanUp();
     }
 
+    /*
+    Test Case ID: #SUI-1-1
+    Requirement ID/Description: SUI-1, The software shall allow the user to search the database
+        for customers by Customer ID.
+    Test Setup: Create a window frame of the SearchCustomer screen with AssertJ.
+    Test Strategy: Search for an existing customer in the database, then update their first and
+        last name and ensure the database has changed to reflect this change.
+    Input: The user searches for customer CS001 and changes the first name to “Brandon” and last
+        name to “Baker”, then clicks the submit button.
+    Expected Output: The database entry for CS001 is updated with the first name “Brandon” and
+        last name “Baker”.
+     */
     @Test
     void testUpdateCustomer() throws InterruptedException {
         sut.textBox("txtcustid").setText("CS001");

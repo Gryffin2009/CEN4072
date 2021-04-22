@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 import Model.Flight;
-import Model.Flight.InvalidFlightInputException;
 import Service.AutoIDService;
 
 

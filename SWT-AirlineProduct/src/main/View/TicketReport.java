@@ -1,9 +1,7 @@
 package View;
 
 import Model.Ticket;
-import Model.Ticket.InvalidTicketInputException;
 import Service.TicketDao;
-import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
