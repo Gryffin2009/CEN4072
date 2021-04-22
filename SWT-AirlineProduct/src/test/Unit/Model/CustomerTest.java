@@ -224,6 +224,16 @@ public class CustomerTest {
 	}
 	
 	// Tries to pass an invalid last name by using a name that contains numbers.
+	/*
+	 * Test Case ID: TC-16
+	 * Requirement ID/Description: C-4 Customers shall have a valid last name. A valid Customer last
+	 * 		name shall contain only alphabetic characters, apostrophes, and dashes.
+	 * Purpose: To ensure only valid values are accepted.
+	 * Test setup: A customer object is created for the setup.
+	 * Test Strategy: equivalence testing: block alphanumerical input (invalid)
+	 * Input: 120Bauer
+	 * Expected Output: Last name value is not accepted.
+	 */
 	@Test
 	@DisplayName("Last name, invalid (Numbers in name)")
 	void testLastnameInvalidAlphaNumerical() throws InvalidCustomerInputException, Exception {
@@ -232,6 +242,16 @@ public class CustomerTest {
 	}
 
 	// Tries to pass a valid date of birth to the Customer class.
+	/*
+	 * Test Case ID: TC-21
+	 * Requirement ID/Description: C-6 Customers shall have a valid date of birth. Customer date of]
+	 *		 birth shall be in the following format: YYYY-MM-DD
+	 * Purpose: To ensure only valid values are accepted.
+	 * Test setup: A customer object is created for the setup.
+	 * Test Strategy: equivalence testing: block valid date
+	 * Input: 1985-03-12
+	 * Expected Output: Date of birth value is accepted.
+	 */
 	@Test
 	@DisplayName("Date of birth, valid")
 	void testDobValid() {
@@ -239,6 +259,16 @@ public class CustomerTest {
 	}
 
 	// Tries to pass an invalid date of birth by using the format MM-DD-YYYY.
+	/*
+	 * Test Case ID: TC-22
+	 * Requirement ID/Description: C-6 Customers shall have a valid date of birth. Customer date of]
+	 *		 birth shall be in the following format: YYYY-MM-DD
+	 * Purpose: To ensure only valid values are accepted.
+	 * Test setup: A customer object is created for the setup.
+	 * Test Strategy: equivalence testing: block invalid date
+	 * Input: 03-12-1985
+	 * Expected Output: Date of birth value is not accepted.
+	 */
 	@Test
 	@DisplayName("Date of birth, invalid (Illegal format)")
 	void testDobInvalidNonalphanumeric() throws InvalidCustomerInputException, Exception {
@@ -254,7 +284,7 @@ public class CustomerTest {
 	 * 			be either male or female.
 	 * Purpose: To ensure only valid values are accepted.
 	 * Test setup: A customer object is created for the setup.
-	 * Test Strategy: positive
+	 * Test Strategy: equivalence testing: block valid gender
 	 * Input: "Male"
 	 * Expected Output: Gender value is accepted.
 	 */
@@ -271,7 +301,7 @@ public class CustomerTest {
 	 * 			be either male or female.
 	 * Purpose: To ensure only valid values are accepted.
 	 * Test setup: A customer object is created for the setup.
-	 * Test Strategy: positive
+	 * Test Strategy: equivalence testing: block valid gender
 	 * Input: "Female"
 	 * Expected Output: Gender value is accepted.
 	 */
@@ -288,7 +318,7 @@ public class CustomerTest {
 	 * 			be either male or female.
 	 * Purpose: To ensure only valid values are accepted.
 	 * Test setup: A customer object is created for the setup.
-	 * Test Strategy: negative
+	 * Test Strategy: equivalence testing: block invalid gender
 	 * Input: "Badger"
 	 * Expected Output: Gender value is not accepted.
 	 */
