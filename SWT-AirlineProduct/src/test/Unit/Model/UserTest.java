@@ -5,6 +5,9 @@ import org.junit.jupiter.api.*;
 import Model.User.InvalidUserInputException;
 import Service.AutoIDService;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
 public class UserTest {
     static String id;
     User user;
@@ -230,6 +233,10 @@ public class UserTest {
      **/
     @Test
     void testUniqueUserName() {
+        LocalDateTime before = LocalDateTime.now();
         Assertions.assertDoesNotThrow(() -> user.setUserName("shouldbeunique"));
+        LocalDateTime after = LocalDateTime.now();
+        long time = ChronoUnit.SECONDS.between(before, after);
+        Assertions.assertTrue(time < 1);
     }
 }

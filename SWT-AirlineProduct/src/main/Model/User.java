@@ -150,6 +150,8 @@ public class User {
 		return false;
 	}
 
+
+
 	/**
 	 * Ensures that a password contains 1 number, 1 uppercase letter, 1 lowercase letter, and is
 	 * between 5-15 characters in length.
