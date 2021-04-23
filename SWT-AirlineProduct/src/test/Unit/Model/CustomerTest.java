@@ -35,7 +35,15 @@ public class CustomerTest {
 	}
 
 	// Tries to pass a valid NIC to the Customer class.
-
+	/**
+	 * Test Case ID: NIC-1-1
+	 * Requirement: NIC-1 Customers shall have a NIC. A valid Customer NIC shall contain only alphanumeric characters.
+	 * Purpose: Tries to pass a valid NIC to the Customer class
+	 * Test setup: A NIC with the following value: A0983427C
+	 * Test Strategy: testNicValid is called and should not throw an exception.
+	 * Input: a valid NIC object
+	 * Expected output: the method should not throw an exception
+	 **/
 	@Test
 	@DisplayName("NIC, valid")
 	void testNicValid() {
@@ -45,6 +53,15 @@ public class CustomerTest {
 	}
 
 	// Tries to pass an invalid NIC by using a value that contains symbols.
+	/**
+	 * Test Case ID: NIC-1-2
+	 * Requirement: NIC-1 Customers shall have a NIC. A valid Customer NIC shall contain only alphanumeric characters.
+	 * Purpose: Tries to pass an invalid NIC to the Customer class
+	 * Test setup: A NIC with the following value: A983324&93-2C
+	 * Test Strategy: testNicInvalidNonalphanumeric is called and should throw an exception.
+	 * Input: an invalid NIC object
+	 * Expected output: the method should throw an exception
+	 **/
 	@Test
 	@DisplayName("NIC, invalid (Non-alphanumeric characters)")
 	void testNicInvalidNonalphanumeric() throws InvalidCustomerInputException, Exception {
@@ -103,6 +120,15 @@ public class CustomerTest {
 	}
 
 	// Tries to pass a valid passport number to the Customer class.
+	/**
+	 * Test Case ID: C-6-1
+	 * Requirement: C-6 Customers shall have a valid passport ID. A valid passport ID shall contain only numbers.
+	 * Purpose: Tries to pass a valid passport number to the Customer class
+	 * Test setup: A phone number with the following value: 324987324
+	 * Test Strategy: testPassportValid is called and should not throw an exception.
+	 * Input: a valid passport number object
+	 * Expected output: the method should not throw an exception
+	 **/
 	@Test
 	@DisplayName("Passport, valid")
 	void testPassportValid() {
@@ -110,6 +136,15 @@ public class CustomerTest {
 	}
 
 	// Tries to pass an invalid passport number by using a value that contains symbols.
+	/**
+	 * Test Case ID: C-6-2
+	 * Requirement: C-6 Customers shall have a valid passport ID. A valid passport ID shall contain only numbers.
+	 * Purpose: Tries to pass an invalid passport number to the Customer class
+	 * Test setup: A phone number with the following value: 32489-4329!938
+	 * Test Strategy: testPassportInvalidNonalphanumeric is called and should  throw an exception.
+	 * Input: an invalid passport number object
+	 * Expected output: the method should throw an exception
+	 **/
 	@Test
 	@DisplayName("Passport, invalid (Non-alphanumeric characters)")
 	void testPassportInvalidNonalphanumeric() throws InvalidCustomerInputException, Exception {
@@ -272,6 +307,15 @@ public class CustomerTest {
 	}
 
 	// Tries to pass an invalid first name by using a name that contains symbols.
+	/**
+	 * Test Case ID: C-4-8
+	 * Requirement: C-4 Customers shall have a valid first name. A valid Customer first name shall contain only alphabetic characters, apostrophes, and dashes.
+	 * Purpose: Tries to pass a invalid first name to the Customer class that contains symbols.
+	 * Test setup: A first name with the following value: "brandon$"
+	 * Test Strategy: testFirstnameInvalidSymbols is called and should throw an exception.
+	 * Input: an invalid first name object
+	 * Expected output: the method should throw an exception
+	 **/
 	@Test
 	@DisplayName("First name, invalid (Symbols in name)")
 	void testFirstnameInvalidSymbols() throws InvalidCustomerInputException, Exception {
@@ -284,7 +328,7 @@ public class CustomerTest {
 	 * Test Case ID: C-4-7
 	 * Requirement: C-4 Customers shall have a valid first name. A valid Customer first name shall contain only alphabetic characters, apostrophes, and dashes.
 	 * Purpose: Tries to pass a valid last name to the Customer class.
-	 * Test setup: A first name with the following value: "Bauer"
+	 * Test setup: A last name with the following value: "Bauer"
 	 * Test Strategy: testLastnameValid is called and should not throw an exception.
 	 * Input: a valid last name object
 	 * Expected output: the method should not throw an exception
@@ -299,6 +343,15 @@ public class CustomerTest {
 	
 
 	// Tries to pass a valid last name to the Customer class.
+	/**
+	 * Test Case ID: C-4-9
+	 * Requirement: C-4 Customers shall have a valid first name. A valid Customer first name shall contain only alphabetic characters, apostrophes, and dashes.
+	 * Purpose: Tries to pass a valid last name to the Customer class.
+	 * Test setup: A last name with the following value: "Bau-er"
+	 * Test Strategy: testLastnameValidWithDashes is called and should not throw an exception.
+	 * Input: a valid last name object
+	 * Expected output: the method should not throw an exception
+	 **/
 	@Test
 	@DisplayName("Last name, valid")
 	void testLastnameValidWithDashes() {
@@ -309,6 +362,15 @@ public class CustomerTest {
 	
 
 	// Tries to pass a valid last name to the Customer class.
+	/**
+	 * Test Case ID: C-4-10
+	 * Requirement: C-4 Customers shall have a valid first name. A valid Customer first name shall contain only alphabetic characters, apostrophes, and dashes.
+	 * Purpose: Tries to pass a valid last name to the Customer class.
+	 * Test setup: A last name with the following value: "Bau'er"
+	 * Test Strategy: testLastnameValidWithApostrophes is called and should not throw an exception.
+	 * Input: a valid last name object
+	 * Expected output: the method should not throw an exception
+	 **/
 	@Test
 	@DisplayName("Last name, valid")
 	void testLastnameValidWithApostrophes() {
@@ -319,6 +381,15 @@ public class CustomerTest {
 	
 
 	// Tries to pass a valid last name to the Customer class.
+	/**
+	 * Test Case ID: C-4-11
+	 * Requirement: C-4 Customers shall have a valid first name. A valid Customer first name shall contain only alphabetic characters, apostrophes, and dashes.
+	 * Purpose: Tries to pass a valid last name to the Customer class.
+	 * Test setup: A last name with the following value: "Ba-u'er"
+	 * Test Strategy: testLastnameValidWithApostrophesAndDashes is called and should not throw an exception.
+	 * Input: a valid last name object
+	 * Expected output: the method should not throw an exception
+	 **/
 	@Test
 	@DisplayName("Last name, valid")
 	void testLastnameValidWithApostrophesAndDashes() {
@@ -329,6 +400,15 @@ public class CustomerTest {
 	
 
 	// Tries to pass a invalid last name to the Customer class.
+	/**
+	 * Test Case ID: C-4-12
+	 * Requirement: C-4 Customers shall have a valid first name. A valid Customer first name shall contain only alphabetic characters, apostrophes, and dashes.
+	 * Purpose: Tries to pass an invalid last name to the Customer class.
+	 * Test setup: A last name with the following value: "120123131"
+	 * Test Strategy: testLastnameInvalidNumerical is called and should throw an exception.
+	 * Input: an invalid last name object
+	 * Expected output: the method should throw an exception
+	 **/
 	@Test
 	@DisplayName("Last name, invalid numerical")
 	void testLastnameInvalidNumerical() {

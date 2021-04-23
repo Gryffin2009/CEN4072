@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67c0aa4b-cd6d-4d22-8211-e25a1134bb8c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SWT-AirlineProduct/src/test/Unit/Model/CustomerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/SWT-AirlineProduct/src/test/Unit/Model/CustomerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +76,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="JUnit.CustomerTest.testLastnameValid">
+  <component name="RunManager" selected="JUnit.CustomerTest.testLastnameInvalidNumerical">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -222,6 +223,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CustomerTest.testFirstnameInvalidSymbols" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="CEN4072_SWT-AirlineProduct" />
+      <extension name="coverage" sample_coverage="false">
+        <pattern>
+          <option name="PATTERN" value="Unit.Model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="Model.Customer" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Unit.Model" />
+      <option name="MAIN_CLASS_NAME" value="Unit.Model.CustomerTest" />
+      <option name="METHOD_NAME" value="testFirstnameInvalidSymbols" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CustomerTest.testFirstnameValid" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="CEN4072_SWT-AirlineProduct" />
       <extension name="coverage" sample_coverage="false">
@@ -302,6 +323,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CustomerTest.testLastnameInvalidNumerical" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="CEN4072_SWT-AirlineProduct" />
+      <extension name="coverage" sample_coverage="false">
+        <pattern>
+          <option name="PATTERN" value="Unit.Model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="Model.Customer" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Unit.Model" />
+      <option name="MAIN_CLASS_NAME" value="Unit.Model.CustomerTest" />
+      <option name="METHOD_NAME" value="testLastnameInvalidNumerical" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CustomerTest.testLastnameValid" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="CEN4072_SWT-AirlineProduct" />
       <extension name="coverage" sample_coverage="false">
@@ -317,6 +358,146 @@
       <option name="PACKAGE_NAME" value="Unit.Model" />
       <option name="MAIN_CLASS_NAME" value="Unit.Model.CustomerTest" />
       <option name="METHOD_NAME" value="testLastnameValid" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerTest.testLastnameValidWithApostrophes" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="CEN4072_SWT-AirlineProduct" />
+      <extension name="coverage" sample_coverage="false">
+        <pattern>
+          <option name="PATTERN" value="Unit.Model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="Model.Customer" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Unit.Model" />
+      <option name="MAIN_CLASS_NAME" value="Unit.Model.CustomerTest" />
+      <option name="METHOD_NAME" value="testLastnameValidWithApostrophes" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerTest.testLastnameValidWithApostrophesAndDashes" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="CEN4072_SWT-AirlineProduct" />
+      <extension name="coverage" sample_coverage="false">
+        <pattern>
+          <option name="PATTERN" value="Unit.Model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="Model.Customer" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Unit.Model" />
+      <option name="MAIN_CLASS_NAME" value="Unit.Model.CustomerTest" />
+      <option name="METHOD_NAME" value="testLastnameValidWithApostrophesAndDashes" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerTest.testLastnameValidWithDashes" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="CEN4072_SWT-AirlineProduct" />
+      <extension name="coverage" sample_coverage="false">
+        <pattern>
+          <option name="PATTERN" value="Unit.Model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="Model.Customer" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Unit.Model" />
+      <option name="MAIN_CLASS_NAME" value="Unit.Model.CustomerTest" />
+      <option name="METHOD_NAME" value="testLastnameValidWithDashes" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerTest.testNicInvalidNonalphanumeric" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="CEN4072_SWT-AirlineProduct" />
+      <extension name="coverage" sample_coverage="false">
+        <pattern>
+          <option name="PATTERN" value="Unit.Model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="Model.Customer" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Unit.Model" />
+      <option name="MAIN_CLASS_NAME" value="Unit.Model.CustomerTest" />
+      <option name="METHOD_NAME" value="testNicInvalidNonalphanumeric" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerTest.testNicValid" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="CEN4072_SWT-AirlineProduct" />
+      <extension name="coverage" sample_coverage="false">
+        <pattern>
+          <option name="PATTERN" value="Unit.Model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="Model.Customer" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Unit.Model" />
+      <option name="MAIN_CLASS_NAME" value="Unit.Model.CustomerTest" />
+      <option name="METHOD_NAME" value="testNicValid" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerTest.testPassportInvalidNonalphanumeric" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="CEN4072_SWT-AirlineProduct" />
+      <extension name="coverage" sample_coverage="false">
+        <pattern>
+          <option name="PATTERN" value="Unit.Model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="Model.Customer" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Unit.Model" />
+      <option name="MAIN_CLASS_NAME" value="Unit.Model.CustomerTest" />
+      <option name="METHOD_NAME" value="testPassportInvalidNonalphanumeric" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerTest.testPassportValid" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="CEN4072_SWT-AirlineProduct" />
+      <extension name="coverage" sample_coverage="false">
+        <pattern>
+          <option name="PATTERN" value="Unit.Model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="Model.Customer" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Unit.Model" />
+      <option name="MAIN_CLASS_NAME" value="Unit.Model.CustomerTest" />
+      <option name="METHOD_NAME" value="testPassportValid" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -444,6 +625,15 @@
       <item itemvalue="JUnit.CustomerTest.testFirstnameValidApostrophes" />
       <item itemvalue="JUnit.CustomerTest.testFirstnameValidApostrophesAndDashes" />
       <item itemvalue="JUnit.CustomerTest.testLastnameValid" />
+      <item itemvalue="JUnit.CustomerTest.testNicValid" />
+      <item itemvalue="JUnit.CustomerTest.testNicInvalidNonalphanumeric" />
+      <item itemvalue="JUnit.CustomerTest.testPassportValid" />
+      <item itemvalue="JUnit.CustomerTest.testPassportInvalidNonalphanumeric" />
+      <item itemvalue="JUnit.CustomerTest.testFirstnameInvalidSymbols" />
+      <item itemvalue="JUnit.CustomerTest.testLastnameValidWithDashes" />
+      <item itemvalue="JUnit.CustomerTest.testLastnameValidWithApostrophes" />
+      <item itemvalue="JUnit.CustomerTest.testLastnameValidWithApostrophesAndDashes" />
+      <item itemvalue="JUnit.CustomerTest.testLastnameInvalidNumerical" />
     </list>
     <recent_temporary>
       <list>
@@ -475,7 +665,7 @@
       <workItem from="1618631058774" duration="634000" />
       <workItem from="1618874292635" duration="8130000" />
       <workItem from="1618937763942" duration="7081000" />
-      <workItem from="1619121563645" duration="9818000" />
+      <workItem from="1619121563645" duration="13468000" />
     </task>
     <servers />
   </component>
@@ -495,11 +685,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testFirstnameValidApostrophes.ic" NAME="CustomerTest.testFirstnameValidApostrophes Coverage Results" MODIFIED="1619135516541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>Unit.Model.*</FILTER>
-      <FILTER>Model.Customer</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$IntegrationTestSuite.ic" NAME="IntegrationTestSuite Coverage Results" MODIFIED="1618940949694" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$AddressTest.ic" NAME="AddressTest Coverage Results" MODIFIED="1618885472457" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Unit.Model.*</FILTER>
     </SUITE>
@@ -507,22 +692,28 @@
       <FILTER>Unit.Model.*</FILTER>
       <FILTER>Model.Customer</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testPassportValid.ic" NAME="CustomerTest.testPassportValid Coverage Results" MODIFIED="1619137470565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>Unit.Model.*</FILTER>
+      <FILTER>Model.Customer</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testValidPhoneNumber.ic" NAME="CustomerTest.testValidPhoneNumber Coverage Results" MODIFIED="1619133880241" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
       <FILTER>Model.Customer</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testAddressValid.ic" NAME="CustomerTest.testAddressValid Coverage Results" MODIFIED="1619134448531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testNicInvalidNonalphanumeric.ic" NAME="CustomerTest.testNicInvalidNonalphanumeric Coverage Results" MODIFIED="1619137067008" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
       <FILTER>Unit.Model.*</FILTER>
       <FILTER>Model.Customer</FILTER>
-      <FILTER>Model.Address</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerDao_Test.ic" NAME="CustomerDao Test Coverage Results" MODIFIED="1618885328171" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest.ic" NAME="CustomerTest Coverage Results" MODIFIED="1619132739145" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Model.Customer</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testPhoneNumberMaximum.ic" NAME="CustomerTest.testPhoneNumberMaximum Coverage Results" MODIFIED="1619132973061" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
       <FILTER>Model.Customer</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testLastnameValid.ic" NAME="CustomerTest.testLastnameValid Coverage Results" MODIFIED="1619135759907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testLastnameInvalidNumerical.ic" NAME="CustomerTest.testLastnameInvalidNumerical Coverage Results" MODIFIED="1619138412451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>Unit.Model.*</FILTER>
+      <FILTER>Model.Customer</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testNicValid.ic" NAME="CustomerTest.testNicValid Coverage Results" MODIFIED="1619136897587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
       <FILTER>Unit.Model.*</FILTER>
       <FILTER>Model.Customer</FILTER>
     </SUITE>
@@ -530,15 +721,15 @@
       <FILTER>Unit.Model.*</FILTER>
       <FILTER>Model.Customer</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testFirstnameInvalidOnlyNumbers.ic" NAME="CustomerTest.testFirstnameInvalidOnlyNumbers Coverage Results" MODIFIED="1619135305271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>Unit.Model.*</FILTER>
-      <FILTER>Model.Customer</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testFirstnameInvalidNumbers.ic" NAME="CustomerTest.testFirstnameInvalidNumbers Coverage Results" MODIFIED="1619135145357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testLastnameValidWithDashes.ic" NAME="CustomerTest.testLastnameValidWithDashes Coverage Results" MODIFIED="1619138001213" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
       <FILTER>Unit.Model.*</FILTER>
       <FILTER>Model.Customer</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testFirstnameValidApostrophesAndDashes.ic" NAME="CustomerTest.testFirstnameValidApostrophesAndDashes Coverage Results" MODIFIED="1619135578158" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>Unit.Model.*</FILTER>
+      <FILTER>Model.Customer</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testPassportInvalidNonalphanumeric.ic" NAME="CustomerTest.testPassportInvalidNonalphanumeric Coverage Results" MODIFIED="1619137599609" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
       <FILTER>Unit.Model.*</FILTER>
       <FILTER>Model.Customer</FILTER>
     </SUITE>
@@ -552,6 +743,41 @@
       <FILTER>Unit.Model.*</FILTER>
       <FILTER>Model.Customer</FILTER>
       <FILTER>Model.Address</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testFirstnameValidApostrophes.ic" NAME="CustomerTest.testFirstnameValidApostrophes Coverage Results" MODIFIED="1619135516541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>Unit.Model.*</FILTER>
+      <FILTER>Model.Customer</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$IntegrationTestSuite.ic" NAME="IntegrationTestSuite Coverage Results" MODIFIED="1618940949694" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testFirstnameInvalidSymbols.ic" NAME="CustomerTest.testFirstnameInvalidSymbols Coverage Results" MODIFIED="1619137881705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>Unit.Model.*</FILTER>
+      <FILTER>Model.Customer</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testLastnameValidWithApostrophes.ic" NAME="CustomerTest.testLastnameValidWithApostrophes Coverage Results" MODIFIED="1619138113279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>Unit.Model.*</FILTER>
+      <FILTER>Model.Customer</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testAddressValid.ic" NAME="CustomerTest.testAddressValid Coverage Results" MODIFIED="1619134448531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>Unit.Model.*</FILTER>
+      <FILTER>Model.Customer</FILTER>
+      <FILTER>Model.Address</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerDao_Test.ic" NAME="CustomerDao Test Coverage Results" MODIFIED="1618885328171" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testLastnameValidWithApostrophesAndDashes.ic" NAME="CustomerTest.testLastnameValidWithApostrophesAndDashes Coverage Results" MODIFIED="1619138297684" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>Unit.Model.*</FILTER>
+      <FILTER>Model.Customer</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testLastnameValid.ic" NAME="CustomerTest.testLastnameValid Coverage Results" MODIFIED="1619135759907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>Unit.Model.*</FILTER>
+      <FILTER>Model.Customer</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testFirstnameInvalidOnlyNumbers.ic" NAME="CustomerTest.testFirstnameInvalidOnlyNumbers Coverage Results" MODIFIED="1619135305271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>Unit.Model.*</FILTER>
+      <FILTER>Model.Customer</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$CustomerTest_testFirstnameInvalidNumbers.ic" NAME="CustomerTest.testFirstnameInvalidNumbers Coverage Results" MODIFIED="1619135145357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>Unit.Model.*</FILTER>
+      <FILTER>Model.Customer</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/CEN4072_SWT_AirlineProduct$TestSuite.ic" NAME="TestSuite Coverage Results" MODIFIED="1617733178812" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true" />
   </component>
