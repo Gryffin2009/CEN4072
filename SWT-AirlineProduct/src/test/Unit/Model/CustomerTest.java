@@ -35,6 +35,7 @@ public class CustomerTest {
 	}
 
 	// Tries to pass a valid NIC to the Customer class.
+
 	@Test
 	@DisplayName("NIC, valid")
 	void testNicValid() {
@@ -52,6 +53,15 @@ public class CustomerTest {
 	}
 	
 	// Tries to pass an invalid phone number to the Customer class.
+	/**
+	 * Test Case ID: C-2-1
+	 * Requirement: C-2 Customers shall have a valid phone number. A valid phone number shall be less than 14 digits long and contain only numeric values, e.g. 0012399893647.
+	 * Purpose: Tries to pass an invalid phone number to the Customer class
+	 * Test setup: A phone number with the following value: 239940423466543234
+	 * Test Strategy: testPhoneNumberMaximum is called and should throw an exception.
+	 * Input: an invalid phone number object
+	 * Expected output: the method should throw an exception
+	 **/
 	@Test
 	@DisplayName("Phone number, numerical input over 14 characters")
 	void testPhoneNumberMaximum() {
@@ -60,6 +70,15 @@ public class CustomerTest {
 	}
 
 	// Tries to pass a valid phone number to the Customer class.
+	/**
+	 * Test Case ID: C-2-2
+	 * Requirement: C-2 Customers shall have a valid phone number. A valid phone number shall be less than 14 digits long and contain only numeric values, e.g. 0012399893647.
+	 * Purpose: Tries to pass a valid phone number to the Customer class
+	 * Test setup: A phone number with the following value: 2399443234
+	 * Test Strategy: testValidPhoneNumber is called and should not throw an exception.
+	 * Input: a valid phone number object
+	 * Expected output: the method should not throw an exception
+	 **/
 	@Test
 	@DisplayName("Phone number, numerical input under 14 characters")
 	void testValidPhoneNumber() {
@@ -67,6 +86,15 @@ public class CustomerTest {
 	}
 
 	// Tries to pass an invalid phone number to the Customer class.
+	/**
+	 * Test Case ID: C-2-3
+	 * Requirement: C-2 Customers shall have a valid phone number. A valid phone number shall be less than 14 digits long and contain only numeric values, e.g. 0012399893647.
+	 * Purpose: Tries to pass an invalid phone number to the Customer class
+	 * Test setup: A phone number with the following value: 2394
+	 * Test Strategy: testPhoneNumberMinimum is called and should not throw an exception.
+	 * Input: an invalid phone number object
+	 * Expected output: the method should throw an exception
+	 **/
 	@Test
 	@DisplayName("Phone number, numerical input under 7 characters")
 	void testPhoneNumberMinimum() {
@@ -99,6 +127,20 @@ public class CustomerTest {
 	}
 
 	// Tries to pass a valid address name to the Customer class.
+	/**
+	 * Test Case ID: C-3-1
+	 * Requirement: C-3 Customers shall have a valid Address. A valid address must adhere to the Address model for validation requirements.
+	 * Purpose: Tries to pass a valid address to the Customer class
+	 * Test setup: An address with the following values:
+	 *      String streetAddress = "123 Main Street";
+	 * 		String city = "Fort Myers";
+	 * 		String state = "Florida";
+	 * 		String zipCode = "33913";
+	 * 		String country = "United States";
+	 * Test Strategy: testAddressValid is called and should not throw an exception.
+	 * Input: a valid address object
+	 * Expected output: the method should not throw an exception
+	 **/
 	@Test
 	@DisplayName("Address, valid")
 	void testAddressValid() {
@@ -106,6 +148,15 @@ public class CustomerTest {
 	}
 
 	// Tries to pass a invalid address to the Customer class.
+	/**
+	 * Test Case ID: C-3-2
+	 * Requirement: C-3 Customers shall have a valid Address. A valid address must adhere to the Address model for validation requirements.
+	 * Purpose: Tries to pass a valid address to the Customer class
+	 * Test setup: An address with the following value: NULL
+	 * Test Strategy: testAddressInvalid is called and should throw an exception.
+	 * Input: an invalid address object
+	 * Expected output: the method should throw an exception
+	 **/
 	@Test
 	@DisplayName("Address, invalid")
 	void testAddressInvalid() {
@@ -114,6 +165,15 @@ public class CustomerTest {
 	}
 
 	// Tries to pass a valid first name to the Customer class.
+	/**
+	 * Test Case ID: C-4-1
+	 * Requirement: C-4 Customers shall have a valid first name. A valid Customer first name shall contain only alphabetic characters, apostrophes, and dashes.
+	 * Purpose: Tries to pass a valid first name to the Customer class
+	 * Test setup: A first name with the following value: "Brandon"
+	 * Test Strategy: testFirstnameValid is called and should not throw an exception.
+	 * Input: a valid first name object
+	 * Expected output: the method should not throw an exception
+	 **/
 	@Test
 	@DisplayName("First name, valid")
 	void testFirstnameValid() {
@@ -123,6 +183,15 @@ public class CustomerTest {
 	}
 
 	// Tries to pass a valid first name that includes a dash.
+	/**
+	 * Test Case ID: C-4-4
+	 * Requirement: C-4 Customers shall have a valid first name. A valid Customer first name shall contain only alphabetic characters, apostrophes, and dashes.
+	 * Purpose: Tries to pass a valid first name to the Customer class that contains a dash.
+	 * Test setup: A first name with the following value: "la-brandon"
+	 * Test Strategy: testFirstnameValidDashes is called and should not throw an exception.
+	 * Input: a valid first name object
+	 * Expected output: the method should not throw an exception
+	 **/
 	@Test
 	@DisplayName("First name, valid with dash")
 	void testFirstnameValidDashes() {
@@ -132,6 +201,15 @@ public class CustomerTest {
 	}
 
 	// Tries to pass a valid first name that includes an apostrophe.
+	/**
+	 * Test Case ID: C-4-5
+	 * Requirement: C-4 Customers shall have a valid first name. A valid Customer first name shall contain only alphabetic characters, apostrophes, and dashes.
+	 * Purpose: Tries to pass a valid first name to the Customer class that contains an apostrophe.
+	 * Test setup: A first name with the following value: "o'brandon"
+	 * Test Strategy: testFirstnameValidApostrophes is called and should not throw an exception.
+	 * Input: a valid first name object
+	 * Expected output: the method should not throw an exception
+	 **/
 	@Test
 	@DisplayName("First name, valid with apostrophe")
 	void testFirstnameValidApostrophes() {
@@ -141,6 +219,15 @@ public class CustomerTest {
 	}
 
 	// Tries to pass a valid first name that includes an apostrophe.
+	/**
+	 * Test Case ID: C-4-6
+	 * Requirement: C-4 Customers shall have a valid first name. A valid Customer first name shall contain only alphabetic characters, apostrophes, and dashes.
+	 * Purpose: Tries to pass a valid first name to the Customer class that contains an apostrophe and a dash.
+	 * Test setup: A first name with the following value: "o'brand-on""
+	 * Test Strategy: testFirstnameValidApostrophesAndDashes is called and should not throw an exception.
+	 * Input: a valid first name object
+	 * Expected output: the method should not throw an exception
+	 **/
 	@Test
 	@DisplayName("First name, valid with dash and apostrophe")
 	void testFirstnameValidApostrophesAndDashes() {
@@ -150,6 +237,15 @@ public class CustomerTest {
 	}
 
 	// Tries to pass an invalid first name by using a name that contains numbers.
+	/**
+	 * Test Case ID: C-4-2
+	 * Requirement: C-4 Customers shall have a valid first name. A valid Customer first name shall contain only alphabetic characters, apostrophes, and dashes.
+	 * Purpose: Tries to pass a invalid first name to the Customer class
+	 * Test setup: A first name with the following value: "brandon1"
+	 * Test Strategy: testFirstnameInvalidNumbers is called and should throw an exception.
+	 * Input: an invalid first name object
+	 * Expected output: the method should throw an exception
+	 **/
 	@Test
 	@DisplayName("First name, invalid (Numbers in name)")
 	void testFirstnameInvalidNumbers() throws InvalidCustomerInputException, Exception {
@@ -159,6 +255,15 @@ public class CustomerTest {
 	}
 
 	// Tries to pass an invalid first name by using a name that contains only numbers.
+	/**
+	 * Test Case ID: C-4-3
+	 * Requirement: C-4 Customers shall have a valid first name. A valid Customer first name shall contain only alphabetic characters, apostrophes, and dashes.
+	 * Purpose: Tries to pass a invalid first name to the Customer class that contains only numbers.
+	 * Test setup: A first name with the following value: "121231"
+	 * Test Strategy: testFirstnameInvalidOnlyNumbers is called and should throw an exception.
+	 * Input: an invalid first name object
+	 * Expected output: the method should throw an exception
+	 **/
 	@Test
 	@DisplayName("First name, invalid (Numbers in name)")
 	void testFirstnameInvalidOnlyNumbers() throws InvalidCustomerInputException, Exception {
@@ -175,6 +280,15 @@ public class CustomerTest {
 	}
 
 	// Tries to pass a valid last name to the Customer class.
+	/**
+	 * Test Case ID: C-4-7
+	 * Requirement: C-4 Customers shall have a valid first name. A valid Customer first name shall contain only alphabetic characters, apostrophes, and dashes.
+	 * Purpose: Tries to pass a valid last name to the Customer class.
+	 * Test setup: A first name with the following value: "Bauer"
+	 * Test Strategy: testLastnameValid is called and should not throw an exception.
+	 * Input: a valid last name object
+	 * Expected output: the method should not throw an exception
+	 **/
 	@Test
 	@DisplayName("Last name, valid")
 	void testLastnameValid() {
