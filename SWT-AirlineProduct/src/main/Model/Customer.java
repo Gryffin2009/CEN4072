@@ -99,7 +99,7 @@ public class Customer {
 	}
 
 	/**
-	 * getPhoneNumber
+	 * getPhoneNumber returns the phone number associated with the Customer.
 	 * @return phoneNumber
 	 */
 	public String getPhoneNumber() {

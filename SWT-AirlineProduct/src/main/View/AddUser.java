@@ -10,12 +10,6 @@ import Model.User;
 import Model.User.InvalidUserInputException;
 import Service.AutoIDService;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 public class AddUser extends javax.swing.JInternalFrame {
 	UserDao uDao = new UserDao();
 
@@ -26,12 +20,18 @@ public class AddUser extends javax.swing.JInternalFrame {
 		initComponents();
 		autoID();
 	}
-	
+
+	/**
+	 * Generates an ID for a new customer.
+	 */
 	private void autoID() {
 		String id = AutoIDService.generateAutoID("user", "UO");
 		txtuserid.setText(id);
 	}
 
+	/**
+	 * Submits new user information input in the GUI into the database.
+	 */
 	private void createNewUser() {
 		String id = txtuserid.getText();
 		String firstname = txtfirstname.getText();

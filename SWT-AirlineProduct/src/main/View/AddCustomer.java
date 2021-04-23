@@ -42,40 +42,20 @@ public class AddCustomer extends javax.swing.JInternalFrame {
 	CustomerDao cDao = new CustomerDao();
 	
 	/**
-	 * Creates new form AddCustomer
+	 * Creates new form AddCustomer.
 	 */
 	public AddCustomer() {
 		initComponents();
 		autoID();
 	}
 
-	// Generates an ID for a new customer.
+	/**
+	 * Generates an ID for a new customer.
+	 */
 	private void autoID() {
 		String id = AutoIDService.generateAutoID("customer", "CS");
 		txtid.setText(id);
 	}
-
-	/*
-	// TODO add address formatting regex checks
-	public boolean validateAddress(String address, String street, String city, String region, String zip, String country) {
-		boolean isValid = false;
-		
-		if (address.matches("")
-				&& street.matches("")
-				&& city.matches("")
-				&& region.matches("")
-				&& zip.matches("")
-				&& country.matches("")) {
-			isValid = true;
-		}
-		
-		return isValid;
-	}
-	
-	public boolean validateDOB(String dob) {
-		return dob.matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");
-	}
-	*/
 	
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -400,6 +380,10 @@ public class AddCustomer extends javax.swing.JInternalFrame {
 		// TODO add your handling code here:
 	}// GEN-LAST:event_txtpassportActionPerformed
 
+	/**
+	 * Controls the behavior of adding an image to a customer's profile.
+	 * @param evt
+	 */
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
 		// TODO add your handling code here:
 		String path;
@@ -416,6 +400,10 @@ public class AddCustomer extends javax.swing.JInternalFrame {
 
 	}// GEN-LAST:event_jButton1ActionPerformed
 
+	/**
+	 * Controls the behavior of adding Customer information to the database.
+	 * @param evt
+	 */
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
 		String id = txtid.getText();
 		String firstname = txtfirstname.getText();

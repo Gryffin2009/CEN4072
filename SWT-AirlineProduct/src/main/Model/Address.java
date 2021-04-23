@@ -17,7 +17,7 @@ public class Address {
 	private String country;
 
 	/**
-	 * Address
+	 * The Address class contains all of the components of a Customer's address information.
 	 * @param streetAddress
 	 * @param city
 	 * @param state
@@ -36,7 +36,7 @@ public class Address {
 	}
 
 	/**
-	 * validStreetAddress
+	 * validStreetAddress ensures that a street address is in a street address format.
 	 * @param streetAddress
 	 * @return a boolean that represents if streetAddress is in the correct format
 	 */
@@ -45,7 +45,7 @@ public class Address {
 	}
 
 	/**
-	 * setStreetAddress
+	 * setStreetAddress sets the street address of the Address object.
 	 * Ensures the street address is valid before setting the class property.
 	 * @param streetAddress
 	 * @throws InvalidAddressInputException
@@ -59,7 +59,7 @@ public class Address {
 	}
 
 	/**
-	 * getStreetAddress()
+	 * getStreetAddress() returns the street address associated with the Address object.
 	 * @return the streetAddress class property value
 	 */
 	public String getStreetAddress() { return streetAddress; }
@@ -79,13 +79,13 @@ public class Address {
 	}
 
 	/**
-	 * getCity()
+	 * getCity() returns the city associated with the Address object.
 	 * @return the city class property value
 	 */
 	public String getCity() { return city;}
 
 	/**
-	 * setState(String state)
+	 * setState(String state) sets the state associated with the Address object.
 	 * Ensures the state is valid before setting the class property.
 	 * @param state
 	 * @throws InvalidAddressInputException
@@ -99,13 +99,13 @@ public class Address {
 	}
 
 	/**
-	 * getState()
+	 * getState() returns the state associated with the Address object.
 	 * @return the state class property value
 	 */
 	public String getState() { return state;}
 
 	/**
-	 * setZipCode(String zipCode)
+	 * setZipCode(String zipCode) sets the zip code associated with the Address object.
 	 * Ensures the zipCode is valid before setting the class property.
 	 * @param zipCode
 	 * @throws InvalidAddressInputException
@@ -119,14 +119,14 @@ public class Address {
 	}
 
 	/**
-	 * getZipCode()
+	 * getZipCode() returns the zip code associated with the Address object.
 	 * @return the zipCode class property value
 	 */
 	public String getZipCode() { return zipCode;}
 
 	/**
-	 * setZipCode(String country)
-	 * Ensures the zipCode is valid before setting the class property.
+	 * setCountry(String country) sets the country associated with the Address object.
+	 * Ensures the country is valid before setting the class property.
 	 * @param country
 	 * @throws InvalidAddressInputException
 	 */
@@ -139,13 +139,14 @@ public class Address {
 	}
 
 	/**
-	 * getCountry()
+	 * getCountry() returns the country associated with the Address object.
 	 * @return the country class property value
 	 */
 	public String getCountry() { return country;}
 
 	/**
-	 * toString()
+	 * toString() converts the information contains by the entire address object to a single string
+	 * and returns it to the user.
 	 * @return A string representation of the full address.
 	 */
 	public String toString() {

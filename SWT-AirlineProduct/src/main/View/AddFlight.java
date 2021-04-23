@@ -17,13 +17,16 @@ import Service.AutoIDService;
 public class AddFlight extends javax.swing.JInternalFrame {
 
 	/**
-	 * Creates new form AddFlight
+	 * Creates new form AddFlight.
 	 */
 	public AddFlight() {
 		initComponents();
 		autoID();
 	}
-	
+
+	/**
+	 * Generates an ID for a new customer.
+	 */
 	private void autoID() {
 		String id = AutoIDService.generateAutoID("flight", "FO");
 		txtflightid.setText(id);
@@ -225,6 +228,10 @@ public class AddFlight extends javax.swing.JInternalFrame {
 	}// </editor-fold>//GEN-END:initComponents
 
 
+	/**
+	 * Controls the behavior of adding flight information into the database.
+	 * @param evt
+	 */
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
 		// TODO add your handling code here:
 		String id = txtflightid.getText();

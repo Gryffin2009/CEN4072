@@ -13,11 +13,15 @@ public class UserDao {
   public UserDao(Connection con) {
     this.con = con;
   }
-
   public UserDao() {
     con = NetworkService.getInstance().getConnection();
   }
 
+  /**
+   * Adds a new user to the database from a User object.
+   * @param user
+   * @throws SQLException
+   */
   public void add(User user) throws SQLException {
     PreparedStatement pst = con.prepareStatement(
         "INSERT INTO user"
@@ -26,8 +30,11 @@ public class UserDao {
     AddUserFromPreparedStatement(pst, user);
   }
 
-
-
+  /**
+   * Updates an existing user in the database from a User object.
+   * @param user
+   * @throws SQLException
+   */
   public void update(User user) throws SQLException {
     PreparedStatement pst = con.prepareStatement(
         "UPDATE user SET" + "id=?," + "firstname=?," + "lastname=?," + "username=?,"
@@ -35,6 +42,12 @@ public class UserDao {
     AddUserFromPreparedStatement(pst, user);
   }
 
+  /**
+   * Companion method that takes a prepared statement and processes it with the database.
+   * @param pst
+   * @param user
+   * @throws SQLException
+   */
   public void AddUserFromPreparedStatement(PreparedStatement pst, User user)
       throws SQLException {
 
@@ -46,6 +59,13 @@ public class UserDao {
     pst.executeUpdate();
   }
 
+  /**
+   * Retrieves user information from the database using a user ID.
+   * @param id
+   * @return
+   * @throws SQLException
+   * @throws InvalidUserInputException
+   */
   public User get(String id) throws SQLException, InvalidUserInputException {
 
     PreparedStatement pst = con.prepareStatement("SELECT * FROM user WHERE id = ?");
@@ -56,6 +76,12 @@ public class UserDao {
     return GetUserFromResultSet(rs);
   }
 
+  /**
+   * Retrieves every user from the database and returns it as an array of User objects.
+   * @return an array of User objects.
+   * @throws SQLException
+   * @throws InvalidUserInputException
+   */
   public User[] getAll() throws SQLException, InvalidUserInputException {
     PreparedStatement pst = con.prepareStatement("SELECT count(*) AS rowCount FROM user");
     ResultSet rs = pst.executeQuery();
@@ -75,6 +101,14 @@ public class UserDao {
     return users;
   }
 
+  /**
+   * A companion module that processes a ResultSet of user information and returns it as a
+   * User object.
+   * @param rs
+   * @return
+   * @throws SQLException
+   * @throws InvalidUserInputException
+   */
   public User GetUserFromResultSet(ResultSet rs) throws SQLException, InvalidUserInputException {
 
     String id = rs.getString("id");

@@ -20,6 +20,11 @@ public class CustomerDao {
     this.con = con;
   }
 
+  /**
+   * Adds a new customer to the database from a Customer object.
+   * @param customer
+   * @throws SQLException
+   */
   public void add(Customer customer) throws SQLException {
       PreparedStatement pst = con.prepareStatement(
           "INSERT INTO customer"
@@ -28,6 +33,11 @@ public class CustomerDao {
     AddCustomerFromPreparedStatement(pst, customer);
   }
 
+  /**
+   * Updates an existing customer in the database from a Customer object.
+   * @param customer
+   * @throws SQLException
+   */
   public void update(Customer customer) throws SQLException {
     PreparedStatement pst = con.prepareStatement(
         "UPDATE customer SET"
@@ -45,6 +55,12 @@ public class CustomerDao {
     AddCustomerFromPreparedStatement(pst, customer);
   }
 
+  /**
+   * Companion method that takes a prepared statement and processes it with the database.
+   * @param pst
+   * @param customer
+   * @throws SQLException
+   */
   private void AddCustomerFromPreparedStatement(PreparedStatement pst, Customer customer)
       throws SQLException {
     pst.setString(1, customer.getId());
@@ -60,6 +76,14 @@ public class CustomerDao {
     pst.executeUpdate();
   }
 
+  /**
+   * Retrieves customer information from the database using a customer ID.
+   * @param id
+   * @return a Customer object.
+   * @throws SQLException
+   * @throws InvalidAddressInputException
+   * @throws InvalidCustomerInputException
+   */
   public Customer get(String id) throws SQLException, InvalidAddressInputException, InvalidCustomerInputException {
     PreparedStatement pst = con.prepareStatement("select * from customer where id = ?");
     pst.setString(1, id);
@@ -68,6 +92,13 @@ public class CustomerDao {
     return GetCustomerFromResultSet(rs);
   }
 
+  /**
+   * Retrieves every customer from the database and returns it as an array of Customer objects.
+   * @return an array of Customer objects.
+   * @throws SQLException
+   * @throws InvalidAddressInputException
+   * @throws InvalidCustomerInputException
+   */
   public Customer[] getAll()
       throws SQLException, InvalidAddressInputException, InvalidCustomerInputException {
     PreparedStatement pst = con.prepareStatement("SELECT count(*) AS rowCount FROM customer");
@@ -88,6 +119,15 @@ public class CustomerDao {
     return customers;
   }
 
+  /**
+   * A companion module that processes a ResultSet of customer information and returns it as a
+   * Customer object.
+   * @param rs
+   * @return
+   * @throws SQLException
+   * @throws InvalidAddressInputException
+   * @throws InvalidCustomerInputException
+   */
   private Customer GetCustomerFromResultSet(ResultSet rs)
       throws SQLException, InvalidAddressInputException, InvalidCustomerInputException {
     String id = rs.getString("id");

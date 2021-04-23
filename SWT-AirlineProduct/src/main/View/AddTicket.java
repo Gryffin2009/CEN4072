@@ -33,7 +33,7 @@ public class AddTicket extends javax.swing.JInternalFrame {
 	TicketDao tDao = new TicketDao();
 
 	/**
-	 * Creates new form AddTicket
+	 * Creates new form AddTicket.
 	 */
 	public AddTicket() {
 		initComponents();
@@ -41,6 +41,9 @@ public class AddTicket extends javax.swing.JInternalFrame {
 		setIdentifiers();
 	}
 
+	/**
+	 * Generates an ID for a new customer.
+	 */
 	private void autoID() {
 		String id = AutoIDService.generateAutoID("ticket", "TO");
 		txtticketno.setText(id);
@@ -418,6 +421,11 @@ public class AddTicket extends javax.swing.JInternalFrame {
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
 
+	/**
+	 * Populates the flight table with flights from the database that match the source and departing
+	 * locations.
+	 * @param evt
+	 */
 	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
 		// TODO add your handling code here:
 
@@ -435,6 +443,12 @@ public class AddTicket extends javax.swing.JInternalFrame {
 
 	}// GEN-LAST:event_jButton3ActionPerformed
 
+	/**
+	 * Retrieves flights from the database that match the source and departing locations.
+	 * @param source
+	 * @param depart
+	 * @return
+	 */
 	public Vector<Vector<String>> createFlightList(String source, String depart) {
 		Connection con = NetworkService.getInstance().getConnection();
 
@@ -472,7 +486,11 @@ public class AddTicket extends javax.swing.JInternalFrame {
 			return null;
 		}
 	}
-	
+
+	/**
+	 * Retrieves customer information from the database based on the customer ID enetered in the GUI.
+	 * @param evt
+	 */
 	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
 		String id = txtcustid.getText();
 		boolean isFound = false;
@@ -500,6 +518,10 @@ public class AddTicket extends javax.swing.JInternalFrame {
 
 	}// GEN-LAST:event_jButton4ActionPerformed
 
+	/**
+	 * Selects the flight information the user picks from the flight table.
+	 * @param evt
+	 */
 	private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTable1MouseClicked
 		// TODO add your handling code here:
 
@@ -514,6 +536,10 @@ public class AddTicket extends javax.swing.JInternalFrame {
 
 	}// GEN-LAST:event_jTable1MouseClicked
 
+	/**
+	 * Changes the price of a ticket booking to match the number of seats selected.
+	 * @param evt
+	 */
 	private void txtseatsStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_txtseatsStateChanged
 		// TODO add your handling code here:
 
@@ -523,6 +549,10 @@ public class AddTicket extends javax.swing.JInternalFrame {
 		txttotal.setText(String.valueOf(tot));
 	}// GEN-LAST:event_txtseatsStateChanged
 
+	/**
+	 * Attempts to add a ticket to the database with the information specified in the GUI.
+	 * @param evt
+	 */
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
 		// TODO add your handling code here:
 

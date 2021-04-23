@@ -13,6 +13,9 @@ import java.util.regex.Pattern;
  */
 public class User {
 
+	/**
+	 * Custom exception to be thrown when any property does not pass input validation.
+	 */
 	public class InvalidUserInputException extends Exception {
 		public InvalidUserInputException(String message) {
 			super(message);
@@ -31,37 +34,59 @@ public class User {
 	Matcher matcher;
 	boolean isMatch;
 
+	/**
+	 * Accessor for id variable.
+	 * @return
+	 */
 	public String getId() {
 		return id;
 	}
-	
-	// Mutuator for id variable
-	public void setId(String id) {
-		this.id = id;
-	}
 
-	// Accessor for firsName variable
+	/**
+	 * Accessor for firsName variable.
+	 * @return
+	 */
 	public String getFirstName() {
 		return firstName;
 	}
 
-	//Accesor for lastName variable
+	/**
+	 * Accessor for lastName variable.
+	 * @return
+	 */
 	public String getLastName() {
 		return lastName;
 	}
 
-	// Accessor for userName variable
+	/**
+	 * Accessor for userName variable.
+	 * @return
+	 */
 	public String getUserName() {
 		return userName;
 	}
 
-	// Accessor for password variable
+	/**
+	 * Accessor for password variable.
+	 * @return
+	 */
 	public String getPassword() {
 		return password;
 	}
 
+	/**
+	 * Mutuator for id variable
+	 * @param id
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
 
-	// Mutator for firstName variable
+	/**
+	 * Validates a first name, ensuring it contains only letters, apostrophes, or dashes.
+	 * @param firstName
+	 * @throws InvalidUserInputException
+	 */
 	public void setFirstName(String firstName) throws InvalidUserInputException {
 		// if statement with regular expression, used to ensure proper firstname input by user.
 		if (firstName.matches("^[a-zA-Z'’-]+$")) {
@@ -72,7 +97,11 @@ public class User {
 		}
 	}
 
-	// Mutator for lastName
+	/**
+	 * Validates a last name, ensuring it contains only letters, apostrophes, or dashes.
+	 * @param lastName
+	 * @throws InvalidUserInputException
+	 */
 	public void setLastName(String lastName) throws InvalidUserInputException {
 		// if statement with regular expression, used to ensure proper lastName input by user.
 		if (lastName.matches("^[a-zA-Z'’-]+$")) {
@@ -83,7 +112,11 @@ public class User {
 		}
 	}
 
-	// Mutator for userName variable
+	/**
+	 * Validates a user name, ensuring that it is 4-20 characters long and contains only letters.
+	 * @param userName
+	 * @throws InvalidUserInputException
+	 */
 	public void setUserName(String userName) throws InvalidUserInputException {
 
 		// if statement with regular expression, used to ensure proper username input by user.
@@ -95,6 +128,12 @@ public class User {
 		}
 	}
 
+	/**
+	 * Validate a user name, ensuring that it does not already exist in the database.
+	 * @param userName
+	 * @return
+	 * @throws InvalidUserInputException
+	 */
 	private boolean isUniqueUserName(String userName) throws InvalidUserInputException {
 		try {
 			Connection con = NetworkService.getInstance().getConnection();
@@ -111,8 +150,12 @@ public class User {
 		return false;
 	}
 
-	
-	//Mutator for password variable
+	/**
+	 * Ensures that a password contains 1 number, 1 uppercase letter, 1 lowercase letter, and is
+	 * between 5-15 characters in length.
+	 * @param password
+	 * @throws InvalidUserInputException
+	 */
 	public void setPassword(String password) throws InvalidUserInputException {
 		//passwordPattern = "^[a-zA-Z0-9]+$";
 		passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{5,15}$";
@@ -128,13 +171,26 @@ public class User {
 		}
 	}
 
+	/**
+	 * Returns all fields belonging to User as a single string.
+	 * @return
+	 */
 	public String toString() {
 		return getId() + " " + getFirstName() + " " + getLastName() + " " + getUserName() + " " + getPassword();
 	}
 
-	
+	/**
+	 * Default constructor to add all of the data belonging to a user and instantiate a User object.
+	 * @param id
+	 * @param firstName
+	 * @param lastName
+	 * @param userName
+	 * @param password
+	 * @throws InvalidUserInputException
+	 */
 	// Constructor method to set the user attributes.
-	public User(String id, String firstName, String lastName, String userName, String password) throws InvalidUserInputException {
+	public User(String id, String firstName, String lastName, String userName, String password)
+			throws InvalidUserInputException {
 		setId(id);
 		setFirstName(firstName);
 		setLastName(lastName);

@@ -18,6 +18,11 @@ public class FlightDao {
     con = NetworkService.getInstance().getConnection();
   }
 
+  /**
+   * Adds a new flight to the database from a Flight object.
+   * @param flight
+   * @throws SQLException
+   */
   public void add(Flight flight) throws SQLException {
     PreparedStatement pst = con.prepareStatement(
         "INSERT INTO flight"
@@ -26,6 +31,12 @@ public class FlightDao {
     AddFlightFromPreparedStatement(pst, flight);
   }
 
+  /**
+   * Updates an existing flight in the database from a Flight object.
+   * @param pst
+   * @param flight
+   * @throws SQLException
+   */
   public void AddFlightFromPreparedStatement(PreparedStatement pst, Flight flight)
       throws SQLException {
     pst.setString(1, flight.getId());
@@ -39,6 +50,11 @@ public class FlightDao {
     pst.executeUpdate();
   }
 
+  /**
+   * Companion method that takes a prepared statement and processes it with the database.
+   * @param flight
+   * @throws SQLException
+   */
   public void update(Flight flight) throws SQLException {
     PreparedStatement pst = con.prepareStatement(
         "UPDATE flight SET"
@@ -54,6 +70,14 @@ public class FlightDao {
     AddFlightFromPreparedStatement(pst, flight);
   }
 
+  /**
+   * Retrieves flight information from the database using a flight ID.
+   * @param id
+   * @return
+   * @throws SQLException
+   * @throws InvalidTicketInputException
+   * @throws InvalidFlightInputException
+   */
   public Flight get(String id)
       throws SQLException, InvalidTicketInputException, InvalidFlightInputException {
 
@@ -65,6 +89,12 @@ public class FlightDao {
     return GetFlightFromResultSet(rs);
   }
 
+  /**
+   * Retrieves every flight from the database and returns it as an array of Flight objects.
+   * @return an array of Flight objects.
+   * @throws SQLException
+   * @throws InvalidFlightInputException
+   */
   public Flight[] getAll() throws SQLException, InvalidFlightInputException {
     PreparedStatement pst = con.prepareStatement("SELECT count(*) AS rowCount FROM flight");
     ResultSet rs = pst.executeQuery();
@@ -84,6 +114,14 @@ public class FlightDao {
     return flights;
   }
 
+  /**
+   * A companion module that processes a ResultSet of flight information and returns it as a
+   * Flight object.
+   * @param rs
+   * @return
+   * @throws InvalidFlightInputException
+   * @throws SQLException
+   */
   public Flight GetFlightFromResultSet(ResultSet rs)
       throws InvalidFlightInputException, SQLException {
 
