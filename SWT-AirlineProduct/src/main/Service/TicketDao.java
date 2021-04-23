@@ -13,11 +13,15 @@ public class TicketDao {
   public TicketDao(Connection con) {
     this.con = con;
   }
-
   public TicketDao() {
     con = NetworkService.getInstance().getConnection();
   }
 
+  /**
+   * Adds a new ticket to the database from a Ticket object.
+   * @param ticket
+   * @throws SQLException
+   */
   public void add(Ticket ticket) throws SQLException {
     PreparedStatement pst = con.prepareStatement(
         "INSERT INTO ticket"
@@ -26,6 +30,11 @@ public class TicketDao {
     AddTicketFromPreparedStatement(pst, ticket);
   }
 
+  /**
+   * Updates an existing ticket in the database from a Ticket object.
+   * @param ticket
+   * @throws SQLException
+   */
   public void update(Ticket ticket) throws SQLException {
     PreparedStatement pst = con.prepareStatement(
         "UPDATE ticket SET"
@@ -40,6 +49,12 @@ public class TicketDao {
     AddTicketFromPreparedStatement(pst, ticket);
   }
 
+  /**
+   * Companion method that takes a prepared statement and processes it with the database.
+   * @param pst
+   * @param ticket
+   * @throws SQLException
+   */
   public void AddTicketFromPreparedStatement(PreparedStatement pst, Ticket ticket)
       throws SQLException {
 
@@ -53,6 +68,13 @@ public class TicketDao {
     pst.executeUpdate();
   }
 
+  /**
+   * Retrieves ticket information from the database using a ticket ID.
+   * @param id
+   * @return
+   * @throws SQLException
+   * @throws InvalidTicketInputException
+   */
   public Ticket get(String id) throws SQLException, InvalidTicketInputException {
 
     PreparedStatement pst = con.prepareStatement("SELECT * FROM ticket WHERE id = ?");
@@ -63,6 +85,12 @@ public class TicketDao {
     return GetTicketFromResultSet(rs);
   }
 
+  /**
+   * Retrieves every ticket from the database and returns it as an array of Ticket objects.
+   * @return an array of Ticket objects.
+   * @throws SQLException
+   * @throws InvalidTicketInputException
+   */
   public Ticket[] getAll() throws SQLException, InvalidTicketInputException {
     PreparedStatement pst = con.prepareStatement("SELECT count(*) AS rowCount FROM ticket");
     ResultSet rs = pst.executeQuery();
@@ -82,6 +110,14 @@ public class TicketDao {
     return tickets;
   }
 
+  /**
+   * A companion module that processes a ResultSet of ticket information and returns it as a
+   * Ticket object.
+   * @param rs
+   * @return
+   * @throws SQLException
+   * @throws InvalidTicketInputException
+   */
   public Ticket GetTicketFromResultSet(ResultSet rs)
       throws SQLException, InvalidTicketInputException {
 

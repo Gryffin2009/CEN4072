@@ -13,13 +13,13 @@ public class ticketReportTest {
 	}
 
 	/**
-	 * Test Case ID: F-4
-	 * Requirement: A Flight must have a valid date of flight. A valid date shall be in the format YYYY-MM-DD.
-	 * Purpose: The method attempts to set an invalid date for the flight.
-	 * Test setup: A flight object is created beforehand.
-	 * Test Strategy: flight.setDate("HELLO") is called and should throw an exception.
-	 * Input: "HELLO"
-	 * Expected output: the method should throw 'InvalidFlightInputException'
+	 * Test Case ID: DB-7
+	 * Requirement: The software shall read booked tickets from a database.
+	 * Purpose: The method attempts to read tickets from the database.
+	 * Test setup: a ticketReport object is created.
+	 * Test Strategy: ticketReport.LoadData() is called
+	 * Input: None.
+	 * Expected output: the method should not throw an exception.
 	 **/
 	@Test
 	void testLoadAll() {

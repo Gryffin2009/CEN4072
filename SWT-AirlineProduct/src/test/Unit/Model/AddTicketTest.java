@@ -68,7 +68,7 @@ public class AddTicketTest {
 	 * 		String price = "100";
 	 *		String seats = "1";
 	 *		String date = "2021-04-22";
-	 * Test Strategy: equivalence partitioning: ivalid <=0, valid 1-9, invalid >9
+	 * Test Strategy: equivalence partitioning: invalid <=0, valid 1-9, invalid >9
 	 * Input: int: 50
 	 * Expected Output: Seat value not accepted.
 	 */
@@ -95,7 +95,7 @@ public class AddTicketTest {
 	 * 		String price = "100";
 	 *		String seats = "1";
 	 *		String date = "2021-04-22";
-	 * Test Strategy: equivalence partitioning: ivalid <=0, valid 1-9, invalid >9
+	 * Test Strategy: equivalence partitioning: invalid <=0, valid 1-9, invalid >9
 	 * Input: int:  0
 	 * Expected Output: Seat value not accepted.
 	 */

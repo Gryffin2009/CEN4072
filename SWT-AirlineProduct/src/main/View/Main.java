@@ -17,6 +17,9 @@ public class Main extends javax.swing.JFrame {
 		setIdentifiers();
 	}
 
+	/**
+	 * Populates the toolbar with the menu items for each other GUI window.
+	 */
 	private void setIdentifiers() {
 		JMenuItem[] menuItems = {jMenuItem1,jMenuItem2,jMenuItem3,jMenuItem4,jMenuItem5,jMenuItem6};
 		for (int i = 1; i <= menuItems.length; i++)

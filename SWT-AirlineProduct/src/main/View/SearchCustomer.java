@@ -92,6 +92,11 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
 		txtDob.setName("txtDob");
 	}
 
+	/**
+	 * Sets the icon of the image for the searched user.
+	 * @param photo
+	 * @return
+	 */
 	private ImageIcon imageToIcon(byte[] photo) {
 		ImageIcon image = new ImageIcon(photo);
 		Image im = image.getImage();
@@ -438,6 +443,10 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
 
 	}// GEN-LAST:event_jButton1ActionPerformed
 
+	/**
+	 * Attempts to submit the information specified in the GUI and add it to the database.
+	 * @param evt
+	 */
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
 		// TODO add your handling code here:
 
@@ -477,6 +486,10 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
 		this.hide();
 	}// GEN-LAST:event_jButton3ActionPerformed
 
+	/**
+	 * Retrieves ticket information from the database and adds it to the report table on the GUI.
+	 * @param evt
+	 */
 	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
 		String id = txtcustid.getText();
 		try {
