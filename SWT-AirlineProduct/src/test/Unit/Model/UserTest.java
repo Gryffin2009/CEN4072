@@ -56,8 +56,9 @@ public class UserTest {
     @Test
     @DisplayName("Create user, pairwise for all invalid inputs")
     void testCreateUserInvalidPairwise0() {
-        Assertions.assertThrows(InvalidUserInputException.class, () ->
+        Exception e = Assertions.assertThrows(InvalidUserInputException.class, () ->
                 new User(id, "Todd", "Bauer63", "TB!Flo746", "sdjh834#!!"));
+        Assertions.assertEquals("Invalid Last Name.", e.getMessage());
     }
     /**
      * Test Case ID: U-2-1, U-2-3,  U-3-3, U-4-2,  U-5-2
@@ -75,9 +76,9 @@ public class UserTest {
     @Test
     @DisplayName("Create user, pairwise for all invalid inputs")
     void testCreateUserInvalidPairwise1() {
-        Assertions.assertThrows(InvalidUserInputException.class, () ->
+        Exception e = Assertions.assertThrows(InvalidUserInputException.class, () ->
                 new User(id, "2Todd", "Bauer63", "TB!Flo746", "sdjh834#!!"));
-
+        Assertions.assertEquals("Invalid First Name.",e.getMessage());
     }
     /**
      * Test Case ID: U-2-2, U-3-1,  U-4-1, U-5-1
@@ -95,8 +96,25 @@ public class UserTest {
     @Test
     @DisplayName("Create user, pairwise for all invalid inputs")
     void testCreateUserInvalidPairwise2() {
-        Assertions.assertThrows(InvalidUserInputException.class, () ->
-                new User(id, "2Todd", "Bauer", "TBFlow", "l33tc0d3r"));
+        Exception e = Assertions.assertThrows(InvalidUserInputException.class, () ->
+                new User(id, "D’Angelo-Paul2", "Bauer", "TBFlow", "l33tc0d3r"));
+        Assertions.assertEquals("Invalid First Name.",e.getMessage());
+    }
+
+    /**
+     * Test Case ID: U-3-2
+     * Requirement: U-3: Users shall have a valid password. Passwords shall consist of only alphabetic and numerical characters and must have at least 1 number and 1 capital letter.
+     * Test setup: none
+     * Test Strategy: A new user is created.
+     * Input: "Todd", "Bauer", "TBFlow", "l33Tc0d3r"
+     * Expected output: the method should throw an InvalidUserInputException
+     **/
+    @Test
+    @DisplayName("Create user, invalid password - no numbers")
+    void testCreateUserInvalidPassword() {
+        Exception e = Assertions.assertThrows(InvalidUserInputException.class, () ->
+                new User(id, "D’Angelo-Paul", "Bauer", "TBFlow", "testPassword"));
+        Assertions.assertEquals("Invalid Password.",e.getMessage());
     }
 
     /**
